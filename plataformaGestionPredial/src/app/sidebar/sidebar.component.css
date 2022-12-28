@@ -1,0 +1,22 @@
+/* li{
+    margin-right: 55%;
+} */
+ul{
+    list-style: none;
+    cursor: pointer;
+}
+/* i{
+    margin-left: 10%;
+} */
+.col-6{
+    /* align-content: center;
+    display: flex;
+    float:center; */
+    /* text-align: center; */
+    cursor: pointer;
+    padding-left: 20%;
+    padding-top: 10%;
+    width: 50%;
+    margin:auto;
+    /* margin-left: 1%; */
+}
