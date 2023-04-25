@@ -6,7 +6,7 @@
     background-color: rgb(73, 70, 171);
 }
 #content{
-    background-color: rgb(215, 233, 235);
+    background-color: rgb(44, 172, 35);
 }
 #header{
     background-color: rgb(233, 233, 244);
@@ -14,4 +14,6 @@
 }
 body{
     overflow-x: hidden;
+    /* position:absolute; */
+    /* height: 100vh; */
 }
