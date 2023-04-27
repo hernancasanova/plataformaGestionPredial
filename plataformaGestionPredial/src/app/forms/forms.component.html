@@ -1,0 +1,33 @@
+<div class="container">
+    <!-- <form #f="ngForm">
+        <h3>Ingresar nuevo documento</h3>
+        <div class="form-control">
+            <label for="name">Nombre: </label>
+            <input type="text" name="name" id="name" ngModel #name="ngModel">
+        </div>
+        {{f.value | json}}
+    </form> -->
+    <div class="container mt-0">
+        <div class="card">
+            <div class="card-header">
+                <h3>Formulario ingreso de documentos</h3>
+            </div>
+            <div class="card-body">
+                <form #f="ngForm">
+                    <div class="form-group">
+                        <label for="name">Nombre:</label>
+                        <input type="text" class="form-control" id="name" name="name" ngModel #name="ngModel">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descripción:</label>
+                        <input type="text" class="form-control" id="description" name="description" ngModel #description="ngModel">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Ingresar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+	</div>
+</div>

@@ -1,21 +1,55 @@
-<div class="row" >
-    <div class="col-6">
-        <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+<!-- DASHBOARD -->
+<div class="row menu" routerLink="/dashboard">
+    <div class="col-3">
+        <i class="bi bi-graph-up-arrow" ></i>
+        <!-- <fa-icon [icon]="faDashboard"></fa-icon> -->
     </div>
-    <div class="col-6">
-        <i class="bi bi-graph-up-arrow"></i>
+    <div class="col-9">
+        <a class="nav-link" >Dashboard<i class="bi bi-caret-right"></i></a>
+        <!-- <ul>
+            <li>Vacas</li>
+            <li>Ovejas</li>
+            <li>Identificadores</li>
+            <li>Documentos</li>
+            <li>Farmacos</li>
+        </ul> -->
     </div>
-    <div class="col-6">
-        <a class="nav-link" routerLink="/listado">Listado</a>
+</div>
+
+<!-- VACUNOS -->
+<div class="row menu" routerLink="/list">
+    <div class="col-3">
+        <fa-icon [icon]="faCow" style="float: right;"></fa-icon>
+    </div>
+    <div class="col-9">
+        <a class="nav-link" >Vacunos<i class="bi bi-caret-right"></i></a>
+    </div>
+</div>
+    <!-- OVEJAS -->
+    <!-- <div class="col-6">
+        <a class="nav-link" routerLink="/forms">Ovejas</a>
     </div>
     <div class="col-6">
         <i class="bi bi-list"></i>
+    </div> -->
+
+<!-- DOCUMENTOS -->
+<div class="row menu" routerLink="/forms">
+    <div class="col-3">
+        <i class="bi bi-files"></i>
     </div>
-    <div class="col-6">
-        <a class="nav-link" routerLink="/registrar">Registrar</a>
+    <div class="col-9">
+        <a class="nav-link" >Documentos<i class="bi bi-caret-right"></i></a>
+        <!-- <i class="bi bi-files"></i> -->
     </div>
-    <div class="col-6">
-        <i class="bi bi-pencil"></i>
+</div>
+
+<!-- IDENTIFICADORES -->
+<div class="row menu" routerLink="/forms">
+    <div class="col-3">
+        <i class="bi bi-postcard"></i>
     </div>
-    
+    <div class="col-9">
+        <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a>
+    </div>
 </div>

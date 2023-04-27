@@ -1,8 +1,11 @@
 #brand{
     min-height: 20%;
     /* max-height: 20%; */
-    background-color: rgb(204, 225, 14);
+    /* background-color: rgb(204, 225, 14); */
+    background-color: rgb(73, 70, 171);
     background-repeat: no-repeat;
+    padding-top: 25px;
+    padding-bottom: 25px;
     /* display: block; */
 }
 #menu{
