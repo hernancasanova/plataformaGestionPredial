@@ -4,7 +4,8 @@
 }
 #breadcrumb{
     /* vertical-align: bottom; */
+    margin-top: 5%;
     margin-left: 1%;
     /* padding-top: 5%; */
     min-height: 20%;
-}
+} 

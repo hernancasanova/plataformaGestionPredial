@@ -7,24 +7,36 @@
         </div>
         {{f.value | json}}
     </form> -->
-    <div class="container mt-0">
+    <div class="container pt-4">
         <div class="card">
             <div class="card-header">
-                <h3>Formulario ingreso de documentos</h3>
+                <h3>Ingresar documento</h3>
             </div>
             <div class="card-body">
                 <form #f="ngForm">
-                    <div class="form-group">
-                        <label for="name">Nombre:</label>
-                        <input type="text" class="form-control" id="name" name="name" ngModel #name="ngModel">
+                    <div class="form-group mb-2">
+                        <label for="name">Nombre</label>
+                        <input type="text" class="form-control" id="name" name="name" ngModel #name="ngModel" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="description">Descripción</label>
+                        <input type="text" class="form-control" id="description" name="description" ngModel #description="ngModel" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="type">Tipo</label>
+                        <select class="form-select" name="type" id="type">
+                            <option value="">Seleccione</option>
+                            <option value="0">Visita técnica</option>
+                            <option value="1">Individualización</option>
+                            <option value="2">Compra</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="file">Seleccione archivo</label>
+                        <input type="file" class="form-control" id="file" name="file">
                     </div>
                     <div class="form-group">
-                        <label for="description">Descripción:</label>
-                        <input type="text" class="form-control" id="description" name="description" ngModel #description="ngModel">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Ingresar</button>
+                        <button type="submit" (click)="registerDocument()" class="btn btn-primary">Ingresar</button>
                     </div>
                 </form>
             </div>

@@ -16,7 +16,7 @@ i{
     /* text-align: center; */
     cursor: pointer;
     padding-left: 20%;
-    padding-top: 10%;
+    /* padding-top: 10%; */
     width: 50%;
     /* margin:auto; */
     /* margin-left: 1%; */
@@ -24,4 +24,19 @@ i{
 .menu{
     height: 50px;
     cursor: pointer;
+    align-content:center;
+}
+.menu:hover {
+    background-color: rgb(148, 146, 202) ; 
+}
+/* .menu div{
+    vertical-align:center;
+} */
+.submenu{
+   background-color: rgb(134, 131, 217);
+   display:flex;
+}
+.submenu ul{
+    padding-left: 20px;
+    align-items: center;
 }

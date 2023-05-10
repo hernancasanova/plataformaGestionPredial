@@ -10,5 +10,11 @@ export class SidebarComponent {
 
   faCow = faCow;
   faDashboard = faDashboard;
-
+  openLink=false;
+  changeOpenLink():void{
+    if(this.openLink==false) this.openLink=true;
+    else this.openLink=false;
+  }
+  
+  //$(".menu click").addClass('menu-active')
 }

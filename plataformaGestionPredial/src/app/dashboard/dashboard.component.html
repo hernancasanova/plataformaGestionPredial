@@ -1,1 +1,29 @@
-<h1>Hola soy el componente dashboard!!!</h1>
+<div *ngIf="registers.length>0; else elseBlock">
+    <table class="table table-striped">
+      <thead cTableColor="dark">
+      <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Type</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let register of registers; index  as i ">
+          <td>{{i+1}}</td>
+          <td>{{register.name}}</td>
+          <td>{{register.description}}</td>
+          <td>{{register.type}}</td>
+          <!-- <td>5</td> -->
+          <!-- <td><fa-icon title="Editar" [routerLink]="['/editar_condicion/',register.id]" class="btnEdit" [icon]="faEdit"></fa-icon></td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #elseBlock>
+    
+          Loading... 
+  </ng-template>
+  
+  
+  

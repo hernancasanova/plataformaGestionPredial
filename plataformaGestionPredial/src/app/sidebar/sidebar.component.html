@@ -5,7 +5,8 @@
         <!-- <fa-icon [icon]="faDashboard"></fa-icon> -->
     </div>
     <div class="col-9">
-        <a class="nav-link" >Dashboard<i class="bi bi-caret-right"></i></a>
+        <!-- <a class="nav-link" >Dashboard<i class="bi bi-caret-right"></i></a> -->
+        <a class="nav-link" >Dashboard</a>
         <!-- <ul>
             <li>Vacas</li>
             <li>Ovejas</li>
@@ -17,13 +18,24 @@
 </div>
 
 <!-- VACUNOS -->
-<div class="row menu" routerLink="/list">
+<div class="row menu" (click)="changeOpenLink()">
     <div class="col-3">
         <fa-icon [icon]="faCow" style="float: right;"></fa-icon>
     </div>
     <div class="col-9">
-        <a class="nav-link" >Vacunos<i class="bi bi-caret-right"></i></a>
+        <a class="nav-link" >Animales
+            <i [ngClass]="openLink ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i>
+            
+            <!-- <div *ngIf="openLink; else elseBlock"><i class="bi bi-caret-down"></i></div>
+            <ng-template #elseBlock><i class="bi bi-caret-right"></i></ng-template> -->
+        </a>
     </div>
+</div>
+<div *ngIf="openLink" class="row submenu">
+    <ul>
+        <li>Vacunos</li>
+        <li>Ovejas</li>
+    </ul>
 </div>
     <!-- OVEJAS -->
     <!-- <div class="col-6">
@@ -39,17 +51,41 @@
         <i class="bi bi-files"></i>
     </div>
     <div class="col-9">
-        <a class="nav-link" >Documentos<i class="bi bi-caret-right"></i></a>
+        <!-- <a class="nav-link" >Documentos<i class="bi bi-caret-right"></i></a> -->
+        <a class="nav-link" >Documentos</a>
         <!-- <i class="bi bi-files"></i> -->
     </div>
 </div>
 
 <!-- IDENTIFICADORES -->
-<div class="row menu" routerLink="/forms">
+<div class="row menu" routerLink="/list">
     <div class="col-3">
         <i class="bi bi-postcard"></i>
     </div>
     <div class="col-9">
-        <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a>
+        <!-- <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a> -->
+        <a class="nav-link" >Identificadores</a>
     </div>
 </div>
+
+
+<!-- TEST -->
+<!-- <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-start align-items-center">
+        <span class="fa fa-dashboard fa-fw mr-3"></span> 
+        <span class="menu-collapsed">Dashboard</span>
+        <span class="submenu-icon ml-auto"></span>
+    </div>
+</a> -->
+<!-- Submenu content -->
+<!-- <div id='submenu1' class="collapse sidebar-submenu">
+    <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+        <span class="menu-collapsed">Charts</span>
+    </a>
+    <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+        <span class="menu-collapsed">Reports</span>
+    </a>
+    <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+        <span class="menu-collapsed">Tables</span>
+    </a>
+</div> -->

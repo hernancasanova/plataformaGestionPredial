@@ -1,0 +1,74 @@
+version: "3.5"
+services:      
+  db:
+    image: oracleinanutshell/oracle-xe-11g:latest
+    container_name: db-pgp
+    restart: unless-stopped
+    ports: 
+      - 1521:1521
+    environment:
+      - ORACLE_ALLOW_REMOTE=true
+    volumes:
+      - ./oracle:/docker-entrypoint-initdb.d
+    networks:
+      - net
+      - default
+  
+  frontend-angular:
+    image: pgp-front1.0
+    working_dir: /usr/src/app
+    build: 
+      context: ./plataformaGestionPredial
+      dockerfile: Dockerfile
+    container_name: front-pgp
+    volumes: 
+      - ./plataformaGestionPredial:/usr/src/app
+    networks: 
+      - net
+      - default
+    ports: 
+      - "4202:4200"
+    command: sh -c "npm install && npm start"
+
+
+  app:  
+    image: pgp
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    container_name: app-pgp
+    environment: 
+      #- spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.Oracle10gDialect
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.Oracle10gDialect
+      - SPRING_DATASOURCE_URL=jdbc:oracle:thin:@//db:1521/xe
+      - SPRING_DATASOURCE_USERNAME=system
+      - SPRING_DATASOURCE_PASSWORD=oracle
+      - SPRING_JPA_SHOW_SQL=true
+      - TZ="Asia/Kolkata"
+    volumes:
+      - ./src/main/java/com/pgp:/var
+    ports: 
+        - 8006:8006
+    networks:
+      - net
+      - default
+    #tty: true
+
+  # front:
+  #   image: "node:16"
+  #   container_name: frontend-angular
+  #   working_dir: /usr/src/app
+  #   volumes:
+  #     - ./visualizadorCaidaPrecipitaciones:/usr/src/app
+  #   ports:
+  #     - "4201:4200"
+  #   command: sh -c "npm start"
+  #   #command: bash -c "npm install && npm start"
+  #   networks:
+  #     - net
+  #     - default
+
+networks:
+  net:
+    name: net
+    driver: bridge
