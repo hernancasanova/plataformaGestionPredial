@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faCow, faDashboard } from '@fortawesome/free-solid-svg-icons';
+import { faCow, faDashboard, faToolbox } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,6 +10,7 @@ export class SidebarComponent {
 
   faCow = faCow;
   faDashboard = faDashboard;
+  faToolbox = faToolbox;
   openLink=false;
   changeOpenLink():void{
     if(this.openLink==false) this.openLink=true;

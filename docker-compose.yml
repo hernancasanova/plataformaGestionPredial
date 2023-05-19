@@ -3,7 +3,6 @@ services:
   db:
     image: oracleinanutshell/oracle-xe-11g:latest
     container_name: db-pgp
-    restart: unless-stopped
     ports: 
       - 1521:1521
     environment:
@@ -45,6 +44,9 @@ services:
       - SPRING_DATASOURCE_PASSWORD=oracle
       - SPRING_JPA_SHOW_SQL=true
       - TZ="Asia/Kolkata"
+      - SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE=128MB
+      - SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE=128MB
+      - SPRING_SERVLET_MULTIPART_ENABLED=true
     volumes:
       - ./src/main/java/com/pgp:/var
     ports: 

@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
 
 
 @Entity
@@ -20,18 +18,18 @@ import lombok.Setter;
 public class Document implements Serializable{
 
 	@Column(name="NAME")
-	private String name;
+	public String name;
 	
 	@Id
 	@Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_DOCUMENT")
 	@SequenceGenerator(schema = "HERNAN", name = "SEQUENCE_DOCUMENT",
     sequenceName = "SEQUENCE_DOCUMENT" , allocationSize=1)  
-	private Long id;
+	public Long id;
 	
 	
 	@Column(name="DESCRIPTION")
-	private String description;
+	public String description;
 	
 	
 	public String getDescription() {
@@ -51,7 +49,7 @@ public class Document implements Serializable{
 	}
 
 	@Column(name="TYPE")
-	private int type;
+	public int type;
 	
 	public Long getId() {
 		return id;
