@@ -32,11 +32,23 @@ i{
 /* .menu div{
     vertical-align:center;
 } */
-.submenu{
-   background-color: rgb(134, 131, 217);
-   display:flex;
+/*.submenu{
+    background-color: rgb(85, 81, 217); 
+   display:flex; 
+}*/
+li{
+    padding: 10px;
+    margin-top: 10px;
 }
 .submenu ul{
     padding-left: 20px;
-    align-items: center;
+    text-align: center;
+    vertical-align: bottom;
+}
+ul li:hover{
+    background-color: rgb(134, 131, 217);
+    padding: 10px;
+}
+.active{
+    background-color: rgb(134, 131, 217);
 }

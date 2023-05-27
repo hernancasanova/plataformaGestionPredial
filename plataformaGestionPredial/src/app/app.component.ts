@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'plataformaGestionPredial';
+  jwt_token=localStorage.getItem("jwt_token")
+  //login = false;
 }

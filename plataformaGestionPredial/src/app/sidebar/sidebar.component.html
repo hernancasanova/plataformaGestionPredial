@@ -33,8 +33,9 @@
 </div>
 <div *ngIf="openLink" class="row submenu">
     <ul>
-        <li>Vacunos</li>
-        <li>Ovejas</li>
+        <i class="fa-thin fa-sheep"></i>
+        <li id="1"(click)="addClass(1)">Vacunos</li>
+        <li id="2"(click)="addClass(2)">Ovejas</li>
     </ul>
 </div>
     <!-- OVEJAS -->
@@ -76,6 +77,17 @@
     <div class="col-9">
         <!-- <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a> -->
         <a class="nav-link" >Suministros</a>
+    </div>
+</div>
+
+<!-- MAQUINARIAS -->
+<div class="row menu" routerLink="/list">
+    <div class="col-3">
+        <i class="fa-solid fa-tractor"></i>
+    </div>
+    <div class="col-9">
+        <!-- <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a> -->
+        <a class="nav-link" >Maquinarias</a>
     </div>
 </div>
 

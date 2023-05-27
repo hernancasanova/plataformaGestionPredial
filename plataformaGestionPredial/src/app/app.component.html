@@ -1,21 +1,53 @@
-<div style="height:100vh;background-color: burlywood;" class="row">
-    <!-- <div id="header" class="row"></div> -->
-    <!-- <div style="" class="row"> -->
-        <div id="sidebar" class="col-2">
-            <div id="brand" class="row">
-                <img src="../assets/predio.svg" alt="predio" >
-            </div>
-            <div id="menu">
-                <app-sidebar></app-sidebar>
+   
+<!-- <div *ngIf="!jwt_token; else logued" > -->
+    <!--div class="container" style="width:30rem; text-align: center; padding-top: 7rem; " id="formLogin">
+        <div class="container" >
+            <div class="card">
+                <div class="card-header">
+                    <h3>Plataforma de gestión predial</h3>
+                        <img src="../assets/predio.svg" width="100" height="100" alt="predio" routerLink="/dashboard" >
+                </div>
+                <div class="card-body">
+                    <form id="form"  method="POST" >
+                        <div class="form-group mb-2">
+                            <label for="name">Usuario</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="description">Contraseña</label>
+                            <input type="password" class="form-control" id="description" name="description" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Ingresar</button>
+                            <br><br>
+                            <span>¿No tiene cuenta?  </span>
+                            <a routerLink="/register">Cree su cuenta aquí</a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <div id="main" class="col-10">
-            <div id="header">
-                <app-navbar></app-navbar>
+    </div-->
+    <!-- <app-login></app-login> -->
+<!-- </div-->
+<!--ng-template #logued>
+    <div style="height:100vh;background-color: burlywood;" class="row">
+            <div id="sidebar" class="col-2">
+                <div id="brand" class="row">
+                    <img src="../assets/predio.svg" alt="predio" routerLink="/dashboard" >
+                </div>
+                <div id="menu">
+                    <app-sidebar></app-sidebar>
+                </div>
             </div>
-            <div id="content">
-                <router-outlet></router-outlet>
+            <div id="main" class="col-10">
+                <div id="header">
+                    <app-navbar></app-navbar>
+                </div>
+                <div id="content">
+                    <router-outlet></router-outlet>
+                </div>
             </div>
-        </div>
-    <!-- </div> -->
-</div>
+    </div>
+</ng-template> -->
+<router-outlet></router-outlet>

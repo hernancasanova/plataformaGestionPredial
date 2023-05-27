@@ -10,11 +10,16 @@ import { SidebarModule } from './sidebar/sidebar.module';
 import { NavbarModule } from './navbar/navbar.module';
 import { FormsModule } from '@angular/forms';
 import { FormsComponent } from './forms/forms.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginModule } from './login/login.module';
+import { MainGuard } from './guards/main.guard';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormsComponent
+    FormsComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -25,9 +30,11 @@ import { FormsComponent } from './forms/forms.component';
     FormsModule,
     RouterModule,
     NgbModule,
-    CommonModule
+    CommonModule,
+    BrowserAnimationsModule, 
+    LoginModule
   ],
-  providers: [],
+  providers: [MainGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
