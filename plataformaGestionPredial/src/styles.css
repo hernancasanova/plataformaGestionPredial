@@ -3,7 +3,7 @@
 @import '~bootstrap-icons/font/bootstrap-icons.css';
 
 #sidebar{
-    background-color: rgb(73, 70, 171);
+    background-color: rgb(31, 139, 78);
 }
 #content{
     background-color: rgb(253, 255, 253);
@@ -16,6 +16,7 @@ body{
     overflow-x: hidden;
     /* position:absolute; */
     height: 100vh;
+    /* max-height: 100vh; */
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { height: 100%; width: 100%;}
+body { display:inline-block;margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

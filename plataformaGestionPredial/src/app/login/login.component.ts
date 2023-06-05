@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
 
 
 
-  login():void{
+  login(e:any):void{
+    e.preventDefault();
     //let r:any=this.service.getRegisters().subscribe(result=>{
     let username=(document.getElementById('username') as HTMLInputElement).value;
     let password=(document.getElementById('password') as HTMLInputElement).value;
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
       //return r.results;
       if(r){
         localStorage.setItem("jwt_token","vigniunvgtin")
-        //this.router.navigate(["dashboard"], { relativeTo:  })
+        this.router.navigate(["dashboard"])
       }else{
         alert("error al ingresar sus credenciales")
       }
@@ -32,6 +33,8 @@ export class LoginComponent implements OnInit {
       //this.h = r.results;
       //console.log("this.h: ",this.h)
     }); 
+    //let jwt_token=localStorage.getItem("jwt_token")
+    //if(jwt_token)this.router.navigate(["dashboard"])
     //alert("alertando")
 
   }

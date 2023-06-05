@@ -6,7 +6,7 @@
     </div>
     <div class="col-9">
         <!-- <a class="nav-link" >Dashboard<i class="bi bi-caret-right"></i></a> -->
-        <a class="nav-link" >Dashboard</a>
+        <a class="nav-link" >Panel de control</a>
         <!-- <ul>
             <li>Vacas</li>
             <li>Ovejas</li>
@@ -18,43 +18,30 @@
 </div>
 
 <!-- VACUNOS -->
-<div class="row menu" (click)="changeOpenLink()">
+<div class="row menu" routerLink="/bovines">
     <div class="col-3">
         <fa-icon [icon]="faCow" style="float: right;"></fa-icon>
     </div>
     <div class="col-9">
-        <a class="nav-link" >Animales
-            <i [ngClass]="openLink ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i>
-            
-            <!-- <div *ngIf="openLink; else elseBlock"><i class="bi bi-caret-down"></i></div>
-            <ng-template #elseBlock><i class="bi bi-caret-right"></i></ng-template> -->
+        <a class="nav-link" >Ganado
+            <!-- <i [ngClass]="openLink ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i> -->
         </a>
     </div>
 </div>
-<div *ngIf="openLink" class="row submenu">
+<!-- <div *ngIf="openLink" class="row submenu">
     <ul>
-        <i class="fa-thin fa-sheep"></i>
-        <li id="1"(click)="addClass(1)">Vacunos</li>
-        <li id="2"(click)="addClass(2)">Ovejas</li>
+       <li id="1"(click)="addClass(1)">Vacunos</li>
+       <li id="2"(click)="addClass(2)">Ovejas</li>
     </ul>
-</div>
-    <!-- OVEJAS -->
-    <!-- <div class="col-6">
-        <a class="nav-link" routerLink="/forms">Ovejas</a>
-    </div>
-    <div class="col-6">
-        <i class="bi bi-list"></i>
-    </div> -->
+</div> -->
 
 <!-- DOCUMENTOS -->
-<div class="row menu" routerLink="/forms">
+<div class="row menu" routerLink="/documents">
     <div class="col-3">
         <i class="bi bi-files"></i>
     </div>
     <div class="col-9">
-        <!-- <a class="nav-link" >Documentos<i class="bi bi-caret-right"></i></a> -->
         <a class="nav-link" >Documentos</a>
-        <!-- <i class="bi bi-files"></i> -->
     </div>
 </div>
 
@@ -70,24 +57,65 @@
 </div>
 
 <!-- SUMINISTROS -->
-<div class="row menu" routerLink="/list">
+<div class="row menu" (click)="changeOpenLink()">
     <div class="col-3">
         <fa-icon [icon]="faToolbox" style="float: right;"></fa-icon>
     </div>
     <div class="col-9">
-        <!-- <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a> -->
-        <a class="nav-link" >Suministros</a>
+        <a class="nav-link" >Suministros
+            <i [ngClass]="openLink ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i>
+        </a>
     </div>
+</div>
+<div *ngIf="openLink" class="row submenu">
+    <ul>
+        <li id="1"(click)="addClass(1)"><i class="fa-solid fa-syringe"></i>Fármacos</li>
+       <li id="2"(click)="addClass(2)"><i class="fa-solid fa-screwdriver-wrench"></i>Carpintería</li>
+    </ul>
 </div>
 
 <!-- MAQUINARIAS -->
-<div class="row menu" routerLink="/list">
+<div class="row menu" routerLink="/machines">
     <div class="col-3">
         <i class="fa-solid fa-tractor"></i>
     </div>
     <div class="col-9">
         <!-- <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a> -->
         <a class="nav-link" >Maquinarias</a>
+    </div>
+</div>
+
+<!-- NEGOCIOS -->
+<div class="row menu" routerLink="/list">
+    <div class="col-3">
+        <i class="fa-solid fa-handshake-simple"></i>
+    </div>
+    <div class="col-9">
+        <!-- <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a> -->
+        <a class="nav-link" >Negocios</a>
+    </div>
+</div>
+
+
+<!-- TRABAJOS -->
+<div class="row menu" routerLink="/list">
+    <div class="col-3">
+        <i class="fa-solid fa-person-digging"></i>
+    </div>
+    <div class="col-9">
+        <!-- <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a> -->
+        <a class="nav-link" >Trabajos</a>
+    </div>
+</div>
+
+
+<!-- TRABAJADORES -->
+<div class="row menu" routerLink="/list">
+    <div class="col-3">
+        <i class="fa-solid fa-user-doctor"></i>
+    </div>
+    <div class="col-9">
+        <a class="nav-link" >Trabajadores</a>
     </div>
 </div>
 

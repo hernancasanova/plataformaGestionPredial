@@ -1,9 +1,11 @@
-<div id="title" ><h2>Plataforma de gestión predial</h2></div>
-<div id="breadcrumb" >
-    <nav aria-label="breadcrumb">
+<div id="title" >Plataforma de gestión predial</div>
+<div id="breadcrumb" style="font-weight:bold; text-shadow: 1px 1px 8px gold;"  >
+    <a href="logout" (click)="logout();" style="float: right;padding-right: 2%;"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+    <!-- <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">dashboard</li>
+        <li class="breadcrumb-item active" aria-current="page">{{currentRoute}}</li>
         </ol>
-    </nav>
+    </nav> -->
+    <a routerLink="">Home</a> {{currentRoute}}
 </div>

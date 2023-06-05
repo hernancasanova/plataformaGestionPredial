@@ -27,7 +27,7 @@ i{
     align-content:center;
 }
 .menu:hover {
-    background-color: rgb(148, 146, 202) ; 
+    background-color: rgb(123, 176, 146) ; 
 }
 /* .menu div{
     vertical-align:center;
@@ -46,9 +46,16 @@ li{
     vertical-align: bottom;
 }
 ul li:hover{
-    background-color: rgb(134, 131, 217);
+    background-color: rgb(123, 176, 146) ;
     padding: 10px;
 }
 .active{
-    background-color: rgb(134, 131, 217);
+    background-color: rgb(123, 176, 146) ;;
+}
+li i{
+    padding: 4px;
+    float:left;
+    margin-left: 20%;
+    /* vertical-align: middle; */
+    align-items: center;
 }

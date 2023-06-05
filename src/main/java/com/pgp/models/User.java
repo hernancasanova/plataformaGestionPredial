@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="DOCUMENTS", schema="HERNAN")
+@Table(name="USERS", schema="HERNAN")
 public class User implements Serializable{
 	
 	@Id
@@ -24,15 +24,25 @@ public class User implements Serializable{
     sequenceName = "SEQUENCE_DOCUMENT" , allocationSize=1)  
 	public Long id;
 	
-	@Column(name="NAME")
-	public String name;
-	
-	
-	@Column(name="DESCRIPTION")
+	@Column(name="EMAIL")
 	public String email;
 	
 	
+	private String getEmail() {
+		return email;
+	}
+
+	private void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+	@Column(name="PASSWORD")
 	public String password;
+	
+	
+	//public String password;
 	
 	
 	public Long getId() {
@@ -43,13 +53,7 @@ public class User implements Serializable{
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 
 	/**
 	 * 

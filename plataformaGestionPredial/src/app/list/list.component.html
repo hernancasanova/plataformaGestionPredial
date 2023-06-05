@@ -1,26 +1,66 @@
-<p>Component list</p>
-<!-- <div *ngIf="registers.length>0; else elseBlock">
-    <table cTable>
-      <thead cTableColor="dark">
-      <tr>
-      <th scope="col">#</th>
-      <th scope="col">Fecha</th>
-      <th scope="col">Condición</th>
-      <th scope="col">Cantidad aproximada (ml)</th>
-      <th scope="col">Acciones</th>
-      </tr>
+<!-- <div class="container pt-2" *ngIf="items.length>0; else elseBlock"> -->
+<div class="container pt-2">
+  <form>
+    <div class="mb-3 row">
+      <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Buscar coincidencia:</label>
+      <div class="col-xs-3 col-sm-auto">
+        <input
+          id="table-complete-search"
+          type="text"
+          class="form-control"
+          name="searchTerm"
+          [(ngModel)]="service.searchTerm"
+        />
+      </div>
+      <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...</span>
+    </div>
+
+    <table class="table table-striped" >
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" >Name</th>
+          <th scope="col" >Date Birth</th>
+          <th scope="col" >Type</th>
+          <th scope="col" >Mother</th>
+          <th scope="col" >Actions</th>
+          <!-- <th scope="col" >Color</th>
+          <th scope="col" >State</th>
+          <th scope="col" >Date Sale</th> -->
+        </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let register of registers; index  as i ">
-          <td>{{i+1}}</td>
-          <td>{{register.fecha}}</td>
+        <tr *ngFor="let country of items$ | async ">
+          <th scope="row">{{ country.id }}</th>
+          <td>
+            <!-- <img
+              [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag"
+              class="me-2"
+              style="width: 20px"
+            /> -->
+            <ngb-highlight [result]="country.name" [term]="service.searchTerm"></ngb-highlight>
+          </td>
+          <td><ngb-highlight [result]="country.date_birth" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="country.mother | number" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="country.type | number" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-dragon"></i></td>
         </tr>
       </tbody>
     </table>
-  </div>
-  <ng-template #elseBlock>
-          Loading... 
-  </ng-template> -->
-  
-  
-  
+
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+			</ngb-pagination>
+      <!-- {{items}} -->
+      <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+        <option [ngValue]="5">5 items por página</option>
+        <option [ngValue]="10">10 items por página</option>
+        <option [ngValue]="15">15 items por página</option>
+        <!-- <option [ngValue]="20">20 items por página</option> -->
+      </select>
+    </div>
+  </form>
+</div>
+<!-- <ng-template #elseBlock>
+  Loading...
+</ng-template> -->

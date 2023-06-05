@@ -1,12 +1,22 @@
 #title{
     text-align: center;
-    min-height: 80%;
+    vertical-align: bottom;
+    color: #322F2F;
+    text-shadow: 2px 2px 8px gold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 30px;
+    font-weight:bold;
+    height: 90%;
 }
 #breadcrumb{
     /* vertical-align: bottom; */
     padding-top: 5%;
     margin-left: 1%;
     /* padding-top: 5%; */
-    min-height: 20%;
-    max-height: 20%;
+    /* min-height: 10%;
+    max-height: 10%; */
+    color: #333030 !important;
 } 
+nav{
+    color: gold !important         ;
+}

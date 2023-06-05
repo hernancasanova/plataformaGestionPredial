@@ -14,7 +14,6 @@ public class LoginServiceImpl implements ILoginService {
 	
 	@Override
 	public boolean login(String username, String password) {
-//		loginDao.
 //		@Query(
 //		  value = "SELECT * FROM USERS u WHERE u.status = 1", 
 //		  nativeQuery = true)
