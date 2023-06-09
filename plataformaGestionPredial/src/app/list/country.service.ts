@@ -40,7 +40,8 @@ function sort(countries: [], column: SortColumn, direction: string): any[] {
 
 function matches(country: Country, term: string, pipe: PipeTransform) {
 	return (
-		country.name.toLowerCase().includes(term.toLowerCase()) //||
+		country.name.toLowerCase().includes(term.toLowerCase()) ||
+		country.diio.toLowerCase().includes(term.toLowerCase())
 		//pipe.transform(country.date_birth).includes(term) ||
 		//pipe.transform(country.sex).includes(term)
 	);

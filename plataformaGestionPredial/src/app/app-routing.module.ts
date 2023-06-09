@@ -7,7 +7,7 @@ import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
 import { AuthRoutingModule } from './login/login.routing';
 import { MainComponent } from './main/main.component';
-import { TableComponent } from './table/table.component';
+//import { TableComponent } from './table/table.component';
 import { TablesComponent } from './tables/tables.component';
 
 const routes: Routes = [
@@ -24,7 +24,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent, data:{type:"dashboard"}},
       { path: 'bovines', component: ListComponent, data:{type:"bovines"}},
       { path: 'documents', component: FormsComponent, data:{type:"documents"}},
-      { path: 'list', component: TableComponent, data:{type:"list"}},//ListComponent
+      { path: 'list', component: ListComponent, data:{type:"list"}},//ListComponent
       { path: 'machines', component: TablesComponent, data:{type:"machines"}},
     ]
   }

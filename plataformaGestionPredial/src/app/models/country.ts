@@ -5,7 +5,7 @@ export interface Country {
 	datePlacement: any;
 	dateBirth: any;
 	sex: string;
-	type: number;
+	type: string;
 	mother: string;
 	color: string;
 	state: string;

@@ -17,10 +17,11 @@ public interface BovineDto{
 	public Date date_birth;
 	public String mother;
 	public int type;*/
+	int  getId();
 	String getName();
 	String getDiio();
 	Date getDatePlacement();
 	Date getDateBirth();
 	String getMother();
-	int getType();
+	String getType();
 }

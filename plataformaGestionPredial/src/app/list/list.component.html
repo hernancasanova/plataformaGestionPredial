@@ -2,7 +2,7 @@
 <div class="container pt-2">
   <form>
     <div class="mb-3 row">
-      <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Buscar coincidencia:</label>
+      <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Search by name:</label>
       <div class="col-xs-3 col-sm-auto">
         <input
           id="table-complete-search"
@@ -12,6 +12,7 @@
           [(ngModel)]="service.searchTerm"
         />
       </div>
+      <div class="col-xs-3 col-sm-auto">N° bovines: {{(items$| async)?.length}} </div>
       <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...</span>
     </div>
 
@@ -19,35 +20,39 @@
       <thead>
         <tr>
           <th scope="col">#</th>
+          <th scope="col">Image</th>
           <th scope="col" (sort)="onSort($event)" sortable="name">Name</th>
           <th scope="col" >DIIO</th>
           <th scope="col" >Date Placement</th>
           <th scope="col" >Date Birth</th>
           <th scope="col" >Mother</th>
           <th scope="col" >Type</th>
-          <th scope="col" >Actions</th>
+          <!-- <th scope="col" >Actions</th> -->
           <!-- <th scope="col" >Color</th>
           <th scope="col" >State</th>
           <th scope="col" >Date Sale</th> -->
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let country of items$ | async ">
-          <th scope="row">{{ country.id }}</th>
+        <tr *ngFor="let country of items$ | async; let i = index ">
+          <th scope="row">{{i+1}}</th>
           <td>
-            <!-- <img
-              [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag"
-              class="me-2"
-              style="width: 20px"
-            /> -->
+            <img
+              width="50px"
+              height="50px"
+              [src]="'http://localhost:4200/assets/imagenes/' + country.id+'.jpg'"
+              
+            />
+          </td>
+          <td>
             <ngb-highlight [result]="country.name" [term]="service.searchTerm"></ngb-highlight>
           </td>
           <td><ngb-highlight [result]="country.diio" [term]="service.searchTerm"></ngb-highlight></td>
-          <td><ngb-highlight [result]=" country.datePlacement | date:'dd/MM/yyyy'" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]=" country.datePlacement!=null?(country.datePlacement | date:'dd/MM/yyyy'):'No aplica'" [term]="service.searchTerm"></ngb-highlight></td>
           <td><ngb-highlight [result]=" country.dateBirth | date:'dd/MM/yyyy'" [term]="service.searchTerm"></ngb-highlight></td>
           <td><ngb-highlight [result]="country.mother" [term]="service.searchTerm"></ngb-highlight></td>
-          <td><ngb-highlight [result]="country.type | number" [term]="service.searchTerm"></ngb-highlight></td>
-          <td><i class="fa-solid fa-pen-to-square"></i></td>
+          <td><ngb-highlight [result]="country.type" [term]="service.searchTerm"></ngb-highlight></td>
+          <!-- <td><i class="fa-solid fa-pen-to-square"></i></td> -->
         </tr>
       </tbody>
     </table>
