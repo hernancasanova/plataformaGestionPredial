@@ -1,10 +1,12 @@
 export interface Country {
 	id: number;
 	name: string;
-	date_birth: any;
+	diio: string;
+	datePlacement: any;
+	dateBirth: any;
 	sex: string;
 	type: number;
-	mother: number;
+	mother: string;
 	color: string;
 	state: string;
 	date_sale: any;

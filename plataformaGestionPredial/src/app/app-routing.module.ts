@@ -22,9 +22,9 @@ const routes: Routes = [
     canActivate: [MainGuard],
     children:[
       { path: 'dashboard', component: DashboardComponent, data:{type:"dashboard"}},
-      { path: 'bovines', component: TableComponent, data:{type:"bovines"}},
+      { path: 'bovines', component: ListComponent, data:{type:"bovines"}},
       { path: 'documents', component: FormsComponent, data:{type:"documents"}},
-      { path: 'list', component: ListComponent, data:{type:"list"}},//ListComponent
+      { path: 'list', component: TableComponent, data:{type:"list"}},//ListComponent
       { path: 'machines', component: TablesComponent, data:{type:"machines"}},
     ]
   }

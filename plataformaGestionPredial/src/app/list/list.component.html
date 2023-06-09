@@ -19,10 +19,12 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col" >Name</th>
+          <th scope="col" (sort)="onSort($event)" sortable="name">Name</th>
+          <th scope="col" >DIIO</th>
+          <th scope="col" >Date Placement</th>
           <th scope="col" >Date Birth</th>
-          <th scope="col" >Type</th>
           <th scope="col" >Mother</th>
+          <th scope="col" >Type</th>
           <th scope="col" >Actions</th>
           <!-- <th scope="col" >Color</th>
           <th scope="col" >State</th>
@@ -40,10 +42,12 @@
             /> -->
             <ngb-highlight [result]="country.name" [term]="service.searchTerm"></ngb-highlight>
           </td>
-          <td><ngb-highlight [result]="country.date_birth" [term]="service.searchTerm"></ngb-highlight></td>
-          <td><ngb-highlight [result]="country.mother | number" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="country.diio" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]=" country.datePlacement | date:'dd/MM/yyyy'" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]=" country.dateBirth | date:'dd/MM/yyyy'" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="country.mother" [term]="service.searchTerm"></ngb-highlight></td>
           <td><ngb-highlight [result]="country.type | number" [term]="service.searchTerm"></ngb-highlight></td>
-          <td><i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-dragon"></i></td>
+          <td><i class="fa-solid fa-pen-to-square"></i></td>
         </tr>
       </tbody>
     </table>

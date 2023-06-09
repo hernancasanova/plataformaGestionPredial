@@ -1,19 +1,4 @@
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-list',
-//   templateUrl: './list.component.html',
-//   styleUrls: ['./list.component.css']
-// })
-// export class ListComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit(): void {
-//   }
-
-// }
-import { AsyncPipe, DecimalPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, DatePipe, DecimalPipe, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -36,6 +21,7 @@ import { VacunosService } from '../services/vacunos.service';
 		NgbdSortableHeader,
 		NgbPaginationModule,
 		NgIf,
+		DatePipe
 	],
 	templateUrl: './list.component.html',
 	providers: [CountryService, DecimalPipe],
