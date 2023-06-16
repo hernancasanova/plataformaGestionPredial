@@ -13,4 +13,8 @@ export class VacunosService{
   public getBovines():Observable<any>{
     return this.http.get("http://localhost:8006/bovines");
   }
+
+  public getBovine():Observable<any>{
+    return this.http.get("http://localhost:8006/bovines/:id");
+  }
 }

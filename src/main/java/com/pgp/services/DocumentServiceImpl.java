@@ -59,6 +59,7 @@ public class DocumentServiceImpl implements IDocumentService{
 	   * If modifying these scopes, delete your previously saved tokens/ folder.
 	   */
 	  private static final List<String> SCOPES =
+	      //Collections.singletonList(DriveScopes.DRIVE_METADATA);
 	      Collections.singletonList(DriveScopes.DRIVE);
 	  private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
 	

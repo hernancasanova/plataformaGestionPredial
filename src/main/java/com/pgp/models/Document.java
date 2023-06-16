@@ -22,9 +22,9 @@ public class Document implements Serializable{
 	
 	@Id
 	@Column(name="ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_DOCUMENT")
-	@SequenceGenerator(schema = "HERNAN", name = "SEQUENCE_DOCUMENT",
-    sequenceName = "SEQUENCE_DOCUMENT" , allocationSize=1)  
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_DOCUMENTS")
+	@SequenceGenerator(schema = "HERNAN", name = "SEQUENCE_DOCUMENTS",
+    sequenceName = "SEQUENCE_DOCUMENTS" , allocationSize=1)  
 	public Long id;
 	
 	

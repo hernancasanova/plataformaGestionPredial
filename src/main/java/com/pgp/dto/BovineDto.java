@@ -24,4 +24,5 @@ public interface BovineDto{
 	Date getDateBirth();
 	String getMother();
 	String getType();
+	String getAge();
 }

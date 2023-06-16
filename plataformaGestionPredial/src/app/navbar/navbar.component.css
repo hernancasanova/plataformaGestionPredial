@@ -4,9 +4,13 @@
     color: #322F2F;
     text-shadow: 2px 2px 8px gold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 30px;
+    font-size: 45px;
     font-weight:bold;
     height: 90%;
+    clip-path: ellipse();
+
+    shape-outside: ellipse();
+    background-color: transparent;
 }
 #breadcrumb{
     /* vertical-align: bottom; */

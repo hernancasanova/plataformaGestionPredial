@@ -2,17 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsComponent } from './forms.component';          
 import { NgForm } from '@angular/forms';
+import { FormsModule as FM } from '@angular/forms';
 //import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule, 
+    FM
   ],
   declarations: [
     FormsComponent,
-    NgForm
+    //NgForm
   ],
   exports: [FormsComponent, NgForm]
 })

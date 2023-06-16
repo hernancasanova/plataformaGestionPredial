@@ -8,6 +8,7 @@ import { NgbdSortableHeader, SortEvent } from './sortable.directive';
 import { FormsModule } from '@angular/forms';
 import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { VacunosService } from '../services/vacunos.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'ngbd-table-complete',
@@ -37,7 +38,7 @@ export class ListComponent {
 	@ViewChildren(NgbdSortableHeader)
   headers!: QueryList<NgbdSortableHeader>;
 
-	constructor(public service: CountryService, private changeDetectorRef: ChangeDetectorRef, private vacunoService: VacunosService) {
+	constructor(public service: CountryService, private router: Router, private vacunoService: VacunosService) {
 		//service.getBovines();
 		// setInterval(()=>{
 
@@ -57,6 +58,10 @@ export class ListComponent {
 		//this.items=this.service.getBovines();
 		//console.log("this.items 2: ",this.items)
 	//}
+	editBovine(id: number):any{
+		console.log("id: ",id)
+		this.router.navigate(["/bovines/create"])
+	}
 
 	// itemsIsNotNull():boolean{
 	// 	console.log("pase?");

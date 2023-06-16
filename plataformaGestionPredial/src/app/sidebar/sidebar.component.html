@@ -18,22 +18,22 @@
 </div>
 
 <!-- VACUNOS -->
-<div class="row menu" routerLink="/bovines">
+<div class="row menu" (click)="changeOpenLink()" >
     <div class="col-3">
         <fa-icon [icon]="faCow" style="float: right;"></fa-icon>
     </div>
     <div class="col-9">
         <a class="nav-link" >Ganado
-            <!-- <i [ngClass]="openLink ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i> -->
+            <i [ngClass]="openLink ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i>
         </a>
     </div>
 </div>
-<!-- <div *ngIf="openLink" class="row submenu">
+<div *ngIf="openLink" class="row submenu">
     <ul>
-       <li id="1"(click)="addClass(1)">Vacunos</li>
-       <li id="2"(click)="addClass(2)">Ovejas</li>
+       <li routerLink="/bovines" id="1"(click)="addClass(1)"><i class="fa-solid fa-list-ol"></i>Listado</li>
+       <li routerLink="/bovines/create" id="2"(click)="addClass(2)"><i class="fa-solid fa-plus"></i>Crear</li>
     </ul>
-</div> -->
+</div>
 
 <!-- DOCUMENTOS -->
 <div class="row menu" routerLink="/documents">
@@ -62,7 +62,7 @@
         <fa-icon [icon]="faToolbox" style="float: right;"></fa-icon>
     </div>
     <div class="col-9">
-        <a class="nav-link" >Suministros
+        <a class="nav-link" >Suministros<span class="badge badge-secondary">PRO</span>
             <i [ngClass]="openLink ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i>
         </a>
     </div>
@@ -70,52 +70,62 @@
 <div *ngIf="openLink" class="row submenu">
     <ul>
         <li id="1"(click)="addClass(1)"><i class="fa-solid fa-syringe"></i>Fármacos</li>
-       <li id="2"(click)="addClass(2)"><i class="fa-solid fa-screwdriver-wrench"></i>Carpintería</li>
+       <li id="2"(click)="addClass(2)"><i class="fa-solid fa-screwdriver-wrench"></i>Carpintería<span class="badge badge-secondary">PRO</span></li>
     </ul>
 </div>
 
 <!-- MAQUINARIAS -->
-<div class="row menu" routerLink="/machines">
+<div class="row menu" routerLink="/">
     <div class="col-3">
         <i class="fa-solid fa-tractor"></i>
     </div>
     <div class="col-9">
         <!-- <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a> -->
-        <a class="nav-link" >Maquinarias</a>
+        <a class="nav-link" >Maquinarias<span class="badge badge-secondary">PRO</span></a>
     </div>
 </div>
 
 <!-- NEGOCIOS -->
-<div class="row menu" routerLink="/list">
+<div class="row menu" routerLink="/">
     <div class="col-3">
         <i class="fa-solid fa-handshake-simple"></i>
     </div>
     <div class="col-9">
         <!-- <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a> -->
-        <a class="nav-link" >Negocios</a>
+        <a class="nav-link" >Negocios<span class="badge badge-secondary">PRO</span></a>
     </div>
 </div>
 
 
 <!-- TRABAJOS -->
-<div class="row menu" routerLink="/list">
+<div class="row menu" routerLink="/">
     <div class="col-3">
         <i class="fa-solid fa-person-digging"></i>
     </div>
     <div class="col-9">
         <!-- <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a> -->
-        <a class="nav-link" >Trabajos</a>
+        <a class="nav-link" >Trabajos<span class="badge badge-secondary">PRO</span></a>
     </div>
 </div>
 
 
 <!-- TRABAJADORES -->
-<div class="row menu" routerLink="/list">
+<div class="row menu" routerLink="/">
     <div class="col-3">
         <i class="fa-solid fa-user-doctor"></i>
     </div>
     <div class="col-9">
-        <a class="nav-link" >Trabajadores</a>
+        <a class="nav-link" >Trabajadores<span class="badge badge-secondary">PRO</span></a>
+    </div>
+</div>
+
+<!-- Agenda -->
+<div class="row menu" routerLink="/">
+    <div class="col-3">
+        <i class="fa-regular fa-calendar-days"></i>
+    </div>
+    <div class="col-9">
+        <a class="nav-link" >Agenda<span class="badge badge-secondary">PRO</span></a>
     </div>
 </div>
 

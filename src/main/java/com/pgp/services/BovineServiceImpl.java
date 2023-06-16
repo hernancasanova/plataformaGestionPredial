@@ -23,5 +23,9 @@ public class BovineServiceImpl implements IBovineService{
 		return (List<BovineDto>)bovineDao.bovinesAndIdentifiers();
 		//return (List<BovineDto>)bovineDao.findAll();
 	}
+	@Override
+	public BovineDto get(int id) {
+		 return bovineDao.bovineAndIdentifier(id);
+	}
 
 }

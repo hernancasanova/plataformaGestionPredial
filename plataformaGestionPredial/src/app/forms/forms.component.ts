@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 
 @Component({
@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forms.component.css']
 })
 export class FormsComponent implements OnInit {
-  
+  @Input () title: string = "";
+  @Input () fields: any;
   files: any = [];
   registrando: boolean = false;
   fileToUpload: File | null = null;
@@ -33,12 +34,13 @@ export class FormsComponent implements OnInit {
     documento.name=(document.getElementById('name') as HTMLInputElement).value;
     documento.description=(document.getElementById('description') as HTMLInputElement).value;
     //documento.type=Number((document.getElementById('type') as HTMLInputElement).value);
-    documento.type="2";
+    let type=documento.type=(document.getElementById('type') as HTMLInputElement).value;
     //file.file=(document.getElementById('file') as HTMLInputElement).files?.item(0);
     //let files =(document.getElementById('file')).files;
     // for (const iterator of files) {
       
     // }
+    //www.googleapis.com/upload/drive/v3/files?fields=id&uploadType=resumable
     //debugger
     //document.fecha=(document.getElementById('fecha') as HTMLInputElement).value;
     try{                 
@@ -50,9 +52,9 @@ export class FormsComponent implements OnInit {
       //debugger
       formData.append('name', (document.getElementById('name') as HTMLInputElement).value);
       formData.append('description', (document.getElementById('description') as HTMLInputElement).value);
-      formData.append('type', "2");
+      formData.append('type', type);
       // formData.append('type', (document.getElementById('type') as HTMLInputElement).value);
-      formData.append('file', (document.getElementById('file') as HTMLInputElement)?.files?.item(0) as any);
+      formData.append('file', (document.getElementById('archivo') as HTMLInputElement)?.files?.item(0) as any);
       console.log("formData: ",formData.getAll("name"))
       let response: any = await fetch("http://localhost:8006/register",
                         {method:"POST",

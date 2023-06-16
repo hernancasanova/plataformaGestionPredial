@@ -10,4 +10,5 @@ export interface Country {
 	color: string;
 	state: string;
 	date_sale: any;
+	age: string;
 }

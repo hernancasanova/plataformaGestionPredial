@@ -3,7 +3,7 @@ import { Injectable, OnInit, PipeTransform } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 
 //import { Country } from '../models/country';
-//import { COUNTRIES } from './countries';
+//import { BOVINES } from './countries';
 import { DatePipe, DecimalPipe, JsonPipe } from '@angular/common';
 import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
 import { SortColumn, SortDirection } from './sortable.directive';
@@ -23,7 +23,7 @@ interface State {
 	sortDirection: SortDirection;
 }
 
-//var COUNTRIES: any = [];
+//var BOVINES: any = [];
 
 const compare = (v1: string | number, v2: string | number) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
 
@@ -53,15 +53,15 @@ export class CountryService{
 	private _search$ = new Subject<void>();
 	private _countries$ = new BehaviorSubject<any[]>([]);
 	private _total$ = new BehaviorSubject<number>(0);
-	COUNTRIES: any = [];
+	BOVINES: any = [];
 
 	getBovines(): any {
 		this.vacunoService.getBovines().subscribe(vac=>{
 			console.log("desde getBovines: ",vac)
-			this.COUNTRIES=vac;
-			//return COUNTRIES;
+			this.BOVINES=vac;
+			//return BOVINES;
 		})
-		//return COUNTRIES;
+		//return BOVINES;
 		//return this.http.get('http://localhost:8005/listar');
 		//this._search();
 	}
@@ -87,7 +87,7 @@ export class CountryService{
 				tap(() => this._loading$.next(false)),
 			)
 			.subscribe((result) => {
-				console.log("result: ",result)
+				//console.log("result: ",result)
 				this._countries$.next(result.countries);
 				this._total$.next(result.total);
 			});
@@ -146,8 +146,8 @@ export class CountryService{
 		const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
 
 		// 1. sort
-		console.log("countries antes de sort: ",this.COUNTRIES)
-		let countries = sort(this.COUNTRIES, sortColumn, sortDirection);
+		console.log("countries antes de sort: ",this.BOVINES)
+		let countries = sort(this.BOVINES, sortColumn, sortDirection);
 		console.log("countries después de sort: ",countries)
 
 		// 2. filter

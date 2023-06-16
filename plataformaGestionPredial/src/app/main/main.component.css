@@ -28,7 +28,7 @@
     background-size: cover;
   /* background-position: center;
   background-repeat: no-repeat; */
-    min-height: 20vh;
+    min-height: 10vh;
     /* max-height: 20%; */
     width: 100%;
     /* display: block; */
@@ -38,18 +38,32 @@
 }
 #content{
     min-height: 80vh;
-    /* max-height: 80vh;
-    display: block; */
+     max-height: 80vh;
+     overflow-y: auto;
+    /*display: block; */
 }
 #main{
     /* debido a que la clase col-6 posee un margen por defecto */
     padding-left: 0% !important;
+    /* height: 100vh; observar propiedad */
 }
 a{
     text-decoration: dashed;
 }
 h3{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+}
+thead, tbody { display: block; }
+
+tbody {
+    height: 100px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+.footer{
+    height: 10vh;
+    vertical-align: bottom;
+    text-align: center;
 }
 /* #formLogin{
     align-content: center;
