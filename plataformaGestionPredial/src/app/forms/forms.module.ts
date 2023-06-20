@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsComponent } from './forms.component';          
 import { NgForm } from '@angular/forms';
-import { FormsModule as FM } from '@angular/forms';
+import { FormsModule as FM, ReactiveFormsModule } from '@angular/forms';
 //import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -10,7 +10,8 @@ import { FormsModule as FM } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule, 
-    FM
+    FM,
+    ReactiveFormsModule
   ],
   declarations: [
     FormsComponent,

@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { AsyncPipe, DatePipe, DecimalPipe, NgFor, NgIf } from '@angular/common';
 
 
 @Component({
@@ -9,14 +11,25 @@ import { Component, Input, OnInit } from '@angular/core';
 export class FormsComponent implements OnInit {
   @Input () title: string = "";
   @Input () fields: any;
+  @Input () nameForm: FormGroup | undefined;
+
+  // registerForm = new FormGroup({
+  //   name: new FormControl('hernan'),
+  //   password: new FormControl(''),
+  //   fecha: new FormControl(''),
+  // });
   files: any = [];
   registrando: boolean = false;
   fileToUpload: File | null = null;
   //form: HTMLFormElement = (document.querySelector('#form') as HTMLInputElement);
   id:number=0;
-  constructor() { }
+  //name="bbkbkjn"
+  constructor() { 
+    //this.nameForm="bovineForm";
+  }
 
   ngOnInit(): void {
+    //console.log("f: ",)
   }
 
   handleFileInput(e:any) {

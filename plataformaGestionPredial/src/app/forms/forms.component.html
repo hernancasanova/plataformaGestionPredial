@@ -10,28 +10,29 @@
     <div class="container pt-4">
         <div class="card">
             <div class="card-header">
-                <h3>Ingresar {{title}}</h3>
+                <h3>{{title}}</h3>
             </div>
             <div class="card-body">
-                <form *ngFor="let field of fields; let i = index " id="form" #f="ngForm" method="POST" ngNativeValidate>
+                <form *ngFor="let field of fields; let i = index " id="form" method="POST" ngNativeValidate>
                     <div *ngIf="field.type=='password'" class="form-group mb-2">
                         <label for="{{field.name}}">{{field.name}}</label>
-                        <input type="password" class="form-control" id="{{field.name}}" name="{{field.name}}" ngModel #name="ngModel" required>
+                        <input type="password" class="form-control" id="{{field.name}}" value="{{field.value}}" name="{{field.name}}"  required>
                     </div>
                     <div *ngIf="field.type=='number'" class="form-group mb-2">
                         <label for="{{field.name}}">{{field.name}}</label>
-                        <input type="number" class="form-control" id="{{field.name}}" name="{{field.name}}" ngModel #name="ngModel" required>
+                        <input type="number" class="form-control"  id="{{field.name}}" value="{{field.value}}" name="{{field.name}}"  required>
                     </div>
                     <div *ngIf="field.type=='text'" class="form-group mb-2">
                         <label for="{{field.name}}">{{field.name}}</label>
-                        <input type="text" class="form-control" id="{{field.name}}" name="{{field.name}}" ngModel #name="ngModel" required>
+                        <input type="text" class="form-control"  id="{{field.name}}" value="{{field.value}}" name="{{field.name}}"  required>
+                        <!-- <input type="text" class="form-control"  id="{{field.name}}" formControlName="name" name="{{field.name}}"  required> -->
                     </div>
                     <div *ngIf="field.type=='select'" class="form-group mb-2">
                         <label for="{{field.name}}">{{field.name}}</label>
                         <select class="form-select" name="{{field.name}}" id="{{field.name}}" required>
                             <option value="">Seleccione</option>
                             <ng-container *ngFor="let option of field.options; let i = index">
-                                <option value="{{option.value}}">{{option.name}}</option>
+                                <option value="{{option.value}}" selected="{{option.selected}}">{{option.name}}</option>
                             </ng-container>
                         </select>
                     </div>
@@ -41,12 +42,19 @@
                     </div>
                     <div *ngIf="field.type=='date'" class="form-group mb-2">
                         <label for="{{field.name}}">{{field.name}}</label>
-                        <input type="date" class="form-control" id="{{field.name}}" name="{{field.name}}">
+                        <input type="date" class="date form-control" id="{{field.name}}" value="{{field.value}}" name="{{field.name}}" forma>
+                    </div>
+                    <div *ngIf="field.type=='image'" class="form-group mb-2">
+                        <label for="{{field.name}}">{{field.text}}</label><br>
+                        <a name="{{field.name}}" >
+                            <img src="../../assets/imagenes/{{field.id}}.jpg" >
+                        </a><br>
+                        {{field.info}}
                     </div>
                     <div *ngIf="field.type=='submit'" class="form-group mb-2">
                         <!-- <button type="submit" (click)="registerDocument()" class="btn btn-primary"><div *ngIf="!registrando" class="spinner-border" role="status">
                         </div><span class="sr-only">Loading...</span>{{field.name}}</button> -->
-                        <button (click)="registerDocument()" class="btn btn-primary" type="button">
+                        <button class="btn btn-primary" type="button">
                             <span *ngIf="registrando" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                             register
                         </button>

@@ -14,14 +14,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './login/login.module';
 import { MainGuard } from './guards/main.guard';
 import { MainComponent } from './main/main.component';
-import { TableModule } from './table/table.module';
-import { Table2Component } from './table2/table2.component';
+//import { Table2Component } from './table2/table2.component';
 //import { TablesComponent } from './tables/tables.component';
-import { TablesModule } from './tables/tables.module';
+//import { TablesModule } from './tables/tables.module';
 import { ProComponent } from './shared/pro/pro.component';
 import { FooterComponent } from './footer/footer.component';
 import { BovinesModule } from './bovines/bovines.module';
 import { DocumentsModule } from './documents/documents.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,7 +29,7 @@ import { DocumentsModule } from './documents/documents.module';
     AppComponent,
     //FormsComponent,
     MainComponent,
-    Table2Component,
+    //Table2Component,
     ProComponent,
     FooterComponent,
   ],
@@ -39,14 +39,15 @@ import { DocumentsModule } from './documents/documents.module';
     DashboardModule,
     SidebarModule,
     NavbarModule,
+    ReactiveFormsModule,
     //FormsModule,
     RouterModule,
     NgbModule,
     CommonModule,
     BrowserAnimationsModule, 
     LoginModule,
-    TableModule,
-    TablesModule,
+    // TableModule,
+    //TablesModule,
     BovinesModule,
     DocumentsModule
   ],

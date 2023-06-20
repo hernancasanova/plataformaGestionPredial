@@ -9,6 +9,7 @@ import com.pgp.models.Identifier;
 
 public interface IBovineService {
 	//public List<Collection> getAll();
+	public Bovine findById(Long id);
 	public List<BovineDto> getAll();
 	public BovineDto get(int id);
 }

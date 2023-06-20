@@ -60,7 +60,7 @@ export class ListComponent {
 	//}
 	editBovine(id: number):any{
 		console.log("id: ",id)
-		this.router.navigate(["/bovines/create"])
+		this.router.navigate(["/bovines/edit/"+id])
 	}
 
 	// itemsIsNotNull():boolean{

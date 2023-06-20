@@ -25,8 +25,8 @@ public class BovineController {
 	
 	@GetMapping("/bovines/{id}")
 	//public List<Collection> bovines(){
-	public BovineDto bovine(@PathVariable int id){
-		return bovineService.get(id);
+	public Bovine bovine(@PathVariable Long id){
+		return bovineService.findById(id);
 	}
 	
 }

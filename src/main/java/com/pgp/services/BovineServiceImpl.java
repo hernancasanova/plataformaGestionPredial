@@ -27,5 +27,10 @@ public class BovineServiceImpl implements IBovineService{
 	public BovineDto get(int id) {
 		 return bovineDao.bovineAndIdentifier(id);
 	}
+	@Override
+	public Bovine findById(Long id) {
+	
+		return bovineDao.findById(id).orElse(null);
+	}
 
 }

@@ -12,7 +12,11 @@ export class SidebarComponent {
   faDashboard = faDashboard;
   faToolbox = faToolbox;
   openLink=false;
-  changeOpenLink():void{
+  changeOpenLink(i:number):void{
+    if(this.openLink==false) this.openLink=true;
+    else this.openLink=false;
+  }
+  changeOpenLinks(i:string):void{
     if(this.openLink==false) this.openLink=true;
     else this.openLink=false;
   }

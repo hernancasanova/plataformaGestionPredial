@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { finalize } from "rxjs/operators";
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class VacunosService{
     return this.http.get("http://localhost:8006/bovines");
   }
 
-  public getBovine():Observable<any>{
-    return this.http.get("http://localhost:8006/bovines/:id");
+  public getBovine(id: number):Observable<any>{
+    return this.http.get("http://localhost:8006/bovines/"+id);
   }
 }
