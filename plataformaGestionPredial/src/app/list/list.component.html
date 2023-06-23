@@ -35,7 +35,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let country of items$ | async; let i = index " (click)="editBovine(country.id)">
+        <tr *ngFor="let country of items$ | async; let i = index " (dblclick)="editBovine(country.id)">
           <th scope="row">{{i+1}}</th>
           <td>
             <img

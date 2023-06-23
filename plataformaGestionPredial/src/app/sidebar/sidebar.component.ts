@@ -12,13 +12,17 @@ export class SidebarComponent {
   faDashboard = faDashboard;
   faToolbox = faToolbox;
   openLink=false;
+  menus:Array<any>=[{id:1,open:false},{id:2,open:false}]
   changeOpenLink(i:number):void{
     if(this.openLink==false) this.openLink=true;
     else this.openLink=false;
   }
-  changeOpenLinks(i:string):void{
-    if(this.openLink==false) this.openLink=true;
-    else this.openLink=false;
+  changeOpenLinks(i:number):void{
+    this.menus.forEach((m:any)=>{
+      if(m.id==i)m.open=!m.open
+    })
+    // if(this.openLink==false) this.openLink=true;
+    // else this.openLink=false;
   }
 
   addClass = function (n:number): void {

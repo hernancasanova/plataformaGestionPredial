@@ -22,6 +22,8 @@ import { FooterComponent } from './footer/footer.component';
 import { BovinesModule } from './bovines/bovines.module';
 import { DocumentsModule } from './documents/documents.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { IdentifiersModule } from './identifiers/identifiers.module';
+//import { ToastGlobalComponent } from './toast-global/toast-global.component';
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     //Table2Component,
     ProComponent,
     FooterComponent,
+    //ToastGlobalComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginModule,
     // TableModule,
     //TablesModule,
+    IdentifiersModule,
     BovinesModule,
     DocumentsModule
   ],

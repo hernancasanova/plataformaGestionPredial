@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-2">
     <!-- <form #f="ngForm">
         <h3>Ingresar nuevo documento</h3>
         <div class="form-control">
@@ -16,21 +16,21 @@
                 <form *ngFor="let field of fields; let i = index " id="form" method="POST" ngNativeValidate>
                     <div *ngIf="field.type=='password'" class="form-group mb-2">
                         <label for="{{field.name}}">{{field.name}}</label>
-                        <input type="password" class="form-control" id="{{field.name}}" value="{{field.value}}" name="{{field.name}}"  required>
+                        <input type="password" class="form-control" id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}"  required>
                     </div>
                     <div *ngIf="field.type=='number'" class="form-group mb-2">
                         <label for="{{field.name}}">{{field.name}}</label>
-                        <input type="number" class="form-control"  id="{{field.name}}" value="{{field.value}}" name="{{field.name}}"  required>
+                        <input type="number" class="form-control"  id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}"  required>
                     </div>
                     <div *ngIf="field.type=='text'" class="form-group mb-2">
                         <label for="{{field.name}}">{{field.name}}</label>
-                        <input type="text" class="form-control"  id="{{field.name}}" value="{{field.value}}" name="{{field.name}}"  required>
+                        <input type="text" class="form-control"  id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}"  required>
                         <!-- <input type="text" class="form-control"  id="{{field.name}}" formControlName="name" name="{{field.name}}"  required> -->
                     </div>
                     <div *ngIf="field.type=='select'" class="form-group mb-2">
                         <label for="{{field.name}}">{{field.name}}</label>
-                        <select class="form-select" name="{{field.name}}" id="{{field.name}}" required>
-                            <option value="">Seleccione</option>
+                        <select class="form-select" name="{{field.name}}" [(ngModel)]="field.value" id="{{field.name}}" required>
+                            <!-- <option value="0" selected>Seleccione</option> -->
                             <ng-container *ngFor="let option of field.options; let i = index">
                                 <option value="{{option.value}}" selected="{{option.selected}}">{{option.name}}</option>
                             </ng-container>
@@ -42,21 +42,21 @@
                     </div>
                     <div *ngIf="field.type=='date'" class="form-group mb-2">
                         <label for="{{field.name}}">{{field.name}}</label>
-                        <input type="date" class="date form-control" id="{{field.name}}" value="{{field.value}}" name="{{field.name}}" forma>
+                        <input type="date" class="date form-control" id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" forma>
                     </div>
-                    <div *ngIf="field.type=='image'" class="form-group mb-2">
+                    <div *ngIf="field.type=='image' && id>0" class="form-group mb-2">
                         <label for="{{field.name}}">{{field.text}}</label><br>
                         <a name="{{field.name}}" >
                             <img src="../../assets/imagenes/{{field.id}}.jpg" >
                         </a><br>
                         {{field.info}}
                     </div>
-                    <div *ngIf="field.type=='submit'" class="form-group mb-2">
-                        <!-- <button type="submit" (click)="registerDocument()" class="btn btn-primary"><div *ngIf="!registrando" class="spinner-border" role="status">
+                    <div *ngIf="field.type=='submit'" class="form-group mt-3">
+                        <!-- <button type="submit" (click)="registerDocument()" class="btn btn-primary"><div *ngIf="!loading" class="spinner-border" role="status">
                         </div><span class="sr-only">Loading...</span>{{field.name}}</button> -->
-                        <button class="btn btn-primary" type="button">
-                            <span *ngIf="registrando" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                            register
+                        <button class="btn btn-primary" type="button" (click)="inputFunction()">
+                            <span *ngIf="configurations.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            {{configurations.textButton}}
                         </button>
                     </div>
                 </form>

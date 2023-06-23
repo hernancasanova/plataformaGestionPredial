@@ -18,17 +18,17 @@
 </div>
 
 <!-- VACUNOS -->
-<div class="row menu" (click)="changeOpenLink(1)" >
+<div class="row menu" (click)="changeOpenLinks(1)" >
     <div class="col-3">
         <fa-icon [icon]="faCow" style="float: right;"></fa-icon>
     </div>
     <div class="col-9">
         <a class="nav-link" >Ganado
-            <i [ngClass]="openLink ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i>
+            <i [ngClass]="menus[0].open ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i>
         </a>
     </div>
 </div>
-<div *ngIf="openLink" class="row submenu">
+<div *ngIf="menus[0].open" class="row submenu">
     <ul>
        <li routerLink="/bovines" id="1"(click)="addClass(1)"><i class="fa-solid fa-list-ol"></i>Listado</li>
        <li routerLink="/bovines/create" id="2"(click)="addClass(2)"><i class="fa-solid fa-plus"></i>Crear</li>
@@ -57,17 +57,17 @@
 </div>
 
 <!-- SUMINISTROS -->
-<div class="row menu" (click)="changeOpenLink(2)">
+<div class="row menu" (click)="changeOpenLinks(2)">
     <div class="col-3">
         <fa-icon [icon]="faToolbox" style="float: right;"></fa-icon>
     </div>
     <div class="col-9">
         <a class="nav-link" >Insumos<span class="badge badge-secondary">PRO</span>
-            <i [ngClass]="openLink ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i>
+            <i [ngClass]="menus[1].open ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i>
         </a>
     </div>
 </div>
-<div *ngIf="openLink" class="row submenu">
+<div *ngIf="menus[1].open" class="row submenu">
     <ul>
         <li id="1"(click)="addClass(1)"><i class="fa-solid fa-syringe"></i>Fármacos</li>
        <li id="2"(click)="addClass(2)"><i class="fa-solid fa-screwdriver-wrench"></i>Carpintería<span class="badge badge-secondary">PRO</span></li>

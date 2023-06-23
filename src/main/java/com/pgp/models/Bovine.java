@@ -1,7 +1,8 @@
 package com.pgp.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
+//import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -13,15 +14,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity(name="BOVINES")
 @Table(name="BOVINES", schema="HERNAN")
 public class Bovine implements Serializable{
 	
 	@Id
 	@Column(name="ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_DOCUMENT")
-	@SequenceGenerator(schema = "HERNAN", name = "SEQUENCE_DOCUMENT",
-    sequenceName = "SEQUENCE_DOCUMENT" , allocationSize=1)  
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_ANIMALS")
+	@SequenceGenerator(schema = "HERNAN", name = "SEQUENCE_ANIMALS",
+    sequenceName = "SEQUENCE_ANIMALS" , allocationSize=1)  
 	public Long id;
 	
 	
@@ -33,6 +36,8 @@ public class Bovine implements Serializable{
 	public String name;
 	
 	
+	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	@Column(name="DATE_BIRTH")
 	public Date date_birth;
 	
@@ -57,8 +62,10 @@ public class Bovine implements Serializable{
 	public String state;
 	
 	
+	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	@Column(name="DATE_SALE")
-	public String date_sale;
+	public Date date_sale;
 	
 	
 	public Long getId() {

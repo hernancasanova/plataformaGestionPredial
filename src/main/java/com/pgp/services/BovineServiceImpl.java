@@ -32,5 +32,14 @@ public class BovineServiceImpl implements IBovineService{
 	
 		return bovineDao.findById(id).orElse(null);
 	}
+	@Override
+	public void register(Bovine bovine) {
+		try {
+			bovineDao.save(bovine);
+			System.out.println("register");
+		}catch(Error e) {
+			System.out.println("No se pudo guardar por: "+e);
+		}
+	}
 
 }
