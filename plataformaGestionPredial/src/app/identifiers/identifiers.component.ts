@@ -9,7 +9,7 @@ export class IdentifiersComponent implements OnInit {
   id: number=0;
   name="";
   date:Array<string>=[];
-  title:string="Ingresar Identificador";
+  configurations: any = {title:"Create identifier", loading:false,textButton:"Create"};
   fields: Array<any> = [
                 // {name:"bovine",type:"image",id:"",text:"Actual image", info:"Select a new image to replace the actual image"},
                 //{name:"image",type:"file"},
@@ -26,6 +26,10 @@ export class IdentifiersComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  registerIdentifier():void{
+    alert("estoy funcionando")
   }
 
 }

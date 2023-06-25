@@ -1,20 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AsyncPipe, DatePipe, DecimalPipe, NgFor, NgIf } from '@angular/common';
+import { ToastService } from '../toast-global/toast-service';
+import Swal from 'sweetalert2';
 
 
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
-  styleUrls: ['./forms.component.css']
+  styleUrls: ['./forms.component.css'],
+  //host: { class: 'toast-container position-fixed top-0 end-0 p-3', style: 'z-index: 1200' },
 })
 export class FormsComponent implements OnInit {
+  remove(toast: any) {
+		this.toasts = this.toasts.filter((t) => t !== toast);
+	}
   @Input () title: string = "";
   @Input () fields: any;
   @Input () nameForm: FormGroup | undefined;
   //@Input () textButton: string = "";
   @Input () configurations: any;
-  @Input () loading: boolean = false; 
+  //@Input () loading: boolean = false; 
   //@Output() newItemEvent = new EventEmitter<string>();
   //@Input () callBackFunction: (() => void);
   @Input () callBackFunction: any;
@@ -23,8 +29,23 @@ export class FormsComponent implements OnInit {
   files: any = [];
   loading2: boolean = false;
   fileToUpload: File | null = null;
-  id:number=0;
-  constructor() { 
+  //id:number=0;
+
+  toasts: any[] = [];
+
+	show(textOrTpl: string | TemplateRef<any>, options: any = {}) {
+		this.toasts.push({ textOrTpl, ...options });
+	}
+
+	clear() {
+		this.toasts.splice(0, this.toasts.length);
+	}
+
+  isTemplate(toast: { textOrTpl: any; }) {
+		return toast.textOrTpl instanceof TemplateRef;
+	}
+
+  constructor(private toastService: ToastService) { 
   }
 
   inputFunction():any{
@@ -37,6 +58,10 @@ export class FormsComponent implements OnInit {
   handleFileInput(e:any) {
     this.files.push(e.target.files[0])
   }
+
+  showSuccess() {
+		this.toastService.show('I am a success toast', { classname: 'bg-success text-light', delay: 10000 });
+	}
 
   async registerDocument(): Promise<void> 
   {

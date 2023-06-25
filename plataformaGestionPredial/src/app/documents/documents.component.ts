@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-documents',
@@ -6,15 +7,52 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./documents.component.css']
 })
 export class DocumentsComponent implements OnInit {
-
-  title:string="documento"
+  configurations: any = {title:"Create document", loading:false,textButton:"Create"};
+  //title:string="documento"
   fields: any = [{name:"name",type:"text"},{name:"description",type:"text"},
                 {name:"type",type:"select",options:[{name:"Formulario",value:"1"},{name:"Respaldo",value:"2"},{name:"Factura",value:"3"}]},
-                {name:"archivo",type:"file"},{name:"Create",type:"submit"}]
+                {name:"file",type:"file"},{name:"Create",type:"submit"}]
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  async registerDocument(): Promise<void> 
+  {
+    this.configurations.textButton="Creating...";
+    this.configurations.loading=true;
+    // let documento: any = {};
+    // documento.name=(document.getElementById('name') as HTMLInputElement).value;
+    // documento.description=(document.getElementById('description') as HTMLInputElement).value;
+    //let type=documento.type=(document.getElementById('type') as HTMLInputElement).value;
+    try{                 
+      const formData = new FormData();
+      formData.append('name', (document.getElementById('name') as HTMLInputElement).value);
+      formData.append('description', (document.getElementById('description') as HTMLInputElement).value);
+      formData.append('type', (document.getElementById('type') as HTMLInputElement).value);//type
+      formData.append('file', (document.getElementById('file') as HTMLInputElement)?.files?.item(0) as any);
+      console.log("formData: ",formData.getAll("name"))
+      let response: any = await fetch("http://localhost:8006/register",
+                        {method:"POST",
+                          body:formData,
+                        })
+                        .then(x=>x.json())
+                        .then(x=>{setTimeout(()=>{},2000);
+                          this.configurations.loading=false;
+                          this.configurations.textButton="Create";
+                          Swal.fire({
+                            title: '',
+                            text: 'Document created successfully',
+                            icon: 'success',
+                            confirmButtonText: 'Accept'
+                          })
+                          return x;
+                        })
+                        .catch(error=>console.log(error));   
+    }catch{
+      console.log("fallo")
+    }
   }
 
 }

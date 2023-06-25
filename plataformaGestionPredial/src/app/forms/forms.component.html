@@ -10,7 +10,7 @@
     <div class="container pt-4">
         <div class="card">
             <div class="card-header">
-                <h3>{{title}}</h3>
+                <h3>{{configurations.title}}</h3>
             </div>
             <div class="card-body">
                 <form *ngFor="let field of fields; let i = index " id="form" method="POST" ngNativeValidate>
@@ -30,7 +30,7 @@
                     <div *ngIf="field.type=='select'" class="form-group mb-2">
                         <label for="{{field.name}}">{{field.name}}</label>
                         <select class="form-select" name="{{field.name}}" [(ngModel)]="field.value" id="{{field.name}}" required>
-                            <!-- <option value="0" selected>Seleccione</option> -->
+                            <option value="0" selected>Seleccione</option>
                             <ng-container *ngFor="let option of field.options; let i = index">
                                 <option value="{{option.value}}" selected="{{option.selected}}">{{option.name}}</option>
                             </ng-container>
@@ -44,7 +44,7 @@
                         <label for="{{field.name}}">{{field.name}}</label>
                         <input type="date" class="date form-control" id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" forma>
                     </div>
-                    <div *ngIf="field.type=='image' && id>0" class="form-group mb-2">
+                    <div *ngIf="field.type=='image' && field.id>0" class="form-group mb-2">
                         <label for="{{field.name}}">{{field.text}}</label><br>
                         <a name="{{field.name}}" >
                             <img src="../../assets/imagenes/{{field.id}}.jpg" >
