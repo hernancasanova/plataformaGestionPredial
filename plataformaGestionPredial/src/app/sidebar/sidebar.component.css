@@ -43,7 +43,7 @@ li{
 .submenu ul{
     padding-left: 20px;
     text-align: center;
-    vertical-align: bottom;
+    /* vertical-align: bottom; */
 }
 ul li:hover{
     background-color: rgb(123, 176, 146) ;

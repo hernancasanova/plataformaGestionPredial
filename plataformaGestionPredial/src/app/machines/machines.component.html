@@ -1,1 +1,26 @@
-<p>machines works!</p>
+<form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+    <div>
+      <label for="campo1">Campo 1:</label>
+      <input type="text" id="campo1" formControlName="campo1" required>
+      <!-- Puedes agregar validaciones adicionales aquí -->
+      <div *ngIf="formulario.controls.campo1.invalid && (formulario.controls.campo1.dirty || formulario.controls.campo1.touched)">
+        <div *ngIf="formulario.controls.campo1.errors!.required">El campo 1 es obligatorio.</div>
+        <!-- Agrega más mensajes de error según tus validaciones -->
+      </div>
+    </div>
+    
+    <div>
+      <label for="campo2">Campo 2:</label>
+      <input type="text" id="campo2" formControlName="campo2" required>
+      <!-- Puedes agregar validaciones adicionales aquí -->
+      <div *ngIf="formulario.controls.campo2.invalid && (formulario.controls.campo2.dirty || formulario.controls.campo2.touched)">
+        <div *ngIf="formulario.controls.campo2.errors!.required">El campo 2 es obligatorio.</div>
+        <!-- Agrega más mensajes de error según tus validaciones -->
+      </div>
+    </div>
+  
+    <!-- Agrega más campos de formulario aquí -->
+  
+    <button type="submit" [disabled]="formulario.invalid">Enviar</button>
+  </form>
+  

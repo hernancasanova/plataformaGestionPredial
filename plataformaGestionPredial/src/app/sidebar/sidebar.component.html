@@ -6,14 +6,7 @@
     </div>
     <div class="col-9">
         <!-- <a class="nav-link" >Dashboard<i class="bi bi-caret-right"></i></a> -->
-        <a class="nav-link" >Panel de control</a>
-        <!-- <ul>
-            <li>Vacas</li>
-            <li>Ovejas</li>
-            <li>Identificadores</li>
-            <li>Documentos</li>
-            <li>Farmacos</li>
-        </ul> -->
+        <a class="nav-link" >Dashboard</a>
     </div>
 </div>
 
@@ -23,15 +16,15 @@
         <fa-icon [icon]="faCow" style="float: right;"></fa-icon>
     </div>
     <div class="col-9">
-        <a class="nav-link" >Ganado
+        <a class="nav-link" >Bovines
             <i [ngClass]="menus[0].open ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i>
         </a>
     </div>
 </div>
 <div *ngIf="menus[0].open" class="row submenu">
     <ul>
-       <li routerLink="/bovines" id="1"(click)="addClass(1)"><i class="fa-solid fa-list-ol"></i>Listado</li>
-       <li routerLink="/bovines/create" id="2"(click)="addClass(2)"><i class="fa-solid fa-plus"></i>Crear</li>
+       <li routerLink="/bovines" id="1"(click)="addClass(1)"><i class="fa-solid fa-list-ol"></i>List</li>
+       <li routerLink="/bovines/create" id="2"(click)="addClass(2)"><i class="fa-solid fa-plus"></i>Create</li>
     </ul>
 </div>
 
@@ -41,7 +34,7 @@
         <i class="bi bi-files"></i>
     </div>
     <div class="col-9">
-        <a class="nav-link" >Documentos</a>
+        <a class="nav-link" >Documents</a>
     </div>
 </div>
 
@@ -52,7 +45,7 @@
     </div>
     <div class="col-9">
         <!-- <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a> -->
-        <a class="nav-link" >Identificadores</a>
+        <a class="nav-link" >Identifiers</a>
     </div>
 </div>
 
@@ -62,17 +55,17 @@
         <fa-icon [icon]="faToolbox" style="float: right;"></fa-icon>
     </div>
     <div class="col-9">
-        <a class="nav-link" >Insumos<span class="badge badge-secondary">PRO</span>
+        <a class="nav-link" >Inputs<span class="badge badge-secondary">PRO</span>
             <i [ngClass]="menus[1].open ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i>
         </a>
     </div>
 </div>
-<div *ngIf="menus[1].open" class="row submenu">
+<!-- <div *ngIf="menus[1].open" class="row submenu">
     <ul>
-        <li id="1"(click)="addClass(1)"><i class="fa-solid fa-syringe"></i>Fármacos</li>
-       <li id="2"(click)="addClass(2)"><i class="fa-solid fa-screwdriver-wrench"></i>Carpintería<span class="badge badge-secondary">PRO</span></li>
+        <li id="1"(click)="addClass(1)"><i class="fa-solid fa-syringe"></i>Medicaments</li>
+       <li id="2"(click)="addClass(2)"><i class="fa-solid fa-screwdriver-wrench"></i>Carpentry<span class="badge badge-secondary">PRO</span></li>
     </ul>
-</div>
+</div> -->
 
 <!-- MAQUINARIAS -->
 <div class="row menu" routerLink="/">
@@ -81,9 +74,15 @@
     </div>
     <div class="col-9">
         <!-- <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a> -->
-        <a class="nav-link" >Maquinarias<span class="badge badge-secondary">PRO</span></a>
+        <a class="nav-link" >Machines<span class="badge badge-secondary">PRO</span></a>
     </div>
 </div>
+<!-- <div *ngIf="menus[1].open" class="row submenu">
+    <ul>
+        <li id="1"(click)="addClass(1)"><i class="fa-solid fa-syringe"></i>Medicaments</li>
+       <li id="2"(click)="addClass(2)"><i class="fa-solid fa-screwdriver-wrench"></i>Carpentry<span class="badge badge-secondary">PRO</span></li>
+    </ul>
+</div> -->
 
 <!-- NEGOCIOS -->
 <div class="row menu" routerLink="/">
@@ -92,7 +91,7 @@
     </div>
     <div class="col-9">
         <!-- <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a> -->
-        <a class="nav-link" >Negocios<span class="badge badge-secondary">PRO</span></a>
+        <a class="nav-link" >Business<span class="badge badge-secondary">PRO</span></a>
     </div>
 </div>
 
@@ -104,7 +103,7 @@
     </div>
     <div class="col-9">
         <!-- <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a> -->
-        <a class="nav-link" >Trabajos<span class="badge badge-secondary">PRO</span></a>
+        <a class="nav-link" >Works<span class="badge badge-secondary">PRO</span></a>
     </div>
 </div>
 
@@ -115,7 +114,7 @@
         <i class="fa-solid fa-people-group"></i>
     </div>
     <div class="col-9">
-        <a class="nav-link" >Trabajadores<span class="badge badge-secondary">PRO</span></a>
+        <a class="nav-link" >Workers<span class="badge badge-secondary">PRO</span></a>
     </div>
 </div>
 
@@ -125,9 +124,20 @@
         <i class="fa-regular fa-calendar-days"></i>
     </div>
     <div class="col-9">
-        <a class="nav-link" >Agenda<span class="badge badge-secondary">PRO</span></a>
+        <a class="nav-link" >Diary<span class="badge badge-secondary">PRO</span></a>
     </div>
 </div>
+
+<div class="row menu">
+    <div class="col-3">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    </div>
+    <div class="col-9">
+        <a href="logout" (click)="logout();" class="nav-link" >Exit<span class="badge badge-secondary"></span></a>
+    </div>
+</div>
+
+<!-- <a id="btnLogout" href="logout" (click)="logout();" style="float: right;padding-right: 2%;"><i class="fa-solid fa-arrow-right-from-bracket"></i>Exit?</a> -->
 
 <!-- Instalaciones
 <div class="row menu" routerLink="/">

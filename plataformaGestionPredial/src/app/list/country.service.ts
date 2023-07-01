@@ -57,7 +57,7 @@ export class CountryService{
 
 	getBovines(): any {
 		this.vacunoService.getBovines().subscribe(vac=>{
-			console.log("desde getBovines: ",vac)
+			//console.log("desde getBovines: ",vac)
 			this.BOVINES=vac;
 			//return BOVINES;
 		})
@@ -93,12 +93,12 @@ export class CountryService{
 			});
 
 		this._search$.next();
-		},2000)
+		},5000)
 		//this.getBovines();
 	}
 
 	get countries$() {
-		console.log("desde get countries: ",this._countries$);
+		//console.log("desde get countries: ",this._countries$);
 		// this.getBovines();
 		// setTimeout(()=>{
 		// },2000)
@@ -146,9 +146,9 @@ export class CountryService{
 		const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
 
 		// 1. sort
-		console.log("countries antes de sort: ",this.BOVINES)
+		//console.log("countries antes de sort: ",this.BOVINES)
 		let countries = sort(this.BOVINES, sortColumn, sortDirection);
-		console.log("countries después de sort: ",countries)
+		//console.log("countries después de sort: ",countries)
 
 		// 2. filter
 		countries = countries.filter((country) => matches(country, searchTerm, this.pipe));

@@ -39,7 +39,12 @@ export class SidebarComponent {
     //liActive?.removeClass
     active?.classList.add("active")
     //console.log("n: ",n)
-  } 
+  }
+  
+  logout():any{
+    localStorage.removeItem("jwt_token")
+    // this.router.navigateByUrl("http://localhost:8006/login")
+  }
   
   //$(".menu click").addClass('menu-active')
 }

@@ -24,3 +24,6 @@
 nav{
     color: gold !important         ;
 }
+#btnLogout{
+    background-color: black;
+}

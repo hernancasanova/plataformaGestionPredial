@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { VacunosService } from '../services/vacunos.service';
-import { finalize } from "rxjs/operators";
-import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2'
 
 @Component({
@@ -21,18 +19,18 @@ export class BovinesComponent implements OnInit {
   //title:string="Create bovine";
   //textButtonForm:string=this.loading?"Creating...":"Create";
   configurations: any = {title:"Create bovine", loading:false,textButton:"Create"};
-  mothers: Array<any>=[];
+  mothers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
   fields: Array<any> = [
-                {name:"bovine",type:"image",id:"",text:"Current image", info:"Select a new image to replace the actual image"},
-                {name:"image",type:"file"},
-                {name:"name",type:"text", value:""},
-                {name:"date birth",type:"date", value:""},
-                {name:"mother",type:"select",options:[]},
-                {name:"sex",type:"select", options:[{name:"Macho",value:"1",selected:"selected"},{name:"Hembra",value:"2",selected:""}]},
-                {name:"type",type:"select",options:[{name:"Ternero",value:"1",selected:""},{name:"Ternera",value:"2",selected:""},{name:"Toro",value:"3", selected:""},{name:"Vaquilla",value:"4", selected:""},{name:"Vaca",value:"5",selected:""},{name:"Buey",value:"6",selected: ""},{name:"Novillo",value:"7", selected:""}]},
-                {name:"color",type:"select",options:[{name:"Clavel(a)",value:"1",selected:""},{name:"Overo(a)",value:"2",selected:""},{name:"Blanco(a)",value:"3",selected:""},{name:"Colorado(a)",value:"4", selected:""},{name:"Amarillo(a)",value:"5",selected:""}]},
-                {name:"state",type:"select",options:[{name:"Vivo",value:"1", selected:""},{name:"Muerto",value:"2", selected:""}]},
-                {name:"date sale",type:"date", value:""},
+                {name:"bovine",type:"image",id:"",text:"Current image", info:"Select a new image to replace the current image"},
+                {name:"image",type:"file", value:"", required:true},
+                {name:"name",type:"text", value:"", required:true},
+                {name:"date birth",type:"date", value:"",required:true},
+                {name:"mother",type:"select", value:"", required:false, options:[]},
+                {name:"sex",type:"select", value:"", required:true, options:[{name:"Macho",value:"1",selected:""},{name:"Hembra",value:"2",selected:""}]},
+                {name:"type",type:"select",value:"", required:true, options:[{name:"Ternero",value:"1",selected:""},{name:"Ternera",value:"2",selected:""},{name:"Toro",value:"3", selected:""},{name:"Vaquilla",value:"4", selected:""},{name:"Vaca",value:"5",selected:""},{name:"Buey",value:"6",selected: ""},{name:"Novillo",value:"7", selected:""}]},
+                {name:"color",type:"select",value:"", required: true, options:[{name:"Clavel(a)",value:"1",selected:""},{name:"Overo(a)",value:"2",selected:""},{name:"Blanco(a)",value:"3",selected:""},{name:"Colorado(a)",value:"4", selected:""},{name:"Amarillo(a)",value:"5",selected:""}]},
+                {name:"state",type:"select",value:"", required: true, options:[{name:"Vivo",value:"1", selected:""},{name:"Muerto",value:"2", selected:""}]},
+                {name:"date sale",type:"date", value:"", required:false},
                 {name:"CreateCreate",type:"submit"}
               ];
   
@@ -41,9 +39,6 @@ export class BovinesComponent implements OnInit {
     condicion: new FormControl(''),
     fecha: new FormControl(''),
   });
-  // alertando=():void=>{
-  //   alert("hola")
-  // }
 
   registerBovine=():number=>{
     this.configurations.loading=true;
@@ -59,6 +54,8 @@ export class BovinesComponent implements OnInit {
     //   //.newBovine={...this.newBovine, {e.name: e.value}}
       if(e.name=="name"){
         this.newBovine={...this.newBovine, name:e.value}
+      }else if (e.name=="bovine" && e.id!=""){
+        this.newBovine={...this.newBovine, id:e.id}
       }else if(e.name=="date birth"){
         let myDate = e.value.split("-");
         let newDate = new Date( myDate[2], myDate[1] - 1, myDate[0]);
@@ -66,8 +63,9 @@ export class BovinesComponent implements OnInit {
         //console.log((new Date("2012-02-26")).getTime()/1000)
         //debugger
       }else if(e.name=="mother"){
+        this.newBovine={...this.newBovine, mother:e.value}
         // e.options.forEach((o:any)=>{
-        //   if(o.selected=="selected")this.newBovine={...this.newBovine, mother:o.value}
+        //if(o.selected=="selected")this.newBovine={...this.newBovine, mother:o.value}
         // })
       }else if(e.name=="sex"){
         // e.options.forEach((o:any)=>{
@@ -75,7 +73,7 @@ export class BovinesComponent implements OnInit {
         // })
         let sel=(document.getElementById(e.name)) as HTMLSelectElement;
         // if(sel){
-          let optionSelected=sel.options[sel.selectedIndex].text;
+        let optionSelected=sel.options[sel.selectedIndex].text;
         // }
         this.newBovine={...this.newBovine, sex:optionSelected}
       }else if(e.name=="type"){
@@ -112,11 +110,11 @@ export class BovinesComponent implements OnInit {
     ()=>{this.configurations.loading=false;
       Swal.fire({
         title: '',
-        text: 'Bovine created successfully',
+        text: this.id>0?"Bovine edited succesfully":"Bovine created succesfully",
         icon: 'success',
         confirmButtonText: 'Accept'
       })
-      this.configurations.textButton="Create";}
+      this.configurations.textButton=this.id>0?"Edit":"Create";}
     );
     return 2;
   }
@@ -136,7 +134,7 @@ export class BovinesComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         if(params['id']){
-          console.log(params['id'])
+          //console.log(params['id'])
           this.id=parseInt(params['id']);
           this.configurations.title="Edit bovine"
         }
@@ -151,7 +149,7 @@ export class BovinesComponent implements OnInit {
         this.mothers.push({name:v.name, value:v.id, selected:""})
       }//else console.log("v: ",v)
     })
-}
+  }
 
   ngOnInit(): void {
   }
@@ -170,13 +168,16 @@ export class BovinesComponent implements OnInit {
         this.fields.forEach(element => {
           if(element["name"]=="mother"){
             element["options"]=this.mothers;
-            element.options.forEach((o:any)=>{
-              if(o.value==b.mother){
-                o.selected="selected"
-              }
-            })
+            // element.options.forEach((o:any)=>{
+            //   if(o.value==b.mother){
+            //     o.selected="selected"
+            //   }
+            // })
+            element.value=b.mother
           }else if (element["type"]=="image"){
             element["id"]=b.id
+          }else if (element["type"]=="file"){//name=image
+            element["required"]=false
           }else if(element["name"]=="name"){
             element["value"]=b.name
           }else if(element["name"]=="date birth"){
@@ -186,19 +187,26 @@ export class BovinesComponent implements OnInit {
             element["value"]=b.mother
           }else if(element["name"]=="sex"){
             element.options.forEach((o:any)=>{
-              if(o.name==b.sex)o.selected="selected"
+              if(o.name==b.sex){
+                o.selected="selected"
+                element.value=o.value
+              }
             })
           }else if(element["name"]=="type"){
-            element.options.forEach((o:any)=>{
-              if(o.value==b.type)o.selected="selected"
-            })
+            element.value=b.type
           }else if(element["name"]=="color"){
             element.options.forEach((o:any)=>{
-              if(o.name==b.color)o.selected="selected"
+              if(o.name==b.color){
+                o.selected="selected"
+                element.value=o.value
+              }
             })
           }else if(element["name"]=="state"){
             element.options.forEach((o:any)=>{
-              if(o.name==b.state)o.selected="selected"
+              if(o.name==b.state){
+                o.selected="selected"
+                element.value=o.value
+              }
             })
           }else if(element["name"]=="date sale"){
             if(b.date_sale){
@@ -219,8 +227,4 @@ export class BovinesComponent implements OnInit {
 
 }
 
-
-function e(e: any) {
-  throw new Error('Function not implemented.');
-}
 

@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit{
     //        });
     router.events.subscribe(e=>{
       if(e instanceof NavigationEnd ){
-        this.currentRoute=e.url.replace("/","/ ")
+        this.currentRoute=e.url;//.replace("/"," /")
       }
     })
     

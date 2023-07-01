@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsComponent } from './forms.component';          
 import { NgForm } from '@angular/forms';
 import { FormsModule as FM, ReactiveFormsModule } from '@angular/forms';
-import {NgbdToastGlobal} from "../toast-global/toast-global.component";
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 //import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -13,7 +12,7 @@ import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule, 
     FM,
-    ReactiveFormsModule,
+    //ReactiveFormsModule,
     NgbToastModule
   ],
   declarations: [

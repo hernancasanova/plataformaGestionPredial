@@ -23,6 +23,7 @@ import { BovinesModule } from './bovines/bovines.module';
 import { DocumentsModule } from './documents/documents.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IdentifiersModule } from './identifiers/identifiers.module';
+import { MachinesModule } from './machines/machines.module';
 //import { ToastGlobalComponent } from './toast-global/toast-global.component';
 
 
@@ -53,7 +54,8 @@ import { IdentifiersModule } from './identifiers/identifiers.module';
     //TablesModule,
     IdentifiersModule,
     BovinesModule,
-    DocumentsModule
+    DocumentsModule,
+    MachinesModule
   ],
   providers: [MainGuard],
   bootstrap: [AppComponent]

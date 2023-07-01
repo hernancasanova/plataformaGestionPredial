@@ -1,23 +1,24 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AsyncPipe, DatePipe, DecimalPipe, NgFor, NgIf } from '@angular/common';
-import { ToastService } from '../toast-global/toast-service';
 import Swal from 'sweetalert2';
+import {ViewEncapsulation} from '@angular/core';
 
 
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.css'],
+  //encapsulation: ViewEncapsulation.None
   //host: { class: 'toast-container position-fixed top-0 end-0 p-3', style: 'z-index: 1200' },
 })
 export class FormsComponent implements OnInit {
-  remove(toast: any) {
-		this.toasts = this.toasts.filter((t) => t !== toast);
-	}
+  // remove(toast: any) {
+	// 	this.toasts = this.toasts.filter((t) => t !== toast);
+	// }
   @Input () title: string = "";
   @Input () fields: any;
-  @Input () nameForm: FormGroup | undefined;
+  @Input () form: FormGroup | undefined;
   //@Input () textButton: string = "";
   @Input () configurations: any;
   //@Input () loading: boolean = false; 
@@ -29,23 +30,25 @@ export class FormsComponent implements OnInit {
   files: any = [];
   loading2: boolean = false;
   fileToUpload: File | null = null;
+
+  
   //id:number=0;
 
-  toasts: any[] = [];
+  // toasts: any[] = [];
 
-	show(textOrTpl: string | TemplateRef<any>, options: any = {}) {
-		this.toasts.push({ textOrTpl, ...options });
-	}
+	// show(textOrTpl: string | TemplateRef<any>, options: any = {}) {
+	// 	this.toasts.push({ textOrTpl, ...options });
+	// }
 
-	clear() {
-		this.toasts.splice(0, this.toasts.length);
-	}
+	// clear() {
+	// 	this.toasts.splice(0, this.toasts.length);
+	// }
 
-  isTemplate(toast: { textOrTpl: any; }) {
-		return toast.textOrTpl instanceof TemplateRef;
-	}
+  // isTemplate(toast: { textOrTpl: any; }) {
+	// 	return toast.textOrTpl instanceof TemplateRef;
+	// }
 
-  constructor(private toastService: ToastService) { 
+  constructor() { 
   }
 
   inputFunction():any{
@@ -59,11 +62,19 @@ export class FormsComponent implements OnInit {
     this.files.push(e.target.files[0])
   }
 
-  showSuccess() {
-		this.toastService.show('I am a success toast', { classname: 'bg-success text-light', delay: 10000 });
-	}
+  formValid():boolean{
+    let valid=true;
+    this.fields.forEach((f:any)=>{
+      // if(f.value || (f.value && f.value==""))valid=true; 
+      // else valid=false;
+      if(!!f.value)valid=true
+      else valid=false
+    })
+    return valid
+  }
 
-  async registerDocument(): Promise<void> 
+
+  /*async registerDocument(): Promise<void> 
   {
     this.loading2=true;
     let documento: any = {};
@@ -87,7 +98,7 @@ export class FormsComponent implements OnInit {
     }catch{
       console.log("fallo")
     }
-  }
+  }*/
 
 
 }

@@ -4,3 +4,10 @@ th{
 tr{
     cursor: pointer !important;
 }
+thead{
+    position: sticky !important;
+}
+/* img{
+    width: 50px !important;
+    height: 50px !important;
+} */

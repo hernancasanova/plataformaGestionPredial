@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MachinesComponent } from './machines.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -9,7 +9,8 @@ import { MachinesComponent } from './machines.component';
     MachinesComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ]
 })
 export class MachinesModule { }

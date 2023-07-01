@@ -1,64 +1,88 @@
 <div class="container mb-2">
-    <!-- <form #f="ngForm">
-        <h3>Ingresar nuevo documento</h3>
-        <div class="form-control">
-            <label for="name">Nombre: </label>
-            <input type="text" name="name" id="name" ngModel #name="ngModel">
-        </div>
-        {{f.value | json}}
-    </form> -->
     <div class="container pt-4">
         <div class="card">
             <div class="card-header">
                 <h3>{{configurations.title}}</h3>
             </div>
             <div class="card-body">
-                <form *ngFor="let field of fields; let i = index " id="form" method="POST" ngNativeValidate>
-                    <div *ngIf="field.type=='password'" class="form-group mb-2">
-                        <label for="{{field.name}}">{{field.name}}</label>
-                        <input type="password" class="form-control" id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}"  required>
-                    </div>
-                    <div *ngIf="field.type=='number'" class="form-group mb-2">
-                        <label for="{{field.name}}">{{field.name}}</label>
-                        <input type="number" class="form-control"  id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}"  required>
-                    </div>
-                    <div *ngIf="field.type=='text'" class="form-group mb-2">
-                        <label for="{{field.name}}">{{field.name}}</label>
-                        <input type="text" class="form-control"  id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}"  required>
-                        <!-- <input type="text" class="form-control"  id="{{field.name}}" formControlName="name" name="{{field.name}}"  required> -->
-                    </div>
-                    <div *ngIf="field.type=='select'" class="form-group mb-2">
-                        <label for="{{field.name}}">{{field.name}}</label>
-                        <select class="form-select" name="{{field.name}}" [(ngModel)]="field.value" id="{{field.name}}" required>
-                            <option value="0" selected>Seleccione</option>
-                            <ng-container *ngFor="let option of field.options; let i = index">
-                                <option value="{{option.value}}" selected="{{option.selected}}">{{option.name}}</option>
-                            </ng-container>
-                        </select>
-                    </div>
-                    <div *ngIf="field.type=='file'" class="form-group mb-2">
-                        <label for="{{field.name}}">{{field.name}}</label>
-                        <input type="file" class="form-control" id="{{field.name}}" name="{{field.name}}" (change)="handleFileInput($event)">
-                    </div>
-                    <div *ngIf="field.type=='date'" class="form-group mb-2">
-                        <label for="{{field.name}}">{{field.name}}</label>
-                        <input type="date" class="date form-control" id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" forma>
-                    </div>
-                    <div *ngIf="field.type=='image' && field.id>0" class="form-group mb-2">
-                        <label for="{{field.name}}">{{field.text}}</label><br>
-                        <a name="{{field.name}}" >
-                            <img src="../../assets/imagenes/{{field.id}}.jpg" >
-                        </a><br>
-                        {{field.info}}
-                    </div>
-                    <div *ngIf="field.type=='submit'" class="form-group mt-3">
-                        <!-- <button type="submit" (click)="registerDocument()" class="btn btn-primary"><div *ngIf="!loading" class="spinner-border" role="status">
-                        </div><span class="sr-only">Loading...</span>{{field.name}}</button> -->
-                        <button class="btn btn-primary" type="button" (click)="inputFunction()">
-                            <span *ngIf="configurations.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                            {{configurations.textButton}}
-                        </button>
-                    </div>
+                <p>* : field required</p>
+                <form id="form" #f="ngForm" (ngSubmit)="inputFunction()">
+                    <ng-container *ngFor="let field of fields; let i = index">
+                        <div *ngIf="field.type=='password'" class="form-group mb-2">
+                            <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
+                            <input type="password" class="form-control" id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" [required]="field.required" #i="ngModel" >
+                            <div  *ngIf="i.invalid && (i.dirty || i.touched)">
+                                <div *ngIf="i.errors?.required">
+                                    <p class="text-alert">{{field.name}} is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="field.type=='number'" class="form-group mb-2">
+                            <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
+                            <input type="number" class="form-control"  id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" [required]="field.required" #i="ngModel">
+                            <div  *ngIf="i.invalid && (i.dirty || i.touched)">
+                                <div *ngIf="i.errors?.required">
+                                    <p class="text-alert">{{field.name}} is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="field.type=='text'" class="form-group mb-2">
+                            <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
+                            <input type="text" class="form-control"  id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" [required]="field.required" #i="ngModel">
+                            <div  *ngIf="i.invalid && (i.dirty || i.touched)">
+                                <div *ngIf="i.errors?.required">
+                                    <p class="text-alert">{{field.name}} is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="field.type=='select'" class="form-group mb-2">
+                            <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
+                            <select class="form-select" name="{{field.name}}" [(ngModel)]="field.value" id="{{field.name}}" [required]="field.required" #i="ngModel">
+                                <option value="">Select</option>
+                                <ng-container *ngFor="let option of field.options; let i = index">
+                                    <option value="{{option.value}}" selected="{{option.selected}}">{{option.name}}</option>
+                                </ng-container>
+                            </select>
+                            <div  *ngIf="i.invalid && (i.dirty || i.touched)">
+                                <div *ngIf="i.errors?.required">
+                                    <p class="text-alert">{{field.name}} is required</p>
+                                </div>
+                            </div>
+                            <!-- {{f.value|json}} -->
+                        </div>
+                        <div *ngIf="field.type=='file'" class="form-group mb-2">
+                            <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
+                            <input type="file" class="form-control" id="{{field.name}}" name="{{field.name}}" (change)="handleFileInput($event)" [(ngModel)]="field.value" [required]="field.required" #i="ngModel">
+                            <div  *ngIf="i.invalid && (i.dirty || i.touched)">
+                                <div *ngIf="i.errors?.required">
+                                    <p class="text-alert">{{field.name}} is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="field.type=='date'" class="form-group mb-2">
+                            <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
+                            <input type="date" class="form-control" id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" [required]="field.required" #i="ngModel" >
+                            <div  *ngIf="i.invalid && (i.dirty || i.touched)">
+                                <div *ngIf="i.errors?.required">
+                                    <p class="text-alert">{{field.name}} is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="field.type=='image' && field.id>0" class="form-group mb-2">
+                            <label for="{{field.name}}">{{field.text}}<span *ngIf="field.required"> *</span></label><br>
+                            <a name="{{field.name}}" >
+                                <img src="../../assets/imagenes/{{field.id}}.jpg" >
+                            </a><br>
+                            {{field.info}}
+                        </div>
+                        <!-- {{f.valid|json}} -->
+                        <div *ngIf="field.type=='submit'" class="form-group mt-3">
+                            <button class="btn btn-primary" [disabled]=!f.valid>
+                                <span *ngIf="configurations.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                {{configurations.textButton}}
+                            </button>
+                        </div>
+                    </ng-container>
                 </form>
             </div>
         </div>
