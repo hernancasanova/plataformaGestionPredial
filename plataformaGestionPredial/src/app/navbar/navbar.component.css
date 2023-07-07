@@ -1,7 +1,7 @@
 #title{
     text-align: center;
     vertical-align: bottom;
-    color: #322F2F;
+    color: white;
     text-shadow: 2px 2px 8px gold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 45px;
@@ -19,7 +19,7 @@
     /* padding-top: 5%; */
     /* min-height: 10%;
     max-height: 10%; */
-    color: #333030 !important;
+    color: white !important;
 } 
 nav{
     color: gold !important         ;

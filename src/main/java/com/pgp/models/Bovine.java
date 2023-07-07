@@ -2,6 +2,7 @@ package com.pgp.models;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 //import java.util.Date;
 import java.util.Set;
 
@@ -36,6 +37,14 @@ public class Bovine implements Serializable{
 	public String name;
 	
 	
+	/* public List<Identifier> getIdentifiers() {
+	 	return identifiers;
+	 }
+
+	 public void setIdentifiers(List<Identifier> identifiers) {
+	 	this.identifiers = identifiers;
+	}*/
+
 	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	@Column(name="DATE_BIRTH")

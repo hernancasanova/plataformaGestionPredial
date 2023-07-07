@@ -19,20 +19,20 @@ public class User implements Serializable{
 	
 	@Id
 	@Column(name="ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_DOCUMENT")
-	@SequenceGenerator(schema = "HERNAN", name = "SEQUENCE_DOCUMENT",
-    sequenceName = "SEQUENCE_DOCUMENT" , allocationSize=1)  
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_USERS")
+	@SequenceGenerator(schema = "HERNAN", name = "SEQUENCE_USERS",
+    sequenceName = "SEQUENCE_USERS" , allocationSize=1)  
 	public Long id;
 	
-	@Column(name="EMAIL")
+	@Column(name="NAME")
 	public String email;
 	
 	
-	private String getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
-	private void setEmail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
@@ -47,6 +47,14 @@ public class User implements Serializable{
 	
 	public Long getId() {
 		return id;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public void setId(Long id) {

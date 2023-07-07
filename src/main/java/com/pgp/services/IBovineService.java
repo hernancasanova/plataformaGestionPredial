@@ -11,6 +11,6 @@ public interface IBovineService {
 	//public List<Collection> getAll();
 	public Bovine findById(Long id);
 	public List<BovineDto> getAll();
-	public BovineDto get(int id);
+	public BovineDto get(Long id);
 	void register(Bovine bovine);
 }

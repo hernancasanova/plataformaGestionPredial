@@ -28,7 +28,7 @@
                         </div>
                         <div *ngIf="field.type=='text'" class="form-group mb-2">
                             <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
-                            <input type="text" class="form-control"  id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" [required]="field.required" #i="ngModel">
+                            <input type="text" class="form-control"  id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" [required]="field.required" #i="ngModel" placeholder="{{field.placeholder}}">
                             <div  *ngIf="i.invalid && (i.dirty || i.touched)">
                                 <div *ngIf="i.errors?.required">
                                     <p class="text-alert">{{field.name}} is required</p>
@@ -76,13 +76,13 @@
                             {{field.info}}
                         </div>
                         <!-- {{f.valid|json}} -->
-                        <div *ngIf="field.type=='submit'" class="form-group mt-3">
-                            <button class="btn btn-primary" [disabled]=!f.valid>
-                                <span *ngIf="configurations.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                {{configurations.textButton}}
-                            </button>
-                        </div>
                     </ng-container>
+                    <div class="form-group mt-3">
+                        <button class="btn btn-primary" [disabled]=!f.valid>
+                            <span *ngIf="configurations.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            {{configurations.textButton}}
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

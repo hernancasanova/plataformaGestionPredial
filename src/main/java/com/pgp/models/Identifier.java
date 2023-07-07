@@ -1,7 +1,9 @@
 package com.pgp.models;
 
 import java.io.Serializable;
-import java.util.Date;
+//import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,10 +20,13 @@ import javax.persistence.Table;
 @Table(name="IDENTIFIERS", schema="HERNAN")
 public class Identifier implements Serializable{
 	
+	
+
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -528837005481840818L;
+	private static final long serialVersionUID = 2034674840461817925L;
 
 
 	@Id
@@ -29,7 +34,6 @@ public class Identifier implements Serializable{
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_DOCUMENT")
 	@SequenceGenerator(schema = "HERNAN", name = "SEQUENCE_DOCUMENT",
     sequenceName = "SEQUENCE_DOCUMENT" , allocationSize=1)*/  
-	
 	@Column(name="DIIO")
 	public String diio;
 	
@@ -41,39 +45,49 @@ public class Identifier implements Serializable{
 	
 	
 	@Column(name="DATE_PLACEMENT")
-	public Date date_placement;
+	public LocalDateTime date_placement;
 	
 	
+	public Bovine getBovine() {
+		return bovine;
+	}
+
+
+	public void setBovine(Bovine bovine) {
+		this.bovine = bovine;
+	}
+
+
 	@Column(name="STATE")
 	public String state;
 	
 	
-	private String getDiio() {
+	public String getDiio() {
 		return diio;
 	}
 	
 	
-	private void setDiio(String diio) {
+	public void setDiio(String diio) {
 		this.diio = diio;
 	}
 	
 	
-	private Date getDate_placement() {
+	public LocalDateTime getDate_placement() {
 		return date_placement;
 	}
 	
 	
-	private void setDate_placement(Date date_placement) {
+	public void setDate_placement(LocalDateTime date_placement) {
 		this.date_placement = date_placement;
 	}
 	
 	
-	private String getState() {
+	public String getState() {
 		return state;
 	}
 	
 	
-	private void setState(String state) {
+	public void setState(String state) {
 		this.state = state;
 	}
 }

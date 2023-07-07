@@ -18,4 +18,10 @@ public class SessionController {
 	public boolean login(@RequestParam("username") String username,@RequestParam("password") String password) {
 		return loginService.login(username, password);
 	}
+	
+	@PostMapping("/register")
+	public boolean register(@RequestParam("username") String username,@RequestParam("password") String password) {
+		String name =username;
+		return loginService.register(username, password);
+	}
 }
