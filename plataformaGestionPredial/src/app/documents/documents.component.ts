@@ -9,9 +9,9 @@ import Swal from 'sweetalert2'
 export class DocumentsComponent implements OnInit {
   configurations: any = {title:"Create document", loading:false,textButton:"Create"};
   //title:string="documento"
-  fields: any = [{name:"name",type:"text"},{name:"description",type:"text"},
-                {name:"type",type:"select",options:[{name:"Formulario",value:"1"},{name:"Respaldo",value:"2"},{name:"Factura",value:"3"}]},
-                {name:"file",type:"file"},{name:"Create",type:"submit"}]
+  fields: any = [{name:"name",type:"text",value:"", required:true, placeholder:"Eg: My document"},{name:"description",type:"text", value:"", required:true, placeholder:"Eg: An description"},
+                {name:"type",type:"select", value:"", required:true ,options:[{name:"Formulario",value:"1"},{name:"Respaldo",value:"2"},{name:"Factura",value:"3"}]},
+                {name:"file",type:"file", value:"", required:true},{name:"Create",type:"submit"}]
 
   constructor() { }
 

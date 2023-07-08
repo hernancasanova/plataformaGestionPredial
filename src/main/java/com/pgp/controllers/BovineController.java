@@ -155,7 +155,9 @@ public class BovineController {
 		try {
 			String extension;
 			Bovine bovine = objectMapper.readValue(jsonbovine, Bovine.class);
-			//if(file != null) {
+			statusCode=200;
+			Long id=bovineService.register(bovine);
+			if(file != null) {
 				System.out.println("Pasé por donde no debía");
 				String fileName = file.getOriginalFilename();
 				//Optional<String> extension=getExtensionByStringHandling(fileName);
@@ -164,11 +166,9 @@ public class BovineController {
 				}*/
 				extension= Files.getFileExtension(fileName);
 				if(extension=="")extension="png";
-				Path path = Paths.get("src/main/resources/images/"+bovine.getName()+"."+extension).toAbsolutePath();
+				Path path = Paths.get("src/main/resources/images/"+id+"."+extension).toAbsolutePath();
 				file.transferTo(path.toFile());
-			//}
-			statusCode=200;
-			bovineService.register(bovine);
+			}
 			return statusCode;
 		}catch(Exception e){
 			System.out.println("No se pudo guardar: "+e);

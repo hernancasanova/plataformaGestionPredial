@@ -71,7 +71,7 @@
                         <div *ngIf="field.type=='image' && field.id>0" class="form-group mb-2">
                             <label for="{{field.name}}">{{field.text}}<span *ngIf="field.required"> *</span></label><br>
                             <a name="{{field.name}}" >
-                                <img src="../../assets/imagenes/{{field.id}}.jpg" >
+                                <img src="http://localhost:8006/images/bovines/{{field.id}}" >
                             </a><br>
                             {{field.info}}
                         </div>
