@@ -108,6 +108,7 @@ export class BovinesComponent implements OnInit {
         icon: 'success',
         confirmButtonText: 'Accept'
       })
+      this.router.navigate(["bovines"])
       this.configurations.textButton=this.id>0?"Edit":"Create";}
     );
     return 2;
