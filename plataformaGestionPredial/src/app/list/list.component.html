@@ -1,5 +1,20 @@
 <!-- <div class="container pt-2" *ngIf="items.length>0; else elseBlock"> -->
 <div class="container pt-2">
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">{{title_modal}}</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+
+      <ul *ngFor="let item of list_content; let i = index ">
+        <li>{{item}}</li>
+      </ul>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
   <form>
     <div class="mb-3 row">
       <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label"><b>Search by name or DIIO:</b></label>
@@ -13,7 +28,9 @@
         />
       </div>
       <!-- <div class="col-xs-3 col-sm-auto">N° bovines: {{(items$| async)?.length}} </div> -->
-      <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...</span>
+      <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...   <div class="spinner-border text-success" role="status">
+        <span class="sr-only">Loading...</span>
+      </div></span>
     </div>
 
     <table class="table table-striped" >
@@ -27,8 +44,8 @@
           <th scope="col" >Date Birth</th>
           <th scope="col" >Mother</th>
           <th scope="col" >Type</th>
-          <!-- <th scope="col" >Age<span class="badge" style="color: black;">PRO</span></th> -->
-          <!-- <th scope="col" >Actions</th> -->
+          <th scope="col" >Age<span class="badge" style="color: black;">BASIC</span></th>
+          <th scope="col" >Actions</th>
           <!-- <th scope="col" >Color</th>
           <th scope="col" >State</th>
           <th scope="col" >Date Sale</th> -->
@@ -41,7 +58,7 @@
             <img
               width="50px"
               height="50px"
-              [src]="'http://localhost:8006/images/bovines/' + country.id"
+              [src]="'http://localhost:8006/images/bovines/'+country.id+'?dummy='+i"
               
             />
           </td>
@@ -53,8 +70,11 @@
           <td><ngb-highlight [result]=" country.dateBirth | date:'dd/MM/yyyy'" [term]="service.searchTerm"></ngb-highlight></td>
           <td><ngb-highlight style="cursor: pointer;" [result]="country.mother" [term]="service.searchTerm"></ngb-highlight></td>
           <td><ngb-highlight [result]="country.type" [term]="service.searchTerm"></ngb-highlight></td>
-          <!-- <td>{{country.age}}</td> -->
-          <!-- <td><i class="fa-solid fa-pen-to-square"></i></td> -->
+          <td>{{country.age}}</td>
+          <td><i title="See identifiers" style="cursor: pointer;" (click)="openModalDialogCustomClass(content,country.id)" class="fa-solid fa-list-ol p-2"></i>
+              <i *ngIf="country.type=='Vaca'" title="See children" style="cursor: pointer;" (click)="openModalDialogCustomClass2(content,country.id)" class="fa-solid fa-clipboard-list p-2"></i>
+              <i title="Delete (only on die)" style="cursor: pointer;" class="fa-solid fa-book-skull p-2"></i>
+          </td>
         </tr>
       </tbody>
     </table>

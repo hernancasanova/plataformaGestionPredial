@@ -29,9 +29,14 @@ public class BovineServiceImpl implements IBovineService{
 	}
 	@Override
 	public Bovine findById(Long id) {
-	
 		return bovineDao.findById(id).orElse(null);
 	}
+	
+	@Override
+	public List<String> getChildren(Long id) {
+		return (List<String>)bovineDao.childrenBovine(id);
+	}
+	
 	@Override
 	public Long register(Bovine bovine) {
 		try {

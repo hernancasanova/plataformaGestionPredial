@@ -28,5 +28,9 @@ export class IdentifierService {
     //return this.http.post("http://localhost:8006/bovines/create",JSON.stringify(bovine),httpOptions);//FUNCIONANDO
     return this.http.post("http://localhost:8006/identifiers/create",formData);
   }
+
+  listIdentifiers(bovine:number):Observable<any>{
+    return this.http.get("http://localhost:8007/identifiers/bovine/"+bovine);
+  }
   
 }

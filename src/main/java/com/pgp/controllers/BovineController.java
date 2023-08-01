@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 //import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -52,6 +53,13 @@ public class BovineController {
 	      .map(f -> f.substring(filename.lastIndexOf(".") + 1));
 	}
 	
+	
+	@GetMapping("/bovines/{id}/children")
+	//public List<Collection> bovines(){
+	public List<String> childrenBovine(@PathVariable Long id){
+		return bovineService.getChildren(id);
+		//return bovineService.getAll();
+	}
 	
 	@GetMapping("/bovines")
 	//public List<Collection> bovines(){
@@ -97,7 +105,14 @@ public class BovineController {
 	}*/
 	
 	
+//	@GetMapping("/identifiers/bovines/{id}")
+//	public interface IdentifierClienteRest {
+//		
+//	}
+	
+	
 	@GetMapping("/images/bovines/{nombre}")
+	//@Cacheable("images")
     public ResponseEntity<Resource> obtenerImagen(@PathVariable String nombre) {
         try {
             // Carga la imagen desde el directorio de recursos

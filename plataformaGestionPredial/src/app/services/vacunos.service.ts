@@ -19,6 +19,10 @@ export class VacunosService{
     return this.http.get("http://localhost:8006/bovines/"+id);
   }
 
+  public getChildren(id: number):Observable<any>{
+    return this.http.get("http://localhost:8006/bovines/"+id+"/children");
+  }
+
   public createBovine(bovine: any):Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})

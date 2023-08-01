@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AsyncPipe, DatePipe, DecimalPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, DatePipe, DecimalPipe, NgFor, NgIf, Location } from '@angular/common';
 import Swal from 'sweetalert2';
 import {ViewEncapsulation} from '@angular/core';
 
@@ -48,7 +48,11 @@ export class FormsComponent implements OnInit {
 	// 	return toast.textOrTpl instanceof TemplateRef;
 	// }
 
-  constructor() { 
+  constructor(private location: Location) { 
+  }
+
+  goBack():void{
+    this.location.back();
   }
 
   inputFunction():any{

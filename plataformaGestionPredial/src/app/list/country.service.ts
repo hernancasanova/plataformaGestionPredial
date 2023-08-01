@@ -61,9 +61,6 @@ export class CountryService{
 			this.BOVINES=vac;
 			//return BOVINES;
 		})
-		//return BOVINES;
-		//return this.http.get('http://localhost:8005/listar');
-		//this._search();
 	}
 
 	private _state: State = {
