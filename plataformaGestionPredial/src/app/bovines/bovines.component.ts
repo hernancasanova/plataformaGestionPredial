@@ -21,7 +21,7 @@ export class BovinesComponent implements OnInit {
   configurations: any = {title:"Create bovine", loading:false,textButton:"Create"};
   mothers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
   fields: Array<any> = [
-                {name:"bovine",type:"image",id:"",text:"Current image", info:"Select a new image to replace the current image"},
+                {name:"bovine",type:"image",id:"",text:"Current image:", info:"Select a new image to replace the current image"},
                 {name:"image",type:"file", value:"", required:true},
                 {name:"name",type:"text", value:"", required:true, placeholder:"Eg: My cow"},
                 {name:"date birth",type:"date", value:"",required:true},
@@ -158,7 +158,7 @@ export class BovinesComponent implements OnInit {
     if(this.id>0){
       this.configurations.textButton="Edit"
       this.vacunoService.getBovine(this.id).subscribe(b=>{
-        console.log("b: ",b);
+        //console.log("b: ",b);
         //console.log("this.mothers: ",this.mothers)
         this.fields.forEach(element => {
           if(element["name"]=="mother"){

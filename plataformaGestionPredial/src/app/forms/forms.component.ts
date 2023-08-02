@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { AsyncPipe, DatePipe, DecimalPipe, NgFor, NgIf, Location } from '@angular/common';
 import Swal from 'sweetalert2';
 import {ViewEncapsulation} from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class FormsComponent implements OnInit {
   // remove(toast: any) {
 	// 	this.toasts = this.toasts.filter((t) => t !== toast);
 	// }
-  @Input () title: string = "";
+  //@Input () title: string = "";
   @Input () fields: any;
   @Input () form: FormGroup | undefined;
   //@Input () textButton: string = "";
@@ -27,6 +28,7 @@ export class FormsComponent implements OnInit {
   @Input () callBackFunction: any;
 
   //submitFunction:any;
+  srcPreview:any;
   files: any = [];
   loading2: boolean = false;
   fileToUpload: File | null = null;
@@ -48,7 +50,7 @@ export class FormsComponent implements OnInit {
 	// 	return toast.textOrTpl instanceof TemplateRef;
 	// }
 
-  constructor(private location: Location) { 
+  constructor(private location: Location, private sanitizer:DomSanitizer) { 
   }
 
   goBack():void{
@@ -62,8 +64,20 @@ export class FormsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // transform(url:any) {
+  //   return this.domSanitizer.bypassSecurityTrustResourceUrl(url);
+  // }
+
+
+
   handleFileInput(e:any) {
-    this.files.push(e.target.files[0])
+    let file = e.target.files[0];
+    let blob = new Blob([file], { type: file.type });
+    let url = window.URL.createObjectURL(blob); 
+    if(this.configurations.title.includes("bovine"))this.srcPreview = this.sanitizer.bypassSecurityTrustUrl(url);
+    //this.srcPreview=URL.createObjectURL(e.target.files[0]);
+    console.log("src: ",this.srcPreview)
+    this.files.push(e.target.files[0]);
   }
 
   formValid():boolean{

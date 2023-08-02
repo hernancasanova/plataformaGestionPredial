@@ -55,9 +55,9 @@
                                     <p class="text-alert">{{field.name}} is required</p>
                                 </div>
                             </div>
-                            <!-- {{f.value|json}} -->
                         </div>
                         <div *ngIf="field.type=='file'" class="form-group mb-2">
+                            <div class="mb-2" *ngIf="srcPreview">Selected image:<br><img [src]="srcPreview" alt="" width="100" height="100"><br><i class="fa-solid fa-circle-info ml-5"></i>The selected image will replace the current image</div>
                             <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
                             <input type="file" class="form-control" id="{{field.name}}" name="{{field.name}}" (change)="handleFileInput($event)" [(ngModel)]="field.value" [required]="field.required" #i="ngModel">
                             <div  *ngIf="i.invalid && (i.dirty || i.touched)">
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div *ngIf="field.type=='image' && field.id>0" class="form-group mb-2">
+                        <div *ngIf="field.type=='image' && field.id>0" class="form-group mb-1">
                             <label for="{{field.name}}">{{field.text}}<span *ngIf="field.required"> *</span></label><br>
                             <a name="{{field.name}}" >
                                 <img src="http://localhost:8006/images/bovines/{{field.id}}" >
