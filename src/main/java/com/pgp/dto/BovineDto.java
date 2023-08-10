@@ -25,4 +25,5 @@ public interface BovineDto{
 	String getMother();
 	String getType();
 	String getAge();
+	String getVerifiedSag();
 }

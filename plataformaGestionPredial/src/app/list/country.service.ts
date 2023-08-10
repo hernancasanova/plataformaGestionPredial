@@ -84,7 +84,6 @@ export class CountryService{
 				tap(() => this._loading$.next(false)),
 			)
 			.subscribe((result) => {
-				//console.log("result: ",result)
 				this._countries$.next(result.countries);
 				this._total$.next(result.total);
 			});

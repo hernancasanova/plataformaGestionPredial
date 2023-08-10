@@ -29,13 +29,21 @@
 </div>
 
 <!-- DOCUMENTOS -->
-<div class="row menu" routerLink="/">
+<div class="row menu" (click)="changeOpenLinks(3)">
     <div class="col-3">
         <i class="bi bi-files"></i>
     </div>
     <div class="col-9">
-        <a class="nav-link" >Documents<span class="badge badge-primary">PRO</span></a>
+        <a class="nav-link" >Documents
+            <i [ngClass]="menus[2].open ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i>
+        </a>
     </div>
+</div>
+<div *ngIf="menus[2].open" class="row submenu">
+    <ul>
+        <li routerLink="/dashboard" id="1"(click)="addClass(1)"><i class="fa-solid fa-list-ol"></i>List<span class="badge badge-secondary"></span></li>
+       <li routerLink="/documents" id="2"(click)="addClass(2)"><i class="fa-solid fa-plus"></i>Create<span class="badge badge-secondary"></span></li>
+    </ul>
 </div>
 
 <!-- IDENTIFICADORES -->

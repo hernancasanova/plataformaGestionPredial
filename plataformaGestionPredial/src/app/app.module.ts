@@ -24,6 +24,7 @@ import { DocumentsModule } from './documents/documents.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IdentifiersModule } from './identifiers/identifiers.module';
 import { MachinesModule } from './machines/machines.module';
+import { TableComponent } from './shared/table/table.component';
 //import { ToastGlobalComponent } from './toast-global/toast-global.component';
 
 
@@ -35,6 +36,7 @@ import { MachinesModule } from './machines/machines.module';
     //Table2Component,
     ProComponent,
     FooterComponent,
+    TableComponent,
     //ToastGlobalComponent,
   ],
   imports: [

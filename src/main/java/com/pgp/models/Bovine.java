@@ -77,6 +77,18 @@ public class Bovine implements Serializable{
 	public Date date_sale;
 	
 	
+	@Column(name="VERIFIED_SAG", columnDefinition="char(1)")
+	public String verified_sag;
+	
+
+	public String getVerified_sag() {
+		return verified_sag;
+	}
+
+	public void setVerified_sag(String verified_sag) {
+		this.verified_sag = verified_sag;
+	}
+
 	public Long getId() {
 		return id;
 	}

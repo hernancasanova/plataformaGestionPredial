@@ -11,4 +11,5 @@ export interface Country {
 	state: string;
 	date_sale: any;
 	age: string;
+	verifiedSag: string;
 }
