@@ -10,7 +10,7 @@ import com.pgp.models.Identifier;
 
 //import com.identifiers.models.Identifier;
 
-@FeignClient(name="pgp-identifiers", url="8007")
+@FeignClient(name="pgp-identifiers", url="localhost:8007")
 public interface IdentifiersRestClient {
 	@GetMapping(value="/identifiers/bovine/{bovine}")
 	public List<Identifier> diioBovine(@PathVariable Long bovine);

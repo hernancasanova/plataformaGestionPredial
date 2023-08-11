@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pgp.clients.IdentifiersRestClient;
 import com.pgp.dao.BovineDao;
 import com.pgp.dao.IdentifierDao;
 import com.pgp.models.Bovine;
@@ -31,20 +32,12 @@ public class IdentifierServiceImpl implements IIdentifierService{
 	@Autowired
 	private IdentifierDao identifierDao; 
 	
+	@Autowired
+	private IdentifiersRestClient identifierRestClient;
 	
 	@Transactional
 	@Override
 	public void register(String diio,String date_placement,Long bovine) {
-		/*try {
-			//String name=document.name;
-			uploadBasic(path,filename);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (GeneralSecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		List <Identifier> identifiersList = new ArrayList<Identifier>();
 		String pattern = "yyyy-MM-dd'T'HH:mm:ss";
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
@@ -61,5 +54,11 @@ public class IdentifierServiceImpl implements IIdentifierService{
 		identifiersList.add(identifier);
 		//bov.setIdentifiers(identifiersList);
 		
+	}
+
+
+	@Override
+	public List<Identifier> diiosBovine(Long Bovine) {
+		return identifierRestClient.diioBovine(Bovine);
 	}
 }
