@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AsyncPipe, DatePipe, DecimalPipe, NgFor, NgIf, Location } from '@angular/common';
 import Swal from 'sweetalert2';
@@ -26,14 +26,20 @@ export class FormsComponent implements OnInit {
   //@Output() newItemEvent = new EventEmitter<string>();
   //@Input () callBackFunction: (() => void);
   @Input () callBackFunction: any;
-
+  @Output()
+  cambioSelect = new EventEmitter<string>();
   //submitFunction:any;
   srcPreview:any;
+  icon:boolean=false;
   files: any = [];
   loading2: boolean = false;
   fileToUpload: File | null = null;
 
   
+
+  changeSelect=(event:any):void=>{
+    this.cambioSelect.emit(event.target.value);
+  }
   //id:number=0;
 
   // toasts: any[] = [];
@@ -74,9 +80,11 @@ export class FormsComponent implements OnInit {
     let file = e.target.files[0];
     let blob = new Blob([file], { type: file.type });
     let url = window.URL.createObjectURL(blob); 
-    if(this.configurations.title.includes("bovine"))this.srcPreview = this.sanitizer.bypassSecurityTrustUrl(url);
+    this.srcPreview = this.sanitizer.bypassSecurityTrustUrl(url);
+    if(this.configurations.title.includes("bovine")){
+      this.icon = true;
+    }
     //this.srcPreview=URL.createObjectURL(e.target.files[0]);
-    console.log("src: ",this.srcPreview)
     this.files.push(e.target.files[0]);
   }
 

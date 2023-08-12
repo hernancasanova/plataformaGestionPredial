@@ -9,8 +9,8 @@
                     <div class="col-10">
                         <p>* : field required</p>
                     </div>
-                    <div class="col-2" style="float: right; cursor: pointer;">
-                        <span (click)="goBack();"> ← go back</span>
+                    <div class="col-2" style="font-weight: bold; cursor: pointer;">
+                        <p class="pl-4" (click)="goBack();">← go back</p>
                     </div>    
                 </div>
                 <form id="form" #f="ngForm" (ngSubmit)="inputFunction()">
@@ -33,6 +33,16 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- <div *ngIf="field.type=='checkbox'" class="form-group mb-2">
+                            <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
+                            <input class="form-control" type="checkbox"  id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" [required]="field.required" #i="ngModel"> -->
+                            <!-- <input class="form-check-input mt-0" type="radio" value="" aria-label="Radio button for following text input"> -->
+                            <!-- <div  *ngIf="i.invalid && (i.dirty || i.touched)">
+                                <div *ngIf="i.errors?.required">
+                                    <p class="text-alert">{{field.name}} is required</p>
+                                </div>
+                            </div>
+                        </div> -->
                         <div *ngIf="field.type=='text'" class="form-group mb-2">
                             <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
                             <input type="text" class="form-control"  id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" [required]="field.required" #i="ngModel" placeholder="{{field.placeholder}}">
@@ -44,7 +54,7 @@
                         </div>
                         <div *ngIf="field.type=='select'" class="form-group mb-2">
                             <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
-                            <select class="form-select" name="{{field.name}}" [(ngModel)]="field.value" id="{{field.name}}" [required]="field.required" #i="ngModel">
+                            <select (change)="changeSelect($event)" class="form-select" name="{{field.name}}" [(ngModel)]="field.value" id="{{field.name}}" [required]="field.required" #i="ngModel">
                                 <option value="">Select</option>
                                 <ng-container *ngFor="let option of field.options; let i = index">
                                     <option value="{{option.value}}" selected="{{option.selected}}">{{option.name}}</option>
@@ -57,7 +67,13 @@
                             </div>
                         </div>
                         <div *ngIf="field.type=='file'" class="form-group mb-2">
-                            <div class="mb-2" *ngIf="srcPreview">Selected image:<br><img [src]="srcPreview" alt="" width="100" height="100"><br><i class="fa-solid fa-circle-info ml-5"></i>The selected image will replace the current image</div>
+                            <div *ngIf="srcPreview" class="mb-2">Selected file: <br>
+                                <img [src]="srcPreview" alt="" width="100" height="100"><br>
+                                <div *ngIf="icon">
+                                    <i class="fa-solid fa-circle-info ml-5"></i>
+                                    <label>selected image will replace the current image</label>
+                                </div>
+                            </div>
                             <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
                             <input type="file" class="form-control" id="{{field.name}}" name="{{field.name}}" (change)="handleFileInput($event)" [(ngModel)]="field.value" [required]="field.required" #i="ngModel">
                             <div  *ngIf="i.invalid && (i.dirty || i.touched)">
@@ -79,8 +95,8 @@
                             <label for="{{field.name}}">{{field.text}}<span *ngIf="field.required"> *</span></label><br>
                             <a name="{{field.name}}" >
                                 <img src="http://localhost:8006/images/bovines/{{field.id}}" >
-                            </a><br>
-                            {{field.info}}
+                            </a>
+                            <p>{{field.info}}</p>
                         </div>
                         <!-- {{f.valid|json}} -->
                     </ng-container>

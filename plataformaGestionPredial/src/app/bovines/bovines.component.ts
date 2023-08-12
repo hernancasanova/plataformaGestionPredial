@@ -21,7 +21,7 @@ export class BovinesComponent implements OnInit {
   configurations: any = {title:"Create bovine", loading:false,textButton:"Create"};
   mothers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
   fields: Array<any> = [
-                {name:"bovine",type:"image",id:"",text:"Current image:", info:"Select a new image to replace the current image"},
+                {name:"bovine",type:"image",id:"",text:"Current image:", info:"↓ Select a new image to replace the current image"},
                 {name:"image",type:"file", value:"", required:true},
                 {name:"name",type:"text", value:"", required:true, placeholder:"Eg: My cow"},
                 {name:"date birth",type:"date", value:"",required:true},
@@ -31,6 +31,7 @@ export class BovinesComponent implements OnInit {
                 {name:"color",type:"select",value:"", required: true, options:[{name:"Clavel(a)",value:"1",selected:""},{name:"Overo(a)",value:"2",selected:""},{name:"Blanco(a)",value:"3",selected:""},{name:"Colorado(a)",value:"4", selected:""},{name:"Amarillo(a)",value:"5",selected:""}]},
                 {name:"state",type:"select",value:"", required: true, options:[{name:"Vivo",value:"1", selected:""},{name:"Muerto",value:"2", selected:""}]},
                 {name:"date sale",type:"date", value:"", required:false},
+                // {name:"verified_sag",type:"checkbox", value:"", required:false},
                 //{name:"Create",type:"submit"}
               ];
 

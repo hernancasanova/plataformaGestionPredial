@@ -9,18 +9,20 @@ import { VacunosService } from '../services/vacunos.service';
   styleUrls: ['./identifiers.component.css']
 })
 export class IdentifiersComponent implements OnInit {
-  id: number=0;
-  //name="";
+  setImageBovine=(bovine:any):void=>{
+    console.log("bovine: ",bovine.target.value)
+  }
+  idBovineSelected: number=0;
   newIdentifier:Object={};
   bovines:Array<any>=[];
   date:Array<string>=[];
   configurations: any = {title:"Create identifier", loading:false,textButton:"Create"};
   fields: Array<any> = [
-                // {name:"bovine",type:"image",id:"",text:"Actual image", info:"Select a new image to replace the actual image"},
                 //{name:"image",type:"file"},
                 {name:"DIIO",type:"text", value:"", required:true , placeholder:"Eg: 014628273"},
                 {name:"date placement",type:"date", value:"", required:true},
-                {name:"bovine",type:"select",value:"", required: true, options:[]},
+                {name:"bovine",type:"select",value:"", required: true, options:[], change: this.setImageBovine },
+                {name:"image-bovine",type:"image",id:"",text:"Bovine selected:", info:""},
                 // {name:"bovine",type:"image",id:"",text:"Current image", info:"Select a new image to replace the current image"},
                 // {name:"image",type:"file", value:"", required:true},
                 // {name:"name",type:"text", value:"", required:true},
@@ -38,19 +40,36 @@ export class IdentifiersComponent implements OnInit {
   constructor(private identifierService: IdentifierService, private vacunoService: VacunosService) {
     this.vacunoService.getBovines()
     .subscribe(bs=>{
-      console.log("bs: ",bs)
       bs.forEach((b: { type: string; name: any; id: any; })=>{
         this.bovines.push({name:b.name, value:b.id})
       })
     },
     (error:any)=>console.log("error en Observable: ",error),
-    ()=>{console.log("complete");this.setBovines()}
+    ()=>{this.setBovines()}
     );
   }
 
   ngOnInit(): void {
     
   }
+
+  /*ngAfterViewInit() {
+    //this.renderer.listen(this.myDiv, 'click', (event) => console.log("Trying to listen to click event on that DIV"));
+    var sel=(document.getElementById('bovine')) as HTMLSelectElement;
+    sel.addEventListener('change', function() {
+      //this.setImageBovine(this.value);
+      console.log('You selected: ', this.value);
+    });
+  }*/
+
+  desplegarImagenBovino=(bovino:any):void=>{
+    this.fields.forEach(e => {
+      if(e.name=="image-bovine"){
+        e.id=bovino
+      }
+    })
+  }
+
 
 
   setBovines():void{

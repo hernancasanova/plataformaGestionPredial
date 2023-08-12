@@ -18,6 +18,10 @@ img {
     /* display: inline-block; */
     height: auto;
   }
+  label,p, h3{
+    color: green;
+    /* font-weight: bold; */
+  }
 
   /* button:disabled{
     cursor:not-allowed;
