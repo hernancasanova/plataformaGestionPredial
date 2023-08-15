@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BovinesComponent } from './bovines/bovines.component';
+import { BusinessComponent } from './business/business.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { FormsComponent } from './forms/forms.component';
@@ -30,7 +31,8 @@ const routes: Routes = [
       { path: 'bovines', component: ListComponent, data:{type:"bovines"}},
       { path: 'documents', component: DocumentsComponent, data:{type:"documents"}},
       { path: 'identifiers', component: IdentifiersComponent, data:{type:"documents"}},
-      { path: 'list', component: ListComponent, data:{type:"list"}},//ListComponent
+      //{ path: 'list', component: ListComponent, data:{type:"list"}},//ListComponent    inputs
+      { path: 'business', component: BusinessComponent},
       { path: 'machines', component: MachinesComponent, data:{type:"machines"}},
       { path: 'bovines/create', component: BovinesComponent, data:{title:"Create"}},
       { path: 'bovines/edit/:id', component: BovinesComponent, data:{title:"Edit"}},

@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import Swal from 'sweetalert2'
 
 @Component({
-  selector: 'app-documents',
-  templateUrl: './documents.component.html',
-  styleUrls: ['./documents.component.css']
+  selector: 'app-business',
+  templateUrl: './business.component.html',
+  styleUrls: ['./business.component.css']
 })
-export class DocumentsComponent implements OnInit {
-  configurations: any = {title:"Create document", loading:false,textButton:"Create"};
+export class BusinessComponent implements OnInit {
+
+  configurations: any = {title:"Register business", loading:false,textButton:"Register"};
   //title:string="documento"
-  fields: any = [{name:"name",type:"text",value:"", required:true, placeholder:"Eg: My document"},{name:"description",type:"text", value:"", required:true, placeholder:"Eg: An description"},
-                {name:"type",type:"select", value:"", required:true ,options:[{name:"Formulario",value:"1"},{name:"Respaldo",value:"2"},{name:"Factura",value:"3"}]},
-                {name:"file",type:"file", value:"", required:true}
+  fields: any = [{name:"name",type:"text",value:"", required:true, placeholder:"Eg: New business"},{name:"description",type:"text", value:"", required:true, placeholder:"Eg: An description"},
+                {name:"type",type:"select", value:"", required:true ,options:[{name:"Compra",value:"1"},{name:"Venta",value:"2"},{name:"Trabajo",value:"3"}]},
+                {name:"date",type:"date", value:"", required:true},
+                {name:"file",type:"file", value:"", required:false}
               ]
 
   constructor() { }
@@ -19,7 +20,7 @@ export class DocumentsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async registerDocument(): Promise<void> 
+  async registerBusiness(): Promise<void> 
   {
     this.configurations.textButton="Creating...";
     this.configurations.loading=true;
@@ -41,12 +42,12 @@ export class DocumentsComponent implements OnInit {
                         .then(x=>{setTimeout(()=>{},2000);
                           this.configurations.loading=false;
                           this.configurations.textButton="Create";
-                          Swal.fire({
-                            title: '',
-                            text: 'Document created successfully',
-                            icon: 'success',
-                            confirmButtonText: 'Accept'
-                          })
+                          // Swal.fire({
+                          //   title: '',
+                          //   text: 'Document created successfully',
+                          //   icon: 'success',
+                          //   confirmButtonText: 'Accept'
+                          // })
                           return x;
                         })
                         .catch(error=>console.log(error));   

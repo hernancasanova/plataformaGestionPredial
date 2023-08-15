@@ -25,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { IdentifiersModule } from './identifiers/identifiers.module';
 import { MachinesModule } from './machines/machines.module';
 import { TableComponent } from './shared/table/table.component';
+import { BusinessModule } from './business/business.module';
 //import { ToastGlobalComponent } from './toast-global/toast-global.component';
 
 
@@ -57,7 +58,8 @@ import { TableComponent } from './shared/table/table.component';
     IdentifiersModule,
     BovinesModule,
     DocumentsModule,
-    MachinesModule
+    MachinesModule,
+    BusinessModule
   ],
   providers: [MainGuard],
   bootstrap: [AppComponent]

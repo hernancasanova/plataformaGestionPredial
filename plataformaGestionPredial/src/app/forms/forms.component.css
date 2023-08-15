@@ -23,6 +23,9 @@ img {
     /* font-weight: bold; */
   }
 
+  #goBack{
+    float: right;
+  }
   /* button:disabled{
     cursor:not-allowed;
     opacity:0.5

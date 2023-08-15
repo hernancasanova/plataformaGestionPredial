@@ -31,7 +31,7 @@ export class BovinesComponent implements OnInit {
                 {name:"color",type:"select",value:"", required: true, options:[{name:"Clavel(a)",value:"1",selected:""},{name:"Overo(a)",value:"2",selected:""},{name:"Blanco(a)",value:"3",selected:""},{name:"Colorado(a)",value:"4", selected:""},{name:"Amarillo(a)",value:"5",selected:""}]},
                 {name:"state",type:"select",value:"", required: true, options:[{name:"Vivo",value:"1", selected:""},{name:"Muerto",value:"2", selected:""}]},
                 {name:"date sale",type:"date", value:"", required:false},
-                // {name:"verified_sag",type:"checkbox", value:"", required:false},
+                {name:"verified SAG",type:"checkbox", value:"", required:false},
                 //{name:"Create",type:"submit"}
               ];
 
@@ -95,6 +95,8 @@ export class BovinesComponent implements OnInit {
         // let myDate = e.value.split("-");
         // let newDate = new Date( myDate[2], myDate[1] - 1, myDate[0]);
         this.newBovine={...this.newBovine, date_sale:e.value!=""?e.value+"T00:00:00":null}
+      }else if(e.name=="verified SAG"){
+        this.newBovine={...this.newBovine, verified_sag:e.value?"S":"N"}
       }
     })
     console.log("this.newBovine: ",this.newBovine)
@@ -215,6 +217,8 @@ export class BovinesComponent implements OnInit {
             }
             //element["value"]=b.date_sale
             //console.log("pasé por la fecha de venta")
+          }else if(element["name"]=="verified SAG"){
+            element["value"]=b.verified_sag=="S"?true:false
           }
         });
       })

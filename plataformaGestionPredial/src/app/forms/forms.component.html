@@ -10,7 +10,7 @@
                         <p>* : field required</p>
                     </div>
                     <div class="col-2" style="font-weight: bold; cursor: pointer;">
-                        <p class="pl-4" (click)="goBack();">← go back</p>
+                        <p id="goBack" (click)="goBack();">← go back</p>
                     </div>    
                 </div>
                 <form id="form" #f="ngForm" (ngSubmit)="inputFunction()">
@@ -33,16 +33,26 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div *ngIf="field.type=='checkbox'" class="form-group mb-2">
+                        <div *ngIf="field.type=='checkbox2'" class="form-group mb-2">
                             <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
-                            <input class="form-control" type="checkbox"  id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" [required]="field.required" #i="ngModel"> -->
+                            <input class="form-control" type="checkbox"  id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" [required]="field.required" #i="ngModel">
                             <!-- <input class="form-check-input mt-0" type="radio" value="" aria-label="Radio button for following text input"> -->
-                            <!-- <div  *ngIf="i.invalid && (i.dirty || i.touched)">
+                            <div  *ngIf="i.invalid && (i.dirty || i.touched)">
                                 <div *ngIf="i.errors?.required">
                                     <p class="text-alert">{{field.name}} is required</p>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
+                        <div *ngIf="field.type=='checkbox'" class="form-check mb-2 pt-2">
+                            <label class="form-check-label" for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
+                            <input class="form-check-input" type="checkbox"  id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" [checked]="field.value" [required]="field.required" #i="ngModel">
+                            <!-- <input class="form-check-input mt-0" type="radio" value="" aria-label="Radio button for following text input"> -->
+                            <div  *ngIf="i.invalid && (i.dirty || i.touched)">
+                                <div *ngIf="i.errors?.required">
+                                    <p class="text-alert">{{field.name}} is required</p>
+                                </div>
+                            </div>
+                        </div>
                         <div *ngIf="field.type=='text'" class="form-group mb-2">
                             <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
                             <input type="text" class="form-control"  id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" [required]="field.required" #i="ngModel" placeholder="{{field.placeholder}}">
@@ -67,11 +77,11 @@
                             </div>
                         </div>
                         <div *ngIf="field.type=='file'" class="form-group mb-2">
-                            <div *ngIf="srcPreview" class="mb-2">Selected file: <br>
+                            <div *ngIf="srcPreview && field.name=='image'" class="mb-2">Selected file: <br>
                                 <img [src]="srcPreview" alt="" width="100" height="100"><br>
                                 <div *ngIf="icon">
-                                    <i class="fa-solid fa-circle-info ml-5"></i>
-                                    <label>selected image will replace the current image</label>
+                                    <i class="fa-solid fa-circle-info mr-5"></i>
+                                    <label>Selected image will replace the current image</label>
                                 </div>
                             </div>
                             <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
