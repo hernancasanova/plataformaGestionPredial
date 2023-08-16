@@ -16,7 +16,20 @@
           </div>
         </ng-template>
         <form>
-          <div class="mb-3 row">
+          <div class="mb-2 row">
+            <label for="" class="col-xs-3 col-sm-auto col-form-label"><b>Search by type(s):</b></label>
+            <div class="col-xs-3 col-sm-auto">
+              <select class="form-select" size="3" name="type" multiple [(ngModel)]="service.type">
+                  <option value="all" selected>All</option>
+                  <option value="Ternero">Ternero</option>
+                  <option value="Ternera">Ternera</option>
+                  <option value="Toro">Toro</option>
+                  <option value="Vaquilla">Vaquilla</option>
+                  <option value="Vaca">Vaca</option>
+                  <option value="Buey">Buey</option>
+                  <option value="Novillo">Novillo</option>
+              </select>
+            </div>
             <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label"><b>Search by name or DIIO:</b></label>
             <div class="col-xs-3 col-sm-auto">
               <input
@@ -27,7 +40,6 @@
                 [(ngModel)]="service.searchTerm"
               />
             </div>
-            <!-- <div class="col-xs-3 col-sm-auto">N° bovines: {{(items$| async)?.length}} </div> -->
             <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...   <div class="spinner-border text-success" role="status">
               <span class="sr-only">Loading...</span>
             </div></span>
@@ -70,7 +82,7 @@
                 <td><ngb-highlight [result]=" country.datePlacement!=null?(country.datePlacement | date:'dd/MM/yyyy'):'No aplica'" [term]="service.searchTerm"></ngb-highlight></td>
                 <td><ngb-highlight [result]=" country.dateBirth | date:'dd/MM/yyyy'" [term]="service.searchTerm"></ngb-highlight></td>
                 <td><ngb-highlight style="cursor: pointer;" [result]="country.mother" [term]="service.searchTerm"></ngb-highlight></td>
-                <td><ngb-highlight [result]="country.type" [term]="service.searchTerm"></ngb-highlight></td>
+                <td><ngb-highlight [result]="country.type" [term]="service.type"></ngb-highlight></td>
                 <td>{{country.age}}</td>
                 <td>{{country.verifiedSag}}</td>
                 <td><i title="See identifiers" style="cursor: pointer;" (click)="openModalDialogCustomClass(content,country.id)" class="fa-solid fa-list-ol p-2"></i>
@@ -83,12 +95,12 @@
       
           <div class="d-flex justify-content-between p-2">
             <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
-                  </ngb-pagination>
-            Showing {{(items$|async)?.length}} of a total of {{(total$ | async)!}} bovines
+            </ngb-pagination>
+            <p class="mt-2">Showing {{(items$|async)?.length}} of a total of {{(total$ | async)!}} bovines</p>
             <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
-              <option [ngValue]="5">5 items per page</option>
-              <option [ngValue]="10">10 items per page</option>
-              <option [ngValue]="15">15 items per page</option>
+              <option [ngValue]="5">5 bovines per page</option>
+              <option [ngValue]="10">10 bovines per page</option>
+              <option [ngValue]="15">15 bovines per page</option>
               <!-- <option [ngValue]="20">20 items por página</option> -->
             </select>
           </div>

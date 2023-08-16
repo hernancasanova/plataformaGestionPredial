@@ -21,6 +21,7 @@ interface State {
 	searchTerm: string;
 	sortColumn: SortColumn;
 	sortDirection: SortDirection;
+	type: any;
 }
 
 //var BOVINES: any = [];
@@ -38,10 +39,11 @@ function sort(countries: [], column: SortColumn, direction: string): any[] {
 	}
 }
 
-function matches(country: Country, term: string, pipe: PipeTransform) {
+function matches(country: Country, term: string, pipe: PipeTransform, type: any) {
 	return (
-		country.name.toLowerCase().includes(term.toLowerCase()) ||
-		country.diio.toLowerCase().includes(term.toLowerCase())
+		(country.name.toLowerCase().includes(term.toLowerCase()) ||
+		country.diio.toLowerCase().includes(term.toLowerCase()) ) &&
+		type.includes(country.type)
 		//pipe.transform(country.date_birth).includes(term) ||
 		//pipe.transform(country.sex).includes(term)
 	);
@@ -69,11 +71,11 @@ export class CountryService{
 		searchTerm: '',
 		sortColumn: '',
 		sortDirection: '',
+		type: ['all'],
 	};
 
 	constructor(private pipe: DecimalPipe, private vacunoService: VacunosService) {
 		this.getBovines();
-		//console.log("desde el contructor?")
 		setTimeout(()=>{
 		this._search$
 			.pipe(
@@ -117,6 +119,10 @@ export class CountryService{
 		return this._state.searchTerm;
 	}
 
+	get type() {
+		return this._state.type;
+	}
+
 	set page(page: number) {
 		this._set({ page });
 	}
@@ -125,6 +131,9 @@ export class CountryService{
 	}
 	set searchTerm(searchTerm: string) {
 		this._set({ searchTerm });
+	}
+	set type(type: any) {
+		this._set({ type });
 	}
 	set sortColumn(sortColumn: SortColumn) {
 		this._set({ sortColumn });
@@ -139,7 +148,7 @@ export class CountryService{
 	}
 
 	private _search(): Observable<SearchResult> {
-		const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
+		const { sortColumn, sortDirection, pageSize, page, searchTerm, type} = this._state;
 
 		// 1. sort
 		//console.log("countries antes de sort: ",this.BOVINES)
@@ -147,7 +156,8 @@ export class CountryService{
 		//console.log("countries después de sort: ",countries)
 
 		// 2. filter
-		countries = countries.filter((country) => matches(country, searchTerm, this.pipe));
+		let types=type[0]=='all'?['Ternero','Ternera','Toro','Vaquilla','Vaca','Buey','Novillo']:type;
+		countries = countries.filter((country) => matches(country, searchTerm, this.pipe, types));
 		const total = countries.length;
 
 		// 3. paginate

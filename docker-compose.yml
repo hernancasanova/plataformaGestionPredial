@@ -6,6 +6,7 @@ services:
     ports: 
       - 1521:1521
     environment:
+      #- ORACLE_CHARACTERSET=UTF8
       - ORACLE_ALLOW_REMOTE=true
     volumes:
       - ./oracle:/docker-entrypoint-initdb.d
