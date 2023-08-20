@@ -26,6 +26,7 @@ import { IdentifiersModule } from './identifiers/identifiers.module';
 import { MachinesModule } from './machines/machines.module';
 import { TableComponent } from './shared/table/table.component';
 import { BusinessModule } from './business/business.module';
+import { WorksModule } from './works/works.module';
 //import { ToastGlobalComponent } from './toast-global/toast-global.component';
 
 
@@ -59,7 +60,8 @@ import { BusinessModule } from './business/business.module';
     BovinesModule,
     DocumentsModule,
     MachinesModule,
-    BusinessModule
+    BusinessModule,
+    WorksModule
   ],
   providers: [MainGuard],
   bootstrap: [AppComponent]

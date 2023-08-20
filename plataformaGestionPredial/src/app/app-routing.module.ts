@@ -13,6 +13,7 @@ import { AuthRoutingModule } from './login/login.routing';
 import { MachinesComponent } from './machines/machines.component';
 import { MainComponent } from './main/main.component';
 import { ProComponent } from './shared/pro/pro.component';
+import { WorksComponent } from './works/works.component';
 //import { TableComponent } from './table/table.component';
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
       { path: 'identifiers', component: IdentifiersComponent, data:{type:"documents"}},
       //{ path: 'list', component: ListComponent, data:{type:"list"}},//ListComponent    inputs
       { path: 'business', component: BusinessComponent},
+      { path: 'works', component: WorksComponent},
       { path: 'machines', component: MachinesComponent, data:{type:"machines"}},
       { path: 'bovines/create', component: BovinesComponent, data:{title:"Create"}},
       { path: 'bovines/edit/:id', component: BovinesComponent, data:{title:"Edit"}},

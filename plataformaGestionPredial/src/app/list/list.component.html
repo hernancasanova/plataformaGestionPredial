@@ -20,7 +20,7 @@
             <label for="" class="col-xs-3 col-sm-auto col-form-label"><b>Search by type(s):</b></label>
             <div class="col-xs-3 col-sm-auto">
               <select class="form-select" size="3" name="type" multiple [(ngModel)]="service.type">
-                  <option value="all" selected>All</option>
+                  <option value="all">All</option>
                   <option value="Ternero">Ternero</option>
                   <option value="Ternera">Ternera</option>
                   <option value="Toro">Toro</option>
@@ -28,6 +28,15 @@
                   <option value="Vaca">Vaca</option>
                   <option value="Buey">Buey</option>
                   <option value="Novillo">Novillo</option>
+              </select>
+            </div>
+            <label for="" class="col-xs-3 col-sm-auto col-form-label"><b>Search by state(s):</b></label>
+            <div class="col-xs-3 col-sm-auto">
+              <select class="form-select" size="3" name="state" multiple [(ngModel)]="service.state">
+                  <option value="all">All</option>
+                  <option value="alive">Alive</option>
+                  <!-- <option value="sold">Sold</option> -->
+                  <option value="Muerto">Die</option>
               </select>
             </div>
             <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label"><b>Search by name or DIIO:</b></label>

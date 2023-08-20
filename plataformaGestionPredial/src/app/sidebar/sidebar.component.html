@@ -57,6 +57,56 @@
     </div>
 </div>
 
+
+<!-- NEGOCIOS -->
+<div class="row menu" (click)="changeOpenLinks(4)">
+    <div class="col-3">
+        <i class="fa-solid fa-handshake-simple"></i>
+    </div>
+    <div class="col-9">
+        <a class="nav-link" >Business
+            <i [ngClass]="menus[3].open ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i>
+        </a>
+        <!-- <a class="nav-link" >Business</a> -->
+    </div>
+</div>
+<div *ngIf="menus[3].open" class="row submenu">
+    <ul>
+        <li routerLink="/business" id="1"(click)="addClass(1)"><i class="fa-solid fa-list-ol"></i>List<span class="badge badge-secondary"></span></li>
+       <li routerLink="/business" id="2"(click)="addClass(2)"><i class="fa-solid fa-plus"></i>Register<span class="badge badge-secondary"></span></li>
+    </ul>
+</div>
+
+
+<!-- TRABAJOS -->
+<div class="row menu" (click)="changeOpenLinks(5)">
+    <div class="col-3">
+        <i class="fa-solid fa-person-digging"></i>
+    </div>
+    <div class="col-9">
+        <a class="nav-link" >Works
+            <i [ngClass]="menus[4].open ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i>
+        </a>
+    </div>
+</div>
+<div *ngIf="menus[4].open" class="row submenu">
+    <ul>
+        <li routerLink="/works" id="1"(click)="addClass(1)"><i class="fa-solid fa-list-ol"></i>List<span class="badge badge-secondary"></span></li>
+       <li routerLink="/works" id="2"(click)="addClass(2)"><i class="fa-solid fa-plus"></i>Register<span class="badge badge-secondary"></span></li>
+    </ul>
+</div>
+
+<!-- TRABAJADORES -->
+<div class="row menu" routerLink="/">
+    <div class="col-3">
+        <i class="fa-solid fa-people-group"></i>
+    </div>
+    <div class="col-9">
+        <a class="nav-link" >Workers<span class="badge badge-secondary">PRO</span></a>
+    </div>
+</div>
+
+
 <!-- SUMINISTROS -->
 <div class="row menu" (click)="changeOpenLinks(2)">
     <div class="col-3">
@@ -92,47 +142,6 @@
     </ul>
 </div> -->
 
-<!-- NEGOCIOS -->
-<div class="row menu" (click)="changeOpenLinks(4)">
-    <div class="col-3">
-        <i class="fa-solid fa-handshake-simple"></i>
-    </div>
-    <div class="col-9">
-        <a class="nav-link" >Business
-            <i [ngClass]="menus[3].open ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i>
-        </a>
-        <!-- <a class="nav-link" >Business</a> -->
-    </div>
-</div>
-<div *ngIf="menus[3].open" class="row submenu">
-    <ul>
-        <li routerLink="/business" id="1"(click)="addClass(1)"><i class="fa-solid fa-list-ol"></i>List<span class="badge badge-secondary"></span></li>
-       <li routerLink="/business" id="2"(click)="addClass(2)"><i class="fa-solid fa-plus"></i>Register<span class="badge badge-secondary"></span></li>
-    </ul>
-</div>
-
-
-<!-- TRABAJOS -->
-<div class="row menu" routerLink="/">
-    <div class="col-3">
-        <i class="fa-solid fa-person-digging"></i>
-    </div>
-    <div class="col-9">
-        <!-- <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a> -->
-        <a class="nav-link" >Works<span class="badge badge-secondary">PRO</span></a>
-    </div>
-</div>
-
-
-<!-- TRABAJADORES -->
-<div class="row menu" routerLink="/">
-    <div class="col-3">
-        <i class="fa-solid fa-people-group"></i>
-    </div>
-    <div class="col-9">
-        <a class="nav-link" >Workers<span class="badge badge-secondary">PRO</span></a>
-    </div>
-</div>
 
 <!-- Agenda -->
 <div class="row menu" routerLink="/">

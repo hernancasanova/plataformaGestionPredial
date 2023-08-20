@@ -26,7 +26,7 @@
                         </div>
                         <div *ngIf="field.type=='number'" class="form-group mb-2">
                             <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
-                            <input type="number" class="form-control"  id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" [required]="field.required" #i="ngModel">
+                            <input type="number" class="form-control"  id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" [required]="field.required" #i="ngModel" placeholder="{{field.placeholder}}">
                             <div  *ngIf="i.invalid && (i.dirty || i.touched)">
                                 <div *ngIf="i.errors?.required">
                                     <p class="text-alert">{{field.name}} is required</p>

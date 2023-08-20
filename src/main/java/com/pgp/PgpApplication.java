@@ -30,6 +30,9 @@ import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.List;
+import java.util.TimeZone;
+
+import javax.annotation.PostConstruct;
 
 
 @EnableEurekaClient
@@ -111,6 +114,13 @@ public class PgpApplication {
 	      }
 	    }
 	}
+	
+	
+	@PostConstruct
+    public void init(){
+      // Setting Spring Boot SetTimeZone
+      TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+    }
 
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {

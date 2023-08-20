@@ -22,6 +22,7 @@ interface State {
 	sortColumn: SortColumn;
 	sortDirection: SortDirection;
 	type: any;
+	state:any
 }
 
 //var BOVINES: any = [];
@@ -39,11 +40,11 @@ function sort(countries: [], column: SortColumn, direction: string): any[] {
 	}
 }
 
-function matches(country: Country, term: string, pipe: PipeTransform, type: any) {
+function matches(country: Country, term: string, pipe: PipeTransform, type: any, states:any) {
 	return (
 		(country.name.toLowerCase().includes(term.toLowerCase()) ||
 		country.diio.toLowerCase().includes(term.toLowerCase()) ) &&
-		type.includes(country.type)
+		type.includes(country.type) || states.includes(country.type)
 		//pipe.transform(country.date_birth).includes(term) ||
 		//pipe.transform(country.sex).includes(term)
 	);
@@ -72,6 +73,7 @@ export class CountryService{
 		sortColumn: '',
 		sortDirection: '',
 		type: ['all'],
+		state: ['alive'],
 	};
 
 	constructor(private pipe: DecimalPipe, private vacunoService: VacunosService) {
@@ -118,9 +120,11 @@ export class CountryService{
 	get searchTerm() {
 		return this._state.searchTerm;
 	}
-
 	get type() {
 		return this._state.type;
+	}
+	get state() {
+		return this._state.state;
 	}
 
 	set page(page: number) {
@@ -135,6 +139,9 @@ export class CountryService{
 	set type(type: any) {
 		this._set({ type });
 	}
+	set state(state: any) {
+		this._set({ state });
+	}
 	set sortColumn(sortColumn: SortColumn) {
 		this._set({ sortColumn });
 	}
@@ -148,7 +155,7 @@ export class CountryService{
 	}
 
 	private _search(): Observable<SearchResult> {
-		const { sortColumn, sortDirection, pageSize, page, searchTerm, type} = this._state;
+		const { sortColumn, sortDirection, pageSize, page, searchTerm, type, state} = this._state;
 
 		// 1. sort
 		//console.log("countries antes de sort: ",this.BOVINES)
@@ -157,7 +164,8 @@ export class CountryService{
 
 		// 2. filter
 		let types=type[0]=='all'?['Ternero','Ternera','Toro','Vaquilla','Vaca','Buey','Novillo']:type;
-		countries = countries.filter((country) => matches(country, searchTerm, this.pipe, types));
+		let states=state[0]=='all'?['Vivo','Muerto']:state;
+		countries = countries.filter((country) => matches(country, searchTerm, this.pipe, types, states));
 		const total = countries.length;
 
 		// 3. paginate
