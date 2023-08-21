@@ -40,11 +40,41 @@ function sort(countries: [], column: SortColumn, direction: string): any[] {
 	}
 }
 
+function verifyState(states: Array<string>,country: Country){
+	var verification=false;
+	if(states.includes("Vendido")){
+		verification=verifySold(states,country)?true:false;
+	}
+	if(states.includes("Vivo")&&verification==false){	
+		verification=verifyAlive(states,country)?true:false;
+	}
+	if(states.includes("Muerto")&&verification==false){
+		verification=verifyDie(states,country)?true:false;
+	}
+	return verification;
+}
+
+function verifySold(states: Array<string>,country: Country){
+	if(country.dateSale)return true;
+	return false;
+}
+function verifyAlive(states: Array<string>,country: Country){
+	if(country.state=="Vivo"&&!country.dateSale)return true;
+	return false;
+}
+function verifyDie(states: Array<string>,country: Country){
+	if(country.state=="Muerto")return true;
+	return false;
+}
+
 function matches(country: Country, term: string, pipe: PipeTransform, type: any, states:any) {
 	return (
 		(country.name.toLowerCase().includes(term.toLowerCase()) ||
 		country.diio.toLowerCase().includes(term.toLowerCase()) ) &&
-		type.includes(country.type) || states.includes(country.type)
+		type.includes(country.type) && 
+		(verifyState(states,country))
+		//states.includes(country.state)//working
+		//states.includes(country.state)
 		//pipe.transform(country.date_birth).includes(term) ||
 		//pipe.transform(country.sex).includes(term)
 	);
@@ -73,7 +103,7 @@ export class CountryService{
 		sortColumn: '',
 		sortDirection: '',
 		type: ['all'],
-		state: ['alive'],
+		state: ['Vivo'],
 	};
 
 	constructor(private pipe: DecimalPipe, private vacunoService: VacunosService) {
@@ -158,13 +188,11 @@ export class CountryService{
 		const { sortColumn, sortDirection, pageSize, page, searchTerm, type, state} = this._state;
 
 		// 1. sort
-		//console.log("countries antes de sort: ",this.BOVINES)
 		let countries = sort(this.BOVINES, sortColumn, sortDirection);
-		//console.log("countries después de sort: ",countries)
 
 		// 2. filter
 		let types=type[0]=='all'?['Ternero','Ternera','Toro','Vaquilla','Vaca','Buey','Novillo']:type;
-		let states=state[0]=='all'?['Vivo','Muerto']:state;
+		let states=state[0]=='all'?['Vivo','Muerto','Vendido']:state;
 		countries = countries.filter((country) => matches(country, searchTerm, this.pipe, types, states));
 		const total = countries.length;
 

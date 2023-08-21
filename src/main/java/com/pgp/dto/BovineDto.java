@@ -27,4 +27,5 @@ public interface BovineDto{
 	String getAge();
 	String getVerifiedSag();
 	String getState();
+	String getDateSale();
 }
