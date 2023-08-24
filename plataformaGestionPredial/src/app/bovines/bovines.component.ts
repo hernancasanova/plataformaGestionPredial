@@ -15,10 +15,7 @@ export class BovinesComponent implements OnInit {
   date:Array<string>=[];
   newBovine:Object={};
   //bovineForm : string = "";
-  //loading:boolean=false;
-  //title:string="Create bovine";
-  //textButtonForm:string=this.loading?"Creating...":"Create";
-  configurations: any = {title:"Create bovine", loading:false,textButton:"Create"};
+  configurations: any = {title:"Create bovine", loading:false, textButton:"Create", initialLoading:false};
   mothers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
   fields: Array<any> = [
                 {name:"bovine",type:"image",id:"",text:"Current image:", info:"↓ Select a new image to replace the current image"},
@@ -38,15 +35,7 @@ export class BovinesComponent implements OnInit {
   registerBovine=():number=>{
     this.configurations.loading=true;
     this.configurations.textButton=this.id>0?"Editing...":"Creating...";
-    //console.log("this.loading: ",this.loading)
     this.fields.forEach(e => {
-        //Object.keys(e)  
-        //var name=e.name
-         //console.log(e)
-        //this.newBovine={...this.newBovine, name:e.value}
-    //   //let v={e.name: e["value"]};
-    //   //console.log("e: ",{e.name: e["value"]})
-    //   //.newBovine={...this.newBovine, {e.name: e.value}}
       if(e.name=="name"){
         this.newBovine={...this.newBovine, name:e.value}
       }else if (e.name=="bovine" && e.id!=""){
@@ -55,52 +44,31 @@ export class BovinesComponent implements OnInit {
         let myDate = e.value.split("-");
         let newDate = new Date( myDate[2], myDate[1] - 1, myDate[0]);
         this.newBovine={...this.newBovine, date_birth:e.value+"T00:00:00"}
-        //console.log((new Date("2012-02-26")).getTime()/1000)
-        //debugger
       }else if(e.name=="mother"){
         this.newBovine={...this.newBovine, mother:e.value}
         // e.options.forEach((o:any)=>{
         //if(o.selected=="selected")this.newBovine={...this.newBovine, mother:o.value}
         // })
       }else if(e.name=="sex"){
-        // e.options.forEach((o:any)=>{
-        //   if(o.selected=="selected")this.newBovine={...this.newBovine, sex:o.value}
-        // })
         let sel=(document.getElementById(e.name)) as HTMLSelectElement;
-        // if(sel){
         let optionSelected=sel.options[sel.selectedIndex].text;
-        // }
         this.newBovine={...this.newBovine, sex:optionSelected}
       }else if(e.name=="type"){
-        // e.options.forEach((o:any)=>{
-        //   if(o.selected=="selected")this.newBovine={...this.newBovine, type:o.value}
-        // })
         this.newBovine={...this.newBovine, type:e.value}
       }else if(e.name=="color"){
-        // e.options.forEach((o:any)=>{
-        //   if(o.selected=="selected")this.newBovine={...this.newBovine, color:o.name}
-        // })
-      //this.newBovine={...this.newBovine, color:e.options.selected}
         let sel=(document.getElementById(e.name)) as HTMLSelectElement;
         let optionSelected=sel.options[sel.selectedIndex].text;
         this.newBovine={...this.newBovine, color:optionSelected}
       }else if(e.name=="state"){
-        // e.options.forEach((o:any)=>{
-        //   if(o.selected=="selected")this.newBovine={...this.newBovine, state:o.value}
-        // })
         let sel=(document.getElementById(e.name)) as HTMLSelectElement;
         let optionSelected=sel.options[sel.selectedIndex].text;
         this.newBovine={...this.newBovine, state:optionSelected}
       }else if(e.name=="date sale"){
-        // let myDate = e.value.split("-");
-        // let newDate = new Date( myDate[2], myDate[1] - 1, myDate[0]);
         this.newBovine={...this.newBovine, date_sale:e.value!=""?e.value+"T00:00:00":null}
       }else if(e.name=="verified SAG"){
         this.newBovine={...this.newBovine, verified_sag:e.value?"S":"N"}
       }
     })
-    console.log("this.newBovine: ",this.newBovine)
-    //debugger
     this.vacunoService.createBovine(this.newBovine).
     subscribe(r=>console.log("r: ",r),
     (error:any)=>console.log("error en Observable: ",error),
@@ -118,6 +86,7 @@ export class BovinesComponent implements OnInit {
   }
 
   constructor(private router: Router, private vacunoService: VacunosService, private route: ActivatedRoute) {
+    this.configurations.initialLoading=true;
     this.vacunoService.getBovines()
     .subscribe(bs=>{
       bs.forEach((v: { type: string; name: any; id: any; })=>{
@@ -132,7 +101,6 @@ export class BovinesComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         if(params['id']){
-          //console.log(params['id'])
           this.id=parseInt(params['id']);
           this.configurations.title="Edit bovine"
         }
@@ -145,7 +113,7 @@ export class BovinesComponent implements OnInit {
     bs.forEach((v: { type: string; name: any; id: any; })=>{
       if(v.type=="Vaca"){
         this.mothers.push({name:v.name, value:v.id, selected:""})
-      }//else console.log("v: ",v)
+      }
     })
   }
 
@@ -161,8 +129,6 @@ export class BovinesComponent implements OnInit {
     if(this.id>0){
       this.configurations.textButton="Edit"
       this.vacunoService.getBovine(this.id).subscribe(b=>{
-        //console.log("b: ",b);
-        //console.log("this.mothers: ",this.mothers)
         this.fields.forEach(element => {
           if(element["name"]=="mother"){
             element["options"]=this.mothers;
@@ -215,14 +181,13 @@ export class BovinesComponent implements OnInit {
               }
               element["value"]=this.date[0]
             }
-            //element["value"]=b.date_sale
-            //console.log("pasé por la fecha de venta")
           }else if(element["name"]=="verified SAG"){
             element["value"]=b.verified_sag=="S"?true:false
           }
         });
       })
     }
+    this.configurations.initialLoading=false;
   }
 
 }

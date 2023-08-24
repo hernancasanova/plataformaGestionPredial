@@ -18,7 +18,7 @@ export class WorksComponent implements OnInit {
   {name:"finish date",type:"date", value:"",required:true},
   {name:"Estimated cost ($)",type:"number", value:"",required:true, placeholder:"Eg: 50000"},
   //{name:"mother",type:"select", value:"", required:true, options:[]},
-  {name:"workers",type:"select", value:"", required:true, multiple:true ,options:[{name:"Segundo pereira",value:"1"}]},
+  {name:"workers",type:"select-multiple", value:"", required:true, options:[{name:"Segundo pereira",value:"1"}]},
   //{name:"type",type:"select",value:"", required:true, options:[{name:"Ternero",value:"1",selected:""},{name:"Ternera",value:"2",selected:""},{name:"Toro",value:"3", selected:""},{name:"Vaquilla",value:"4", selected:""},{name:"Vaca",value:"5",selected:""},{name:"Buey",value:"6",selected: ""},{name:"Novillo",value:"7", selected:""}]},
   //{name:"color",type:"select",value:"", required: true, options:[{name:"Clavel(a)",value:"1",selected:""},{name:"Overo(a)",value:"2",selected:""},{name:"Blanco(a)",value:"3",selected:""},{name:"Colorado(a)",value:"4", selected:""},{name:"Amarillo(a)",value:"5",selected:""}]},
   //{name:"state",type:"select",value:"", required: true, options:[{name:"Vivo",value:"1", selected:""},{name:"Muerto",value:"2", selected:""}]},

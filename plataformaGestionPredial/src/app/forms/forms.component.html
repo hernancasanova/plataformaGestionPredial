@@ -1,4 +1,4 @@
-<div class="container mb-2">
+<div *ngIf="configurations.initialLoading==false; else elseBlock" class="container mb-2">
     <div class="container pt-4">
         <div class="card">
             <div class="card-header">
@@ -64,7 +64,21 @@
                         </div>
                         <div *ngIf="field.type=='select'" class="form-group mb-2">
                             <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
-                            <select [multiple]="field.multiple" (change)="changeSelect($event)" class="form-select" name="{{field.name}}" [(ngModel)]="field.value" id="{{field.name}}" [required]="field.required" #i="ngModel">
+                            <select (change)="changeSelect($event)" class="form-select" name="{{field.name}}" [(ngModel)]="field.value" id="{{field.name}}" [required]="field.required" #i="ngModel">
+                                <option value="">Select</option>
+                                <ng-container *ngFor="let option of field.options; let i = index">
+                                    <option value="{{option.value}}" selected="{{option.selected}}">{{option.name}}</option>
+                                </ng-container>
+                            </select>
+                            <div  *ngIf="i.invalid && (i.dirty || i.touched)">
+                                <div *ngIf="i.errors?.required">
+                                    <p class="text-alert">{{field.name}} is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="field.type=='select-multiple'" class="form-group mb-2">
+                            <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
+                            <select multiple (change)="changeSelect($event)" class="form-select" name="{{field.name}}" [(ngModel)]="field.value" id="{{field.name}}" [required]="field.required" #i="ngModel">
                                 <option value="">Select</option>
                                 <ng-container *ngFor="let option of field.options; let i = index">
                                     <option value="{{option.value}}" selected="{{option.selected}}">{{option.name}}</option>
@@ -121,3 +135,10 @@
         </div>
 	</div>
 </div>
+<ng-template #elseBlock>
+    <div id="container-form">
+        <span class="col col-form-label">Loading...  <div class="spinner-border text-success" role="status">
+            <span class="sr-only">Loading...</span>
+        </div></span>
+    </div>
+</ng-template>
