@@ -16,7 +16,7 @@ export class IdentifiersComponent implements OnInit {
   newIdentifier:Object={};
   bovines:Array<any>=[];
   date:Array<string>=[];
-  configurations: any = {title:"Create identifier", loading:false,textButton:"Create"};
+  configurations: any = {title:"Create identifier", loading:false,textButton:"Create", initialLoading:false};
   fields: Array<any> = [
                 //{name:"image",type:"file"},
                 {name:"DIIO",type:"text", value:"", required:true , placeholder:"Eg: 014628273"},

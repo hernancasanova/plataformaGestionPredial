@@ -91,10 +91,10 @@
                             </div>
                         </div>
                         <div *ngIf="field.type=='file'" class="form-group mb-2">
-                            <div *ngIf="srcPreview && field.name=='image'" class="mb-2">Selected file: <br>
+                            <div *ngIf="srcPreview && field.name=='image'" class="mb-2">Selected image: <br>
                                 <img [src]="srcPreview" alt="" width="100" height="100"><br>
                                 <div *ngIf="icon">
-                                    <i class="fa-solid fa-circle-info mr-5"></i>
+                                    <i class="fa-solid fa-circle-info"></i>&nbsp;
                                     <label>Selected image will replace the current image</label>
                                 </div>
                             </div>

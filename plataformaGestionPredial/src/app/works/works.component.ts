@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./works.component.css']
 })
 export class WorksComponent implements OnInit {
-  configurations: any = {title:"Create work", loading:false,textButton:"Create"};
+  configurations: any = {title:"Create work", loading:false,textButton:"Create", initialLoading: false};
   //title:string="documento"
   fields: any = [
   //{name:"bovine",type:"image",id:"",text:"Current image:", info:"↓ Select a new image to replace the current image"},

@@ -4,6 +4,7 @@ import { AsyncPipe, DatePipe, DecimalPipe, NgFor, NgIf, Location } from '@angula
 import Swal from 'sweetalert2';
 import {ViewEncapsulation} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,6 @@ export class FormsComponent implements OnInit {
   // remove(toast: any) {
 	// 	this.toasts = this.toasts.filter((t) => t !== toast);
 	// }
-  //@Input () title: string = "";
   @Input () fields: any;
   @Input () form: FormGroup | undefined;
   //@Input () textButton: string = "";
@@ -28,7 +28,7 @@ export class FormsComponent implements OnInit {
   @Input () callBackFunction: any;
   @Output()
   cambioSelect = new EventEmitter<string>();
-  //submitFunction:any;
+  titlePage: string = "";
   srcPreview:any;
   icon:boolean=false;
   files: any = [];
@@ -56,7 +56,12 @@ export class FormsComponent implements OnInit {
 	// 	return toast.textOrTpl instanceof TemplateRef;
 	// }
 
-  constructor(private location: Location, private sanitizer:DomSanitizer) { 
+  constructor(private location: Location, private sanitizer:DomSanitizer, private router: Router) { 
+    router.events.subscribe(e=>{
+      if(e instanceof NavigationEnd ){
+        this.titlePage=e.url;
+      }
+    })
   }
 
   goBack():void{
@@ -70,9 +75,6 @@ export class FormsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // transform(url:any) {
-  //   return this.domSanitizer.bypassSecurityTrustResourceUrl(url);
-  // }
 
 
 
@@ -81,7 +83,7 @@ export class FormsComponent implements OnInit {
     let blob = new Blob([file], { type: file.type });
     let url = window.URL.createObjectURL(blob); 
     this.srcPreview = this.sanitizer.bypassSecurityTrustUrl(url);
-    if(this.configurations.title.includes("bovine")){
+    if(this.titlePage.includes("edit")){
       this.icon = true;
     }
     //this.srcPreview=URL.createObjectURL(e.target.files[0]);
