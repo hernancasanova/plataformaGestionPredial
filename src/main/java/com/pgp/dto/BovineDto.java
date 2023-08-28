@@ -23,6 +23,7 @@ public interface BovineDto{
 	Date getDatePlacement();
 	Date getDateBirth();
 	String getMother();
+	int getIdMother();
 	String getType();
 	String getAge();
 	String getVerifiedSag();

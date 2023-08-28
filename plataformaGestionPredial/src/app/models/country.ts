@@ -7,6 +7,7 @@ export interface Country {
 	sex: string;
 	type: string;
 	mother: string;
+	idMother: number;
 	color: string;
 	state: string;
 	date_sale: any;
