@@ -24,9 +24,11 @@ import { DocumentsModule } from './documents/documents.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IdentifiersModule } from './identifiers/identifiers.module';
 import { MachinesModule } from './machines/machines.module';
-import { TableComponent } from './shared/table/table.component';
+//import { TableComponent } from './shared/table/table.component';
 import { BusinessModule } from './business/business.module';
 import { WorksModule } from './works/works.module';
+//import { DataTablesModule } from "angular-datatables";
+import { TableModule } from './shared/table/table.module';
 //import { ToastGlobalComponent } from './toast-global/toast-global.component';
 
 
@@ -38,7 +40,7 @@ import { WorksModule } from './works/works.module';
     //Table2Component,
     ProComponent,
     FooterComponent,
-    TableComponent,
+    //TableComponent,
     //ToastGlobalComponent,
   ],
   imports: [
@@ -54,8 +56,9 @@ import { WorksModule } from './works/works.module';
     CommonModule,
     BrowserAnimationsModule, 
     LoginModule,
-    // TableModule,
+    TableModule,
     //TablesModule,
+    //DataTablesModule,
     IdentifiersModule,
     BovinesModule,
     DocumentsModule,

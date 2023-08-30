@@ -4,6 +4,7 @@ import { BovinesComponent } from './bovines/bovines.component';
 import { BusinessComponent } from './business/business.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DocumentsComponent } from './documents/documents.component';
+import { ListDocumentsComponent } from './documents/list-documents/list-documents.component';
 import { FormsComponent } from './forms/forms.component';
 import { MainGuard } from './guards/main.guard';
 import { IdentifiersComponent } from './identifiers/identifiers.component';
@@ -13,6 +14,7 @@ import { AuthRoutingModule } from './login/login.routing';
 import { MachinesComponent } from './machines/machines.component';
 import { MainComponent } from './main/main.component';
 import { ProComponent } from './shared/pro/pro.component';
+import { TableComponent } from './shared/table/table.component';
 import { WorksComponent } from './works/works.component';
 //import { TableComponent } from './table/table.component';
 
@@ -30,7 +32,8 @@ const routes: Routes = [
       { path: '', component: ProComponent, data:{type:"dashboard"}},
       { path: 'dashboard', component: DashboardComponent, data:{type:"dashboard"}},
       { path: 'bovines', component: ListComponent, data:{type:"bovines"}},
-      { path: 'documents', component: DocumentsComponent, data:{type:"documents"}},
+      { path: 'documents', component: ListDocumentsComponent, data:{type:"documents"}},
+      { path: 'documents/create', component: DocumentsComponent, data:{type:"documents"}},
       { path: 'identifiers', component: IdentifiersComponent, data:{type:"documents"}},
       //{ path: 'list', component: ListComponent, data:{type:"list"}},//ListComponent    inputs
       { path: 'business', component: BusinessComponent},

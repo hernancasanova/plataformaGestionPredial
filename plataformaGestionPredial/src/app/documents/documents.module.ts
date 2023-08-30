@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { DocumentsComponent } from './documents.component';
 //import { FormsModule } from '@angular/forms';
 import { FormsModule } from '../forms/forms.module';
+import { ListDocumentsComponent } from './list-documents/list-documents.component';
+import { ListDocumentsModule } from './list-documents/list-documents.module';
 
 
 
@@ -11,7 +13,7 @@ import { FormsModule } from '../forms/forms.module';
     DocumentsComponent
   ],
   imports: [
-    CommonModule, FormsModule
+    CommonModule, FormsModule, ListDocumentsModule
   ]
 })
 export class DocumentsModule { }
