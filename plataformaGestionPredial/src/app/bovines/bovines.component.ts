@@ -23,6 +23,7 @@ export class BovinesComponent implements OnInit {
                 {name:"name",type:"text", value:"", required:true, placeholder:"Eg: My cow"},
                 {name:"date birth",type:"date", value:"",required:true},
                 {name:"mother",type:"select", value:"", required:true, options:[]},
+                {name:"image-mother",type:"image",id:"",text:"Mother selected:", info:""},
                 {name:"sex",type:"select", value:"", required:true, options:[{name:"Macho",value:"1",selected:""},{name:"Hembra",value:"2",selected:""}]},
                 {name:"type",type:"select",value:"", required:true, options:[{name:"Ternero",value:"1",selected:""},{name:"Ternera",value:"2",selected:""},{name:"Toro",value:"3", selected:""},{name:"Vaquilla",value:"4", selected:""},{name:"Vaca",value:"5",selected:""},{name:"Buey",value:"6",selected: ""},{name:"Novillo",value:"7", selected:""}]},
                 {name:"color",type:"select",value:"", required: true, options:[{name:"Clavel(a)",value:"1",selected:""},{name:"Overo(a)",value:"2",selected:""},{name:"Blanco(a)",value:"3",selected:""},{name:"Colorado(a)",value:"4", selected:""},{name:"Amarillo(a)",value:"5",selected:""}]},
@@ -109,10 +110,10 @@ export class BovinesComponent implements OnInit {
     
   }
 
-  process(bs:any): void{
-    bs.forEach((v: { type: string; name: any; id: any; })=>{
-      if(v.type=="Vaca"){
-        this.mothers.push({name:v.name, value:v.id, selected:""})
+  desplegarImagenBovino=(event:any):void=>{
+    this.fields.forEach(e => {
+      if(e.name=="image-mother" && event.target.id=="mother" ){
+        e.id=event.target.value
       }
     })
   }
@@ -138,7 +139,7 @@ export class BovinesComponent implements OnInit {
             //   }
             // })
             element.value=b.mother
-          }else if (element["type"]=="image"){
+          }else if (element["name"]=="bovine"){
             element["id"]=b.id
           }else if (element["type"]=="file"){//name=image
             element["required"]=false

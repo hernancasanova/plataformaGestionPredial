@@ -32,5 +32,9 @@ export class IdentifierService {
   listIdentifiers(bovine:number):Observable<any>{
     return this.http.get("http://localhost:8006/identifiers/bovine/"+bovine);
   }
+
+  listIdentifiersAndBovines():Observable<any>{
+    return this.http.get("http://localhost:8007/identifiers");
+  }
   
 }

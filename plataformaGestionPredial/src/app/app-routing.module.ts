@@ -8,6 +8,7 @@ import { ListDocumentsComponent } from './documents/list-documents/list-document
 import { FormsComponent } from './forms/forms.component';
 import { MainGuard } from './guards/main.guard';
 import { IdentifiersComponent } from './identifiers/identifiers.component';
+import { ListIdentifiersComponent } from './identifiers/list-identifiers/list-identifiers.component';
 import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
 import { AuthRoutingModule } from './login/login.routing';
@@ -34,7 +35,8 @@ const routes: Routes = [
       { path: 'bovines', component: ListComponent, data:{type:"bovines"}},
       { path: 'documents', component: ListDocumentsComponent, data:{type:"documents"}},
       { path: 'documents/create', component: DocumentsComponent, data:{type:"documents"}},
-      { path: 'identifiers', component: IdentifiersComponent, data:{type:"documents"}},
+      { path: 'identifiers', component: ListIdentifiersComponent, data:{type:"identifiers"}},
+      { path: 'identifiers/create', component: IdentifiersComponent, data:{type:"identifiers"}},
       //{ path: 'list', component: ListComponent, data:{type:"list"}},//ListComponent    inputs
       { path: 'business', component: BusinessComponent},
       { path: 'works', component: WorksComponent},

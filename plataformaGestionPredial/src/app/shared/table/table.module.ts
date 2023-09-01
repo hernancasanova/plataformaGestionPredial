@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { TableComponent } from './table.component';
 import { DataTablesModule } from "angular-datatables";
 
@@ -13,6 +13,7 @@ import { DataTablesModule } from "angular-datatables";
   ],
   exports:[
     TableComponent
-  ]
+  ],
+  providers:[DatePipe]
 })
 export class TableModule { }

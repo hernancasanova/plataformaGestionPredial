@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IdentifiersComponent } from './identifiers.component';
 import { FormsModule } from '../forms/forms.module';
+import { ListIdentifiersModule } from './list-identifiers/list-identifiers.module';
 
 
 
@@ -10,7 +11,7 @@ import { FormsModule } from '../forms/forms.module';
     IdentifiersComponent
   ],
   imports: [
-    CommonModule,FormsModule
+    CommonModule,FormsModule, ListIdentifiersModule
   ],
   exports: [IdentifiersComponent]
 })

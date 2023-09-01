@@ -38,6 +38,7 @@ export class IdentifiersComponent implements OnInit {
               ];
 
   constructor(private identifierService: IdentifierService, private vacunoService: VacunosService) {
+    this.configurations.initialLoading=true;
     this.vacunoService.getBovines()
     .subscribe(bs=>{
       bs.forEach((b: { type: string; name: any; id: any; })=>{
@@ -62,10 +63,10 @@ export class IdentifiersComponent implements OnInit {
     });
   }*/
 
-  desplegarImagenBovino=(bovino:any):void=>{
+  desplegarImagenBovino=(event:any):void=>{
     this.fields.forEach(e => {
       if(e.name=="image-bovine"){
-        e.id=bovino
+        e.id=event.target.value
       }
     })
   }
@@ -77,6 +78,7 @@ export class IdentifiersComponent implements OnInit {
       if(e.name=="bovine"){
         e.options=this.bovines
       }
+      this.configurations.initialLoading=false;
     })
   }
 

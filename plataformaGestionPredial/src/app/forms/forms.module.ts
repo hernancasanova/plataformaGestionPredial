@@ -20,6 +20,6 @@ import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
     //NgForm,
   ],
   //exports: [FormsComponent, NgForm,NgbdToastGlobal]
-  exports: [FormsComponent, NgForm]
+  exports: [FormsComponent]
 })
 export class FormsModule { }

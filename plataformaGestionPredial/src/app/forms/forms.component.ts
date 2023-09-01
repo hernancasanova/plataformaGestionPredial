@@ -38,7 +38,7 @@ export class FormsComponent implements OnInit {
   
 
   changeSelect=(event:any):void=>{
-    this.cambioSelect.emit(event.target.value);
+    this.cambioSelect.emit(event);
   }
   //id:number=0;
 

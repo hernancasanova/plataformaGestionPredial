@@ -1,3 +1,4 @@
+import { UpperCasePipe, DatePipe } from '@angular/common';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
@@ -13,7 +14,7 @@ export class TableComponent implements OnInit{
   @Input () headers: any;
 
 
-  constructor() { 
+  constructor(private pipeInstance: DatePipe) { 
   }
 
   ngOnChanges(changes: SimpleChanges): void{
@@ -24,7 +25,7 @@ export class TableComponent implements OnInit{
       this.data=a;
       //console.log("this.data: ",this.data)
       Object.keys(this.data[0]).forEach((k:any)=>{
-        this.arrColumns.push({title:k.toLowerCase(), data:k})
+        this.arrColumns.push({title:k, data:k,ngPipeInstance: k.includes("date")?this.pipeInstance:null, ngPipeArgs: k.includes("date")?['dd/MM/yyyy']:null})
       });
       this.dtOptions = {
         pagingType: 'full_numbers',
@@ -40,36 +41,5 @@ export class TableComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    // Object.keys(this.data[0]).forEach((k:any)=>{
-    //   this.arrColumns.push({title:k.toLowerCase(), data:k})
-    // });
-    // this.dtOptions = {
-    //   pagingType: 'full_numbers',
-    //   data:this.data,
-    //   columns:this.arrColumns
-    //   // ajax: (dataTablesParameters: any, callback) => {
-    //   //   that.http
-    //   //     .post<DataTablesResponse>(
-    //   //       'https://xtlncifojk.eu07.qoddiapp.com/',
-    //   //       dataTablesParameters, {}
-    //   //     ).subscribe(resp => {
-    //   //       callback({
-    //   //         recordsTotal: resp.recordsTotal,
-    //   //         recordsFiltered: resp.recordsFiltered,
-    //   //         data: resp.data             // <-- see here
-    //   //       });
-    //   //     });
-    //   // },
-    //   // columns: [{
-    //   //   title: 'ID',
-    //   //   data: 'id'
-    //   // }, {
-    //   //   title: 'First name',
-    //   //   data: 'firstName'
-    //   // }, {
-    //   //   title: 'Last name',
-    //   //   data: 'lastName'
-    //   // }]
-    // };
   }
 }

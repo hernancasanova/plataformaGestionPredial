@@ -12,7 +12,7 @@ export class SidebarComponent {
   faDashboard = faDashboard;
   faToolbox = faToolbox;
   openLink=false;
-  menus:Array<any>=[{id:1,open:false},{id:2,open:false},{id:3,open:false},{id:4,open:false},{id:5,open:false}]
+  menus:Array<any>=[{id:1,open:false},{id:2,open:false},{id:3,open:false},{id:4,open:false},{id:5,open:false},{id:6,open:false}]
   changeOpenLink(i:number):void{
     if(this.openLink==false) this.openLink=true;
     else this.openLink=false;
