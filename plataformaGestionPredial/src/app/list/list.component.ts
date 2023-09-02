@@ -10,6 +10,9 @@ import { NgbModal, NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap
 import { VacunosService } from '../services/vacunos.service';
 import { Router } from '@angular/router';
 import { IdentifierService } from '../services/identifier.service';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable'
+import autoTable from 'jspdf-autotable';
 
 @Component({
 	selector: 'ngbd-table-complete',
@@ -93,8 +96,120 @@ export class ListComponent {
     );
 	}
 
+	downloadPdf():void{
+		// const doc = new jsPDF('l', 'mm', 'a4'); 
+    
+		// const head = [['ID', 'Country', 'Index', 'Capital']]
+		// const data = [
+		// 	[1, 'Finland', 7.632, 'Helsinki'],
+		// 	[2, 'Norway', 7.594, 'Oslo'],
+		// 	[3, 'Denmark', 7.555, 'Copenhagen'],
+		// 	[4, 'Iceland', 7.495, 'Reykjavík'],
+		// 	[5, 'Switzerland', 7.487, 'Bern'],
+		// 	[9, 'Sweden', 7.314, 'Stockholm'],
+		// 	[73, 'Belarus', 5.483, 'Minsk'],
+		// ]
+
+		// autoTable(doc, {
+		// 	head: head,
+		// 	body: data,
+		// 	didDrawCell: (data) => { },
+		// });
+		var pdf = new jsPDF('p', 'pt', 'letter');
+		var nColumna = 1;
+		var ids: Array<string> = [];
+		var i = 0;
+		//var fecha;
+		var tabla = document.getElementById('tableBovines');
+		if(tabla){
+			// var tablaCopia = tabla.cloneNode(true);
+			// var filas = tablaCopia.row;
+			// for (var j = 0; j < filas.length; j++) {
+			// filas[j].deleteCell(7);
+			// }
+			var body: any = [];
+			this.items$.subscribe((bov:any) => {
+				bov.forEach((vac:any)=>{
+					let fila = [
+						vac.id,
+						'imagen',
+						vac.name,
+						vac.diio,
+						//vac.fecha_colocacion ? formatoFecha(vac.fecha_colocacion) : 'Sin arete',
+						//formatoFecha(vac.fecha_nacimiento),
+						vac.mother,
+						vac.type,
+						vac.age
+					];
+					body.push(fila);
+				})
+			});
+			autoTable(pdf,{
+			head: [
+				[
+				'N°',
+				'Imagen',
+				'Nombre',
+				'DIIO',
+				//'Fecha colocación',
+				//'Fecha nacimiento',
+				'Madre',
+				'Tipo',
+				'Edad'
+				],
+			],
+			body,
+			columnStyles: {
+				0: { cellWidth: 'auto', minCellHeight: 80 },
+				1: { cellWidth: 120, minCellHeight: 80 },
+				2: { cellWidth: 'auto', minCellHeight: 80 },
+				3: { cellWidth: 'auto', minCellHeight: 80 },
+				//4: { cellWidth: 'auto', minCellHeight: 80 },
+				//5: { cellWidth: 'auto', minCellHeight: 80 },
+				4: { cellWidth: 'auto', minCellHeight: 80 },
+				5: { cellWidth: 'auto', minCellHeight: 80 },
+				6: { cellWidth: 'auto', minCellHeight: 80 },
+			},
+			styles: {
+				valign: 'middle',
+				halign: 'center',
+			},
+			rowPageBreak: 'avoid',
+			//bodyStyles: {minCellHeight: 80, minCellWidth: 80},
+			includeHiddenHtml: true,
+			didParseCell: function (data) {
+				if (data.column.index === 0 && data.cell.section === 'body') {
+					ids.push(data.cell.text[0]);
+					data.cell.text[0] = nColumna.toString();
+					nColumna++;
+				}
+				/*if((data.column.index === 4 && data.cell.section === 'body')||(data.column.index === 5 && data.cell.section === 'body')){
+					//data.cell.text[0]=moment(data.cell.text[0], 'DD-MM-YYYY');
+					if(data.cell.text[0]!="Sin arete"){
+					fecha=data.cell.text[0].split('-');
+					data.cell.text[0] = [fecha[2],fecha[1],fecha[0] ].join("-");
+					}
+				}*/
+			},
+			didDrawCell: function (data) {
+				if (data.column.index === 1 && data.cell.section === 'body') {
+				pdf.addImage(
+					'http://localhost:8006/images/bovines/' + ids[i],
+					'JPEG',
+					data.cell.x + 15,
+					data.cell.y + 2,
+					80,
+					80,
+				);
+				i++;
+				}
+			},
+			});
+		}
+		pdf.save('listado_vacunos.pdf');
+	}
+
 	editBovine(id: number):any{
-		console.log("id: ",id)
 		this.router.navigate(["/bovines/edit/"+id])
 	}
 

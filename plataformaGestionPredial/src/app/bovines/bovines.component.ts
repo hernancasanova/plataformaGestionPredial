@@ -139,6 +139,8 @@ export class BovinesComponent implements OnInit {
             //   }
             // })
             element.value=b.mother
+          }else if (element["name"]=="image-mother"){
+            element["id"]=b.mother
           }else if (element["name"]=="bovine"){
             element["id"]=b.id
           }else if (element["type"]=="file"){//name=image
