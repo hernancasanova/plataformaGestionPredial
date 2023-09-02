@@ -108,7 +108,7 @@
             <p class="mt-2">Showing {{(items$|async)?.length}} of a total of {{(total$ | async)!}} bovines</p> 
             <div class="col-xs-3 col-sm-auto">
               <label for="" class="col-xs-3 col-sm-auto col-form-label p-2"><b>Download list</b></label>
-              <i style="cursor:Pointer" (click)="downloadPdf();" class="fa-solid fa-file-pdf fa-2xl"></i>
+              <i style="cursor:Pointer; color: #ca5148;" (click)="downloadPdf();" class="fa-solid fa-file-pdf fa-2xl"></i>
             </div>
             <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
               <option [ngValue]="5">5 bovines per page</option>

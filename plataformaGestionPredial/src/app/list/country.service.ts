@@ -200,4 +200,18 @@ export class CountryService{
 		countries = countries.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
 		return of({ countries, total });
 	}
+
+	public getTargetBovines(): any {
+		const { sortColumn, sortDirection, pageSize, page, searchTerm, type, state} = this._state;
+
+		// 1. sort
+		let countries = sort(this.BOVINES, sortColumn, sortDirection);
+
+		// 2. filter
+		let types=type[0]=='all'?['Ternero','Ternera','Toro','Vaquilla','Vaca','Buey','Novillo']:type;
+		let states=state[0]=='all'?['Vivo','Muerto','Vendido']:state;
+		countries = countries.filter((country) => matches(country, searchTerm, this.pipe, types, states));
+		const total = countries.length;
+		return countries;
+	}
 }

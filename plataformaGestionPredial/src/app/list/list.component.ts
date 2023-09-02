@@ -128,8 +128,8 @@ export class ListComponent {
 			// filas[j].deleteCell(7);
 			// }
 			var body: any = [];
-			this.items$.subscribe((bov:any) => {
-				bov.forEach((vac:any)=>{
+			this.service.getTargetBovines().forEach((vac:any) => {
+				//bov.forEach((vac:any)=>{
 					let fila = [
 						vac.id,
 						'imagen',
@@ -142,7 +142,7 @@ export class ListComponent {
 						vac.age
 					];
 					body.push(fila);
-				})
+				//})
 			});
 			autoTable(pdf,{
 			head: [
@@ -206,7 +206,7 @@ export class ListComponent {
 			},
 			});
 		}
-		pdf.save('listado_vacunos.pdf');
+		pdf.save('list_bovines.pdf');
 	}
 
 	editBovine(id: number):any{
