@@ -46,6 +46,7 @@
                 type="text"
                 class="form-control"
                 name="searchTerm"
+                placeholder="e.g: Sin arete"
                 [(ngModel)]="service.searchTerm"
               />
             </div>
@@ -90,7 +91,7 @@
                 <td><ngb-highlight [result]="country.diio" [term]="service.searchTerm"></ngb-highlight></td>
                 <td><ngb-highlight [result]=" country.datePlacement!=null?(country.datePlacement | date:'dd/MM/yyyy'):'No aplica'" [term]="service.searchTerm"></ngb-highlight></td>
                 <td><ngb-highlight [result]=" country.dateBirth | date:'dd/MM/yyyy'" [term]="service.searchTerm"></ngb-highlight></td>
-                <td><ngb-highlight style="cursor: pointer;" (click)="editBovine(country.idMother)" [result]="country.mother" [term]="service.searchTerm"></ngb-highlight></td>
+                <td><ngb-highlight [style]="{'cursor': (country.idMother!=0) ? 'pointer' : ''}" (click)="country.idMother!=0 && editBovine(country.idMother)" [result]="country.mother" [term]="service.searchTerm"></ngb-highlight></td>
                 <td><ngb-highlight [result]="country.type" [term]="service.type"></ngb-highlight></td>
                 <td>{{country.age}}</td>
                 <td>{{country.verifiedSag}}</td>

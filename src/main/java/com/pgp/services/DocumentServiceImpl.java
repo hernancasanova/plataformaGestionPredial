@@ -10,6 +10,7 @@ import com.pgp.Documento;
 import com.pgp.PgpApplication;
 //import com.pgp.controllers.DocumentController.Documento;
 import com.pgp.dao.DocumentDao;
+import com.pgp.dto.DocumentDto;
 import com.pgp.models.Document;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
@@ -135,6 +136,11 @@ public class DocumentServiceImpl implements IDocumentService{
 	@Transactional(readOnly=true)
 	public List<Document> findAll() {
 		return (List<Document>)documentDao.findAll();
+	}
+	
+	@Transactional(readOnly=true)
+	public List<DocumentDto> getAll() {
+		return (List<DocumentDto>)documentDao.getAll();
 	}
 
 	@Override

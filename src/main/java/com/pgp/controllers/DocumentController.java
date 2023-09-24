@@ -26,6 +26,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.google.api.services.drive.model.File;
 import com.pgp.Documento;
+import com.pgp.dto.DocumentDto;
 import com.pgp.models.Document;
 import com.pgp.services.IDocumentService;
 
@@ -36,8 +37,8 @@ public class DocumentController {
 	private IDocumentService documentService;
 	
 	@GetMapping("/listar")
-	public List<Document> listar(){
-		return documentService.findAll();
+	public List<DocumentDto> listar(){
+		return documentService.getAll();
 	}
 	
 	/*public class Documento{
