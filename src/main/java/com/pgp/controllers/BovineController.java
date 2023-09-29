@@ -36,6 +36,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.client.util.IOUtils;
 import com.google.common.io.Files;
 import com.pgp.dto.BovineDto;
+import com.pgp.dto.ChildrenDto;
 import com.pgp.models.Bovine;
 import com.pgp.models.Document;
 import com.pgp.services.IBovineService;
@@ -56,7 +57,7 @@ public class BovineController {
 	
 	@GetMapping("/bovines/{id}/children")
 	//public List<Collection> bovines(){
-	public List<String> childrenBovine(@PathVariable Long id){
+	public List<ChildrenDto> childrenBovine(@PathVariable Long id){
 		return bovineService.getChildren(id);
 		//return bovineService.getAll();
 	}

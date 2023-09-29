@@ -42,6 +42,22 @@ import autoTable from 'jspdf-autotable';
 			.light-blue-backdrop {
 				background-color: #5cb3fd;
 			}
+			.parent div{
+				float: left;
+				clear: none;
+			}
+			th{
+				text-align: center;
+			}
+			tr{
+				cursor: pointer !important;
+			}
+			thead{
+				position: sticky !important;
+			}
+			.parent div img{
+				float: right;
+			}
 		`,
 	],
 })
@@ -52,7 +68,7 @@ export class ListComponent {
 	//page: number = 1;
 	//pageSize: number = 10;
 	title_modal: string ="";
-	list_content: Array<String>=[];
+	list_content: any=[];
 	total$: Observable<number>;
 
 	@ViewChildren(NgbdSortableHeader)
@@ -63,8 +79,8 @@ export class ListComponent {
 		this.total$ = service.total$;
 	}
 
-	openModalDialogCustomClass(content: any, id: number) {
-		this.title_modal="List of identifiers";
+	openModalDialogCustomClass(content: any, id: number, name:string) {
+		this.title_modal="List of identifiers "+name;
 		this.list_content=[];
 		this.identifierService.listIdentifiers(id).
     subscribe(r=>{
@@ -80,14 +96,12 @@ export class ListComponent {
 	}
 
 
-	openModalDialogCustomClass2(content: any, id: number) {
-		this.title_modal="List of children";
+	openModalDialogCustomClass2(content: any, id: number, name:string) {
+		this.title_modal="List of children "+name;
 		this.list_content=[];
 		this.vacunoService.getChildren(id).
     subscribe(r=>{
-		r.forEach((e:any)=>{
-			this.list_content=r[0].split(",")
-		})
+		this.list_content=r;
 	},
     (error:any)=>console.log("error en Observable: ",error),
     ()=>{

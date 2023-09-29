@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.pgp.dao.BovineDao;
 import com.pgp.dto.BovineDto;
+import com.pgp.dto.ChildrenDto;
 import com.pgp.models.Bovine;
 import com.pgp.models.Identifier;
 
@@ -33,8 +34,8 @@ public class BovineServiceImpl implements IBovineService{
 	}
 	
 	@Override
-	public List<String> getChildren(Long id) {
-		return (List<String>)bovineDao.childrenBovine(id);
+	public List<ChildrenDto> getChildren(Long id) {
+		return (List<ChildrenDto>)bovineDao.childrenBovine(id);
 	}
 	
 	@Override

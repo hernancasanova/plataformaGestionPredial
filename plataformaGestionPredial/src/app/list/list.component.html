@@ -6,10 +6,26 @@
             <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
           </div>
           <div class="modal-body">
-      
-            <ul *ngFor="let item of list_content; let i = index ">
-              <li>{{item}}</li>
-            </ul>
+            <div *ngIf="title_modal.includes('List of identifiers')">
+              <ul *ngFor="let item of list_content; let i = index ">
+                <li>{{item}}</li>
+              </ul>
+            </div>
+            <div *ngIf="title_modal.includes('List of children')">
+              <ul *ngFor="let item of list_content; let i = index ">
+                <li >
+                  <div class="parent">
+                    <div style="vertical-align: center;">{{item.name}}</div>
+                    <div style="float: right;margin-right:10%;"><img style="cursor: pointer;" (click)="modal.close('Close click');" (click)="editBovine(item.id);"
+                      width="50px"
+                      height="50px"
+                      [src]="'http://localhost:8006/images/bovines/'+item.id"
+                    /></div>
+                  </div>
+                </li>
+                <br>
+              </ul>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
@@ -95,8 +111,8 @@
                 <td><ngb-highlight [result]="country.type" [term]="service.type"></ngb-highlight></td>
                 <td>{{country.age}}</td>
                 <td>{{country.verifiedSag}}</td>
-                <td><i title="See identifiers" style="cursor: pointer;" (click)="openModalDialogCustomClass(content,country.id)" class="fa-solid fa-list-ol p-2"></i>
-                    <i *ngIf="country.type=='Vaca'" title="See children" style="cursor: pointer;" (click)="openModalDialogCustomClass2(content,country.id)" class="fa-solid fa-clipboard-list p-2"></i>
+                <td><i title="See identifiers" style="cursor: pointer;" (click)="openModalDialogCustomClass(content,country.id,country.name)" class="fa-solid fa-list-ol p-2"></i>
+                    <i *ngIf="country.type=='Vaca'" title="See children" style="cursor: pointer;" (click)="openModalDialogCustomClass2(content,country.id,country.name)" class="fa-solid fa-clipboard-list p-2"></i>
                     <i title="Delete (only on case of die)" style="cursor: pointer;" class="fa-solid fa-book-skull p-2"></i>
                 </td>
               </tr>
