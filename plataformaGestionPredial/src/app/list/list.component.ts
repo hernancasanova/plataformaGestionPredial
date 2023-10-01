@@ -46,11 +46,11 @@ import autoTable from 'jspdf-autotable';
 				float: left;
 				clear: none;
 			}
-			th{
+			th, td{
 				text-align: center;
 			}
 			tr{
-				cursor: pointer !important;
+				/*cursor: pointer !important;*/
 			}
 			thead{
 				position: sticky !important;
