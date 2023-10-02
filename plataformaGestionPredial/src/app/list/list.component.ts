@@ -52,9 +52,13 @@ import autoTable from 'jspdf-autotable';
 			tr{
 				/*cursor: pointer !important;*/
 			}
-			thead{
-				position: sticky !important;
-			}
+			thead {
+				position: sticky;
+				top: -1px;
+				background-color: rgb(31, 139, 78);
+				z-index: 1;
+				color:white
+			  }
 			.parent div img{
 				float: right;
 			}

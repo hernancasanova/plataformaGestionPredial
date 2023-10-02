@@ -66,59 +66,62 @@
                 [(ngModel)]="service.searchTerm"
               />
             </div>
-            <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...   <div class="spinner-border text-success" role="status">
+            <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...   
+            <div class="spinner-border text-success" role="status">
               <span class="sr-only">Loading...</span>
             </div></span>
           </div>
-      
-          <table id="tableBovines" class="table table-striped" >
-            <thead style="position: sticky">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Image</th>
-                <th scope="col" (sort)="onSort($event)" sortable="name">Name</th>
-                <th scope="col" >DIIO</th>
-                <th scope="col" >Date Placement</th>
-                <th scope="col" >Date Birth</th>
-                <th scope="col" >Mother</th>
-                <th scope="col" >Type</th>
-                <th scope="col" >Age<span class="badge" style="color: black;"></span></th>
-                <th scope="col" >Verified SAG</th>
-                <th scope="col" >Actions</th>
-                <!-- <th scope="col" >Color</th>
-                <th scope="col" >State</th>
-                <th scope="col" >Date Sale</th> -->
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let country of items$ | async; let i = index " (dblclick)="editBovine(country.id)">
-                <th scope="row">{{i+1}}</th>
-                <td>
-                  <img
-                    width="50px"
-                    height="50px"
-                    [src]="'http://localhost:8006/images/bovines/'+country.id"
-                    
-                  />
-                </td>
-                <td>
-                  <ngb-highlight [result]="country.name" [term]="service.searchTerm"></ngb-highlight>
-                </td>
-                <td><ngb-highlight [result]="country.diio" [term]="service.searchTerm"></ngb-highlight></td>
-                <td><ngb-highlight [result]=" country.datePlacement!=null?(country.datePlacement | date:'dd/MM/yyyy'):'No aplica'" [term]="service.searchTerm"></ngb-highlight></td>
-                <td><ngb-highlight [result]=" country.dateBirth | date:'dd/MM/yyyy'" [term]="service.searchTerm"></ngb-highlight></td>
-                <td><ngb-highlight [style]="{'cursor': (country.idMother!=0) ? 'pointer' : ''}" (click)="country.idMother!=0 && editBovine(country.idMother)" [result]="country.mother" [term]="service.searchTerm"></ngb-highlight></td>
-                <td><ngb-highlight [result]="country.type" [term]="service.type"></ngb-highlight></td>
-                <td>{{country.age}}</td>
-                <td>{{country.verifiedSag=='S'?'SÍ':'NO'}}</td>
-                <td><i title="See identifiers" style="cursor: pointer;" (click)="openModalDialogCustomClass(content,country.id,country.name)" class="fa-solid fa-list-ol p-2"></i>
-                    <i *ngIf="country.type=='Vaca'" title="See children" style="cursor: pointer;" (click)="openModalDialogCustomClass2(content,country.id,country.name)" class="fa-solid fa-clipboard-list p-2"></i>
-                    <i title="Delete (only on case of die)" style="cursor: pointer;" class="fa-solid fa-book-skull p-2"></i>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-      
+          
+          <div style="height:'80vh';overflow-y:'scroll'">
+            <table id="tableBovines" class="table table-striped" >
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Image</th>
+                  <th scope="col" (sort)="onSort($event)" sortable="name">Name</th>
+                  <th scope="col" >DIIO</th>
+                  <th scope="col" >Date Placement</th>
+                  <th scope="col" >Date Birth</th>
+                  <th scope="col" >Mother</th>
+                  <th scope="col" >Type</th>
+                  <th scope="col" >Age<span class="badge" style="color: black;"></span></th>
+                  <th scope="col" >Verified SAG</th>
+                  <th scope="col" >Actions</th>
+                  <!-- <th scope="col" >Color</th>
+                  <th scope="col" >State</th>
+                  <th scope="col" >Date Sale</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let country of items$ | async; let i = index " (dblclick)="editBovine(country.id)">
+                  <th scope="row">{{i+1}}</th>
+                  <td>
+                    <img
+                      width="50px"
+                      height="50px"
+                      [src]="'http://localhost:8006/images/bovines/'+country.id"
+                      
+                    />
+                  </td>
+                  <td>
+                    <ngb-highlight [result]="country.name" [term]="service.searchTerm"></ngb-highlight>
+                  </td>
+                  <td><ngb-highlight [result]="country.diio" [term]="service.searchTerm"></ngb-highlight></td>
+                  <td><ngb-highlight [result]=" country.datePlacement!=null?(country.datePlacement | date:'dd/MM/yyyy'):'No aplica'" [term]="service.searchTerm"></ngb-highlight></td>
+                  <td><ngb-highlight [result]=" country.dateBirth | date:'dd/MM/yyyy'" [term]="service.searchTerm"></ngb-highlight></td>
+                  <td><ngb-highlight [style]="{'cursor': (country.idMother!=0) ? 'pointer' : ''}" (click)="country.idMother!=0 && editBovine(country.idMother)" [result]="country.mother" [term]="service.searchTerm"></ngb-highlight></td>
+                  <td><ngb-highlight [result]="country.type" [term]="service.type"></ngb-highlight></td>
+                  <td>{{country.age}}</td>
+                  <td>{{country.verifiedSag=='S'?'SÍ':'NO'}}</td>
+                  <td><i title="See identifiers" style="cursor: pointer;" (click)="openModalDialogCustomClass(content,country.id,country.name)" class="fa-solid fa-list-ol p-2"></i>
+                      <i *ngIf="country.type=='Vaca'" title="See children" style="cursor: pointer;" (click)="openModalDialogCustomClass2(content,country.id,country.name)" class="fa-solid fa-clipboard-list p-2"></i>
+                      <i title="Delete (only on case of die)" style="cursor: pointer;" class="fa-solid fa-book-skull p-2"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>  
+            
           <div class="d-flex justify-content-between p-2">
             <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
             </ngb-pagination>
