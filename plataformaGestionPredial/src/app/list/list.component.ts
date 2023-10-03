@@ -231,6 +231,10 @@ export class ListComponent {
 		this.router.navigate(["/bovines/edit/"+id])
 	}
 
+	deleteBovine(id: number):any{
+		this.router.navigate(["/bovines/delete/"+id])
+	}
+
 	onSort({ column, direction }: SortEvent) {
 		// resetting other headers
 		this.headers.forEach((header) => {

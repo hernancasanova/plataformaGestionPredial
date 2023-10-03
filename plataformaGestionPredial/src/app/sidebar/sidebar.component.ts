@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faCow, faDashboard, faToolbox } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -23,6 +24,10 @@ export class SidebarComponent {
     })
   }
 
+  constructor (private router: Router){
+
+  }
+
   addClass = function (n:number): void {
     //let li=e.target.value;
     const active=document.getElementById(n.toString());
@@ -41,7 +46,9 @@ export class SidebarComponent {
   
   logout():any{
     localStorage.removeItem("jwt_token")
-    // this.router.navigateByUrl("http://localhost:8006/login")
+    this.router.navigateByUrl("http://localhost:8006/login").then(() => {
+      window.location.reload();
+    });
   }
   
   //$(".menu click").addClass('menu-active')

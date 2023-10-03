@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BovinesComponent } from './bovines/bovines.component';
+import { DeleteComponent } from './bovines/delete/delete.component';
 import { BusinessComponent } from './business/business.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DocumentsComponent } from './documents/documents.component';
@@ -43,6 +44,7 @@ const routes: Routes = [
       { path: 'machines', component: MachinesComponent, data:{type:"machines"}},
       { path: 'bovines/create', component: BovinesComponent, data:{title:"Create"}},
       { path: 'bovines/edit/:id', component: BovinesComponent, data:{title:"Edit"}},
+      { path: 'bovines/delete/:id', component: DeleteComponent, data:{title:"Delete"}},
     ]
   }
   /*,

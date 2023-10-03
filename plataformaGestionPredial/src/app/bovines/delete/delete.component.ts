@@ -1,0 +1,98 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
+import { VacunosService } from '../../services/vacunos.service';
+import Swal from 'sweetalert2'
+
+@Component({
+  selector: 'app-delete',
+  templateUrl: './delete.component.html',
+  styleUrls: ['./delete.component.css']
+})
+export class DeleteComponent implements OnInit {
+  id: number=0;
+  //name="";
+  date:Array<string>=[];
+  newBovine:Object={};
+  //bovineForm : string = "";
+  configurations: any = {title:"Delete bovine", loading:false, textButton:"Delete", initialLoading:false};
+  mothers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
+  fields: Array<any> = [
+                {name:"bovine",type:"image",id:"",text:"Current image:", info:""},
+                {name:"name",type:"text", value:"", required:true, placeholder:"Eg: My cow"},
+                {name:"reason",type:"select", value:"", required:true, options:[{name:"Enfermedad",value:"1",selected:""},{name:"Muerte natural",value:"2",selected:""},{name:"Otro (agregar en observación)",value:"3",selected:""}]},
+                {name:"aditional observation",type:"text", value:"", required:false, placeholder:"Eg: illness: mancha"},
+                //{name:"Create",type:"submit"}
+              ];
+
+  registerBovine=():number=>{
+    return 2;
+  }
+
+  constructor(private router: Router, private vacunoService: VacunosService, private route: ActivatedRoute) {
+    this.configurations.initialLoading=true;
+    // this.vacunoService.getBovines()
+    // .subscribe(bs=>{
+    //   bs.forEach((v: { type: string; name: any; id: any; })=>{
+    //     if(v.type=="Vaca"){
+    //       this.mothers.push({name:v.name, value:v.id, selected:""})
+    //     }
+    //   })
+    // },
+    // (error:any)=>console.log("error en Observable: ",error),
+    // ()=>{}
+    // );
+    this.route.params.subscribe(
+      (params: Params) => {
+        if(params['id']){
+          this.id=parseInt(params['id']);
+          //this.configurations.title="Edit bovine"
+        }
+      }
+    )
+    
+  }
+
+  desplegarImagenBovino=(event:any):void=>{
+    // this.fields.forEach(e => {
+    //   if(e.name=="image-mother" && event.target.id=="mother" ){
+    //     e.id=event.target.value
+    //   }
+    // })
+  }
+
+  ngOnInit(): void {
+    this.setBovine();
+  }
+
+  // ngAfterViewInit(){
+  //   this.setBovine();
+  // }
+
+  setBovine():void{
+    if(this.id>0){
+      var fieldName=document.getElementById("name");
+      console.log("fieldName: ",fieldName)
+      if(fieldName){
+        console.log("pasé por aquí")
+        fieldName.setAttribute("disabled","");
+      }
+      //this.configurations.textButton="Edit"
+      this.vacunoService.getBovine(this.id).subscribe(b=>{
+        this.fields.forEach(element => {
+          if (element["name"]=="bovine"){
+            element["id"]=b.id
+          }else if (element["type"]=="file"){//name=image
+            element["required"]=false
+          }else if(element["name"]=="name"){
+            element["value"]=b.name
+          }
+        });
+      })
+    }
+    this.configurations.initialLoading=false;
+  }
+
+}
+
+
