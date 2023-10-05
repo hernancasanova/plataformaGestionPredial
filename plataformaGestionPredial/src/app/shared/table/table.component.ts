@@ -11,8 +11,6 @@ export class TableComponent implements OnInit{
   columns:any;
   arrColumns:any=[];
   @Input () data: any = [];
-  @Input () rows: any;
-  @Input () headers: any;
 
 
   constructor(private pipeInstance: DatePipe) { 
