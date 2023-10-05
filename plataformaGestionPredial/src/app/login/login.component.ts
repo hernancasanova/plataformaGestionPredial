@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(e:any):void{
-    this.textButton="Logging..."
+    this.textButton="Logging in...";
     this.loading=true;
     e.preventDefault();
     //let r:any=this.service.getRegisters().subscribe(result=>{

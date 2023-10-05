@@ -24,7 +24,7 @@ export class TableComponent implements OnInit{
       this.data=a;
       //console.log("this.data: ",this.data)
       Object.keys(this.data[0]).forEach((k:any)=>{
-        this.arrColumns.push({title:k, data:k,ngPipeInstance: k.includes("date")?this.pipeInstance:null, ngPipeArgs: k.includes("date")?['dd/MM/yyyy']:null})
+        this.arrColumns.push({title:k, data:k,ngPipeInstance: (k.includes("Date")||k.includes("date"))?this.pipeInstance:null, ngPipeArgs: (k.includes("Date")||k.includes("date"))?['dd/MM/yyyy']:null})
       });
       this.dtOptions = {
         pagingType: 'full_numbers',
