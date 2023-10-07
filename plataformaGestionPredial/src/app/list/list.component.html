@@ -85,6 +85,7 @@
                   <th scope="col" >Mother</th>
                   <th scope="col" >Type</th>
                   <th scope="col" >Age<span class="badge" style="color: black;"></span></th>
+                  <th scope="col" >Internal Verification</th>
                   <th scope="col" >Verified SAG</th>
                   <th scope="col" >Actions</th>
                   <!-- <th scope="col" >Color</th>
@@ -112,6 +113,7 @@
                   <td><ngb-highlight [style]="{'cursor': (country.idMother!=0) ? 'pointer' : ''}" (click)="country.idMother!=0 && editBovine(country.idMother)" [result]="country.mother" [term]="service.searchTerm"></ngb-highlight></td>
                   <td><ngb-highlight [result]="country.type" [term]="service.type"></ngb-highlight></td>
                   <td>{{country.age}}</td>
+                  <td>{{country.internalVerification=='S'?'SÍ':'NO'}}</td>
                   <td>{{country.verifiedSag=='S'?'SÍ':'NO'}}</td>
                   <td><i title="See identifiers" style="cursor: pointer;" (click)="openModalDialogCustomClass(content,country.id,country.name)" class="fa-solid fa-list-ol p-2"></i>
                       <i *ngIf="country.type=='Vaca'" title="See children" style="cursor: pointer;" (click)="openModalDialogCustomClass2(content,country.id,country.name)" class="fa-solid fa-clipboard-list p-2"></i>

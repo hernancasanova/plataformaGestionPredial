@@ -77,6 +77,17 @@ public class Bovine implements Serializable{
 	public Date date_sale;
 	
 	
+	@Column(name="INTERNAL_VERIFICATION", columnDefinition="char(1)")
+	public String internal_verification;
+	
+	public String getInternal_verification() {
+		return internal_verification;
+	}
+
+	public void setInternal_verification(String internal_verification) {
+		this.internal_verification = internal_verification;
+	}
+
 	@Column(name="VERIFIED_SAG", columnDefinition="char(1)")
 	public String verified_sag;
 	

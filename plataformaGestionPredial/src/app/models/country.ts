@@ -13,5 +13,6 @@ export interface Country {
 	date_sale: any;
 	age: string;
 	verifiedSag: string;
+	internalVerification: string;
 	dateSale: string;
 }

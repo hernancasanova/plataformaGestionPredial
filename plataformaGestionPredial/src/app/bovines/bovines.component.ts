@@ -29,6 +29,7 @@ export class BovinesComponent implements OnInit {
                 {name:"color",type:"select",value:"", required: true, options:[{name:"Clavel(a)",value:"1",selected:""},{name:"Overo(a)",value:"2",selected:""},{name:"Blanco(a)",value:"3",selected:""},{name:"Colorado(a)",value:"4", selected:""},{name:"Amarillo(a)",value:"5",selected:""}]},
                 {name:"state",type:"select",value:"", required: true, options:[{name:"Vivo",value:"1", selected:""},{name:"Muerto",value:"2", selected:""}]},
                 {name:"date sale",type:"date", value:"", required:false},
+                {name:"internal verification",type:"checkbox", value:"", required:false},
                 {name:"verified SAG",type:"checkbox", value:"", required:false},
                 //{name:"Create",type:"submit"}
               ];
@@ -68,6 +69,8 @@ export class BovinesComponent implements OnInit {
         this.newBovine={...this.newBovine, date_sale:e.value!=""?e.value+"T00:00:00":null}
       }else if(e.name=="verified SAG"){
         this.newBovine={...this.newBovine, verified_sag:e.value?"S":"N"}
+      }else if(e.name=="internal verification"){
+        this.newBovine={...this.newBovine, internal_verification:e.value?"S":"N"}
       }
     })
     this.vacunoService.createBovine(this.newBovine).
@@ -186,6 +189,8 @@ export class BovinesComponent implements OnInit {
             }
           }else if(element["name"]=="verified SAG"){
             element["value"]=b.verified_sag=="S"?true:false
+          }else if(element["name"]=="internal verification"){
+            element["value"]=b.internal_verification=="S"?true:false
           }
         });
       })
