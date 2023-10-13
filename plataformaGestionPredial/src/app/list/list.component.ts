@@ -62,6 +62,14 @@ import autoTable from 'jspdf-autotable';
 			.parent div img{
 				float: right;
 			}
+			.container-form{
+				text-align: center;
+				padding-top: 18%;
+				vertical-align: text-bottom;
+				height: 100%;
+				background-color:white;
+			}
+
 		`,
 	],
 })

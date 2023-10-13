@@ -66,14 +66,17 @@
                 [(ngModel)]="service.searchTerm"
               />
             </div>
-            <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...   
+            <!-- <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...   
             <div class="spinner-border text-success" role="status">
-              <span class="sr-only">Loading...</span>
-            </div></span>
+            </div></span> -->
+            <div class="col-xs-3 col-sm-auto">
+              <label for="" class="col-xs-3 col-sm-auto col-form-label p-2"><b>Download list</b></label>
+              <i style="cursor:Pointer; color: #ca5148;" (click)="downloadPdf();" class="fa-solid fa-file-pdf fa-2xl"></i>
+            </div>
           </div>
           
           <div style="height:'80vh';overflow-y:'scroll'">
-            <table id="tableBovines" class="table table-striped" >
+            <table id="tableBovines" class="table" style="width: 100%;" >
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -94,30 +97,50 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let country of items$ | async; let i = index " (dblclick)="editBovine(country.id)">
-                  <th scope="row">{{i+1}}</th>
-                  <td>
-                    <img
-                      width="50px"
-                      height="50px"
-                      [src]="'http://localhost:8006/images/bovines/'+country.id"
-                      
-                    />
-                  </td>
-                  <td>
-                    <ngb-highlight [result]="country.name" [term]="service.searchTerm"></ngb-highlight>
-                  </td>
-                  <td><ngb-highlight [result]="country.diio" [term]="service.searchTerm"></ngb-highlight></td>
-                  <td><ngb-highlight [result]=" country.datePlacement!=null?(country.datePlacement | date:'dd/MM/yyyy'):'No aplica'" [term]="service.searchTerm"></ngb-highlight></td>
-                  <td><ngb-highlight [result]=" country.dateBirth | date:'dd/MM/yyyy'" [term]="service.searchTerm"></ngb-highlight></td>
-                  <td><ngb-highlight [style]="{'cursor': (country.idMother!=0) ? 'pointer' : ''}" (click)="country.idMother!=0 && editBovine(country.idMother)" [result]="country.mother" [term]="service.searchTerm"></ngb-highlight></td>
-                  <td><ngb-highlight [result]="country.type" [term]="service.type"></ngb-highlight></td>
-                  <td>{{country.age}}</td>
-                  <td>{{country.internalVerification=='S'?'SÍ':'NO'}}</td>
-                  <td>{{country.verifiedSag=='S'?'SÍ':'NO'}}</td>
-                  <td><i title="See identifiers" style="cursor: pointer;" (click)="openModalDialogCustomClass(content,country.id,country.name)" class="fa-solid fa-list-ol p-2"></i>
-                      <i *ngIf="country.type=='Vaca'" title="See children" style="cursor: pointer;" (click)="openModalDialogCustomClass2(content,country.id,country.name)" class="fa-solid fa-clipboard-list p-2"></i>
-                      <i title="Delete (only on case of die)" (click)="deleteBovine(country.id)" style="cursor: pointer;" class="fa-solid fa-book-skull p-2"></i>
+                <ng-template #elseBlock>
+                  <tr *ngIf="(total$ | async)==0" style="height:100vh;">
+                    <td colspan="12" >
+                        <div class="container-form">
+                          No bovines found
+                        </div>
+                    </td>
+                  </tr>
+                  <tr valign="middle" [style.background-color]="(i+1)%2==0? 'white' : 'rgb(243, 241, 240)'" *ngFor="let country of items$ | async; let i = index " (dblclick)="editBovine(country.id)">
+                    <td scope="row">{{i+1}}</td>
+                    <td>
+                      <img
+                        width="50px"
+                        height="50px"
+                        [src]="'http://localhost:8006/images/bovines/'+country.id"
+                        
+                      />
+                    </td>
+                    <td>
+                      <ngb-highlight [result]="country.name" [term]="service.searchTerm"></ngb-highlight>
+                    </td>
+                    <td><ngb-highlight [result]="country.diio" [term]="service.searchTerm"></ngb-highlight></td>
+                    <td><ngb-highlight [result]=" country.datePlacement!=null?(country.datePlacement | date:'dd/MM/yyyy'):'No aplica'" [term]="service.searchTerm"></ngb-highlight></td>
+                    <td><ngb-highlight [result]=" country.dateBirth | date:'dd/MM/yyyy'" [term]="service.searchTerm"></ngb-highlight></td>
+                    <td><ngb-highlight [style]="{'cursor': (country.idMother!=0) ? 'pointer' : ''}" (click)="country.idMother!=0 && editBovine(country.idMother)" [result]="country.mother" [term]="service.searchTerm"></ngb-highlight></td>
+                    <td><ngb-highlight [result]="country.type" [term]="service.type"></ngb-highlight></td>
+                    <td>{{country.age}}</td>
+                    <td>{{country.internalVerification=='S'?'SÍ':'NO'}}</td>
+                    <td>{{country.verifiedSag=='S'?'SÍ':'NO'}}</td>
+                    <td><i title="See identifiers" style="cursor: pointer;" (click)="openModalDialogCustomClass(content,country.id,country.name)" class="fa-solid fa-list-ol p-2"></i>
+                        <i *ngIf="country.type=='Vaca'" title="See children" style="cursor: pointer;" (click)="openModalDialogCustomClass2(content,country.id,country.name)" class="fa-solid fa-clipboard-list p-2"></i>
+                        <i title="Delete (only on case of die)" (click)="deleteBovine(country.id)" style="cursor: pointer;" class="fa-solid fa-book-skull p-2"></i>
+                    </td>
+                  </tr>
+                </ng-template>
+                <!-- <tr *ngIf="service.loading$ | async; else elseBlock"> -->
+                <!-- <tr *ngIf="true; else elseBlock"> -->
+                <tr *ngIf="service.loading$ | async; else elseBlock" style="height:100vh;">
+                  <td colspan="12" >
+                    <div class="container-form">
+                      <span class="col col-form-label" >Loading...   
+                        <div class="spinner-border text-success" role="status">
+                        </div></span>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -128,10 +151,10 @@
             <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
             </ngb-pagination>
             <p class="mt-2">Showing {{(items$|async)?.length}} of a total of {{(total$ | async)!}} bovines</p> 
-            <div class="col-xs-3 col-sm-auto">
+            <!-- <div class="col-xs-3 col-sm-auto">
               <label for="" class="col-xs-3 col-sm-auto col-form-label p-2"><b>Download list</b></label>
               <i style="cursor:Pointer; color: #ca5148;" (click)="downloadPdf();" class="fa-solid fa-file-pdf fa-2xl"></i>
-            </div>
+            </div> -->
             <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
               <option [ngValue]="5">5 bovines per page</option>
               <option [ngValue]="10">10 bovines per page</option>
