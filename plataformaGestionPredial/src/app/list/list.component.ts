@@ -75,6 +75,7 @@ import autoTable from 'jspdf-autotable';
 })
 export class ListComponent {
 	items$: Observable<Country[]>;
+	direccion: any;
 	//items: Array<any> = [];
 	//total: number = 20;
 	//page: number = 1;
@@ -244,6 +245,7 @@ export class ListComponent {
 	}
 
 	onSort({ column, direction }: SortEvent) {
+		this.direccion=direction;
 		// resetting other headers
 		this.headers.forEach((header) => {
 			if (header.sortable !== column) {
