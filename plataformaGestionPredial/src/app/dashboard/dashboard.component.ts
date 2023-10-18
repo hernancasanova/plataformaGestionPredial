@@ -9,12 +9,14 @@ import { DashboardService } from './dashboard.service';
 export class DashboardComponent implements OnInit {
   public bovines: Array<any> = [];
   public identifiers: Array<any> = [];
-  h:any={};
+  public documents: Array<any> = [];
+  //h:any={};
   constructor(private service: DashboardService) { }
 
   ngOnInit(): void {
     this.loadBovines();
     this.loadIdentifiers();
+    this.loadDocuments();
     // this.service.getRegisters().subscribe(r => {
     //   //return r.results;
     //   console.log("r: ",r);
@@ -33,9 +35,9 @@ export class DashboardComponent implements OnInit {
     //this.registers=await fetch("http://localhost:4000/listar").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
   }
 
-  // async loadRegisters(): Promise<void> {
-  //   this.registers=await fetch("http://localhost:8006/listar").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
-  //   //this.registers=await fetch("http://localhost:4000/listar").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
-  // }
+  async loadDocuments(): Promise<void> {
+    this.documents=await fetch("http://localhost:8010/documents").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
+    //this.registers=await fetch("http://localhost:4000/listar").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
+  }
 
 }
