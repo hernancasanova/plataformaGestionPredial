@@ -64,7 +64,7 @@ import autoTable from 'jspdf-autotable';
 			}
 			.container-form{
 				text-align: center;
-				padding-top: 18%;
+				padding-top: 15%;
 				vertical-align: text-bottom;
 				height: 100%;
 				background-color:white;
@@ -82,6 +82,8 @@ export class ListComponent {
 	//pageSize: number = 10;
 	title_modal: string ="";
 	list_content: any=[];
+	bovine:number=0;
+	name_bovine:string="";
 	total$: Observable<number>;
 
 	@ViewChildren(NgbdSortableHeader)
@@ -103,11 +105,19 @@ export class ListComponent {
 	},
     (error:any)=>console.log("error en Observable: ",error),
     ()=>{
-		this.modalService.open(content, { modalDialogClass: 'dark-modal' });
+		this.modalService.open(content, { modalDialogClass: 'dark-modal', centered:true });
 	}
     );
 	}
 
+	openFullscreen(content:any,id:number, name:string) {
+		this.title_modal="Bovine: "+name;
+		this.list_content=[];
+		this.bovine=id;
+		this.name_bovine=name;
+		//this.modalService.open(content, { fullscreen: true });
+		this.modalService.open(content, { size: 'xl' });
+	}
 
 	openModalDialogCustomClass2(content: any, id: number, name:string) {
 		this.title_modal="List of children "+name;
@@ -118,7 +128,7 @@ export class ListComponent {
 	},
     (error:any)=>console.log("error en Observable: ",error),
     ()=>{
-		this.modalService.open(content, { modalDialogClass: 'dark-modal' });
+		this.modalService.open(content, { modalDialogClass: 'dark-modal', centered:true });
 	}
     );
 	}

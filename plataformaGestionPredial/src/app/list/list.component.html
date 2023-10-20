@@ -26,6 +26,12 @@
                 <br>
               </ul>
             </div>
+            <div *ngIf="title_modal.includes('Bovine')">
+              <img style="cursor: pointer; height:100vh;" (click)="modal.close('Close click');" (click)="editBovine(bovine);"
+                      width="100%"
+                      [src]="'http://localhost:8006/images/bovines/'+bovine"
+                    />
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
@@ -113,7 +119,8 @@
                         width="50px"
                         height="50px"
                         [src]="'http://localhost:8006/images/bovines/'+country.id"
-                        
+                        (click)="openFullscreen(content,country.id, country.name);"
+                        style="cursor:pointer"
                       />
                     </td>
                     <td>
