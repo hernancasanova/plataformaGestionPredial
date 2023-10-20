@@ -22,7 +22,14 @@ export class TableComponent implements OnInit{
     if(changes.data.currentValue){
       let a:any=changes.data.currentValue;
       this.data=a;
-      //console.log("this.data: ",this.data)
+      this.data.forEach((d:any)=>{
+        if(d.State=='activo'){
+          d.State='<button style="cursor:default;color:white;background-color:rgb(31, 139, 78); width: 80%; border-radius:5px;">active</span>';
+        }else if(d.State=='inactivo'){
+          d.State='<button style="cursor:default;color:white;background-color:red; width: 80%; border-radius:5px;">inactive</span>';
+        }
+        return d;
+      })
       Object.keys(this.data[0]).forEach((k:any)=>{
         this.arrColumns.push({title:k, data:k,ngPipeInstance: (k.includes("Date")||k.includes("date"))?this.pipeInstance:null, ngPipeArgs: (k.includes("Date")||k.includes("date"))?['dd/MM/yyyy']:null})
       });
