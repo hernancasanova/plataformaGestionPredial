@@ -164,7 +164,7 @@ export class CountryService{
 		this._set({ pageSize });
 	}
 	set searchTerm(searchTerm: string) {
-		this._set({ searchTerm });
+		this._set({ searchTerm:searchTerm.trim() });
 	}
 	set type(type: any) {
 		this._set({ type });

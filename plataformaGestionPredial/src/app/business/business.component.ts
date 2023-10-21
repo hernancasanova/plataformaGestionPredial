@@ -9,7 +9,7 @@ export class BusinessComponent implements OnInit {
 
   configurations: any = {title:"Register business", loading:false,textButton:"Register", initialLoading:false};
   //title:string="documento"
-  fields: any = [{name:"name",type:"text",value:"", required:true, placeholder:"Eg: New business"},{name:"description",type:"text", value:"", required:true, placeholder:"Eg: An description"},
+  fields: any = [{name:"name",type:"text",value:"", required:true, placeholder:"Eg: New business"},{name:"description",type:"text", value:"", required:true, placeholder:"Eg: A description"},
                 {name:"type",type:"select", value:"", required:true ,options:[{name:"Compra",value:"1"},{name:"Venta",value:"2"},{name:"Trabajo",value:"3"}]},
                 {name:"date",type:"date", value:"", required:true},
                 {name:"file",type:"file", value:"", required:false}
