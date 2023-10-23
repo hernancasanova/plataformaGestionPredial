@@ -100,7 +100,7 @@ export class ListComponent {
 		this.identifierService.listIdentifiers(id).
     subscribe(r=>{
 		r.forEach((e:any)=>{
-			this.list_content.push(e.diio)
+			this.list_content.push({diio:e.diio,state:e.state})
 		})
 	},
     (error:any)=>console.log("error en Observable: ",error),

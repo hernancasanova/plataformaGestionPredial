@@ -24,9 +24,9 @@ export class TableComponent implements OnInit{
       this.data=a;
       this.data.forEach((d:any)=>{
         if(d.State=='activo'){
-          d.State='<button style="cursor:default;color:white;background-color:rgb(31, 139, 78); width: 80%; border-radius:5px;">active</span>';
+          d.State='<button style="cursor:default;color:white;background-color:rgb(31, 139, 78); width: 80%; border-radius:5px;">active</button>';
         }else if(d.State=='inactivo'){
-          d.State='<button style="cursor:default;color:white;background-color:red; width: 80%; border-radius:5px;">inactive</span>';
+          d.State='<button style="cursor:default;color:white;background-color:red; width: 80%; border-radius:5px;">inactive</button>';
         }
         return d;
       })

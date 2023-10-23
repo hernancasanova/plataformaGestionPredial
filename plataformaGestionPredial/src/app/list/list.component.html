@@ -8,7 +8,15 @@
           <div class="modal-body">
             <div *ngIf="title_modal.includes('List of identifiers')">
               <ul *ngFor="let item of list_content; let i = index ">
-                <li>{{item}}</li>
+                <li>
+                  <div class="parent">
+                    <div style="vertical-align: center;">{{item.diio}}</div>
+                    <div style="margin-left: 60%;">
+                      <button *ngIf="item.state=='activo'" style="cursor:default;color:white;background-color:rgb(31, 139, 78); width: 120%; border-radius:5px;">active</button>
+                      <button *ngIf="item.state=='inactivo'" style="cursor:default;color:white;background-color:red; width: 100%; border-radius:5px;">inactive</button>
+                    </div>
+                  </div>
+                </li>
               </ul>
             </div>
             <div *ngIf="title_modal.includes('List of children')">
