@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(["dashboard"])
       }else{
         Swal.fire({
-          title: 'jol',
+          title: 'Error',
           text: "An error happen trying login your account. Try again",
           icon: 'error',
           confirmButtonText: 'Accept'
@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(["login"])
       }else{
         Swal.fire({
-          title: 'jol',
+          title: 'Error',
           text: "An error happen trying create your account. Try again",
           icon: 'error',
           confirmButtonText: 'Accept'

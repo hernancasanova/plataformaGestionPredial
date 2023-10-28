@@ -1,13 +1,16 @@
 i,label {
     position: relative;
-    top: 50%;
-    left: 50%;
+    top: 35%;
+    left: 35%;
     transform: translate(-50%, -50%);
     padding: 10px;
     color: black;
     display: inline;
     /* width: 100%;
     height: 100%; */
+  }
+  label{
+    color:green;
   }
  
   /* i{
@@ -18,7 +21,7 @@ i,label {
     height: 45%;
     width: 45%;
   } */
-.centered{height: 80vh; width: 100%; padding: 0; margin: 0; position: relative; }
+.centered{height: 80vh; width: 100%; padding: 0; margin: 0; position: relative;  background: #DDD;}
 div { width: 50%; height: 50%; float: left; }
 #div1 { background: #DDD; }
 #div2 { background: #DDD; }
