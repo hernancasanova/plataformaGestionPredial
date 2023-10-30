@@ -140,8 +140,8 @@
                     <td><ngb-highlight [style]="{'cursor': (country.idMother!=0) ? 'pointer' : ''}" (click)="country.idMother!=0 && editBovine(country.idMother)" [result]="country.mother" [term]="service.searchTerm"></ngb-highlight></td>
                     <td><ngb-highlight [result]="country.type" [term]="service.type"></ngb-highlight></td>
                     <td>{{country.age}}</td>
-                    <td>{{country.internalVerification=='S'?'SÍ':'NO'}}</td>
-                    <td>{{country.verifiedSag=='S'?'SÍ':'NO'}}</td>
+                    <td>{{country.internalVerification}}</td>
+                    <td>{{country.verifiedSag}}</td>
                     <td><i title="See identifiers" style="cursor: pointer;" (click)="openModalDialogCustomClass(content,country.id,country.name)" class="fa-solid fa-list-ol p-2"></i>
                         <i *ngIf="country.type=='Vaca'" title="See children" style="cursor: pointer;" (click)="openModalDialogCustomClass2(content,country.id,country.name)" class="fa-solid fa-clipboard-list p-2"></i>
                         <i title="Delete (only on case of die)" (click)="deleteBovine(country.id)" style="cursor: pointer;" class="fa-solid fa-book-skull p-2"></i>

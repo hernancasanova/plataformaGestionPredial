@@ -37,6 +37,7 @@ export class DashboardComponent implements OnInit {
 
   async loadDocuments(): Promise<void> {
     this.documents=await fetch("http://localhost:8010/documents").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
+    //this.documents=await fetch("http://localhost:8010/documents").then(x=>x.json()).then(y=>y).catch(error=>{console.log(error);return [];});
     //this.registers=await fetch("http://localhost:4000/listar").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
   }
 
