@@ -26,18 +26,20 @@ export class DashboardComponent implements OnInit {
   }
 
   async loadBovines(): Promise<void> {
-    this.bovines=await fetch("http://localhost:8006/bovines").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
+    //this.bovines=await fetch("http://localhost:8006/bovines").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
+    this.bovines=await fetch("http://localhost:8006/bovines").then(x=>x.json()).then(y=>y).catch(error=>{console.log(error);return [];});
     //this.registers=await fetch("http://localhost:4000/listar").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
   }
 
   async loadIdentifiers(): Promise<void> {
-    this.identifiers=await fetch("http://localhost:8007/identifiers").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
+    //this.identifiers=await fetch("http://localhost:8007/identifiers").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
+    this.identifiers=await fetch("http://localhost:8007/identifiers").then(x=>x.json()).then(y=>y).catch(error=>{console.log(error);return [];});
     //this.registers=await fetch("http://localhost:4000/listar").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
   }
 
   async loadDocuments(): Promise<void> {
-    this.documents=await fetch("http://localhost:8010/documents").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
-    //this.documents=await fetch("http://localhost:8010/documents").then(x=>x.json()).then(y=>y).catch(error=>{console.log(error);return [];});
+    //this.documents=await fetch("http://localhost:8010/documents").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
+    this.documents=await fetch("http://localhost:8010/documents").then(x=>x.json()).then(y=>y).catch(error=>{console.log(error);return [];});
     //this.registers=await fetch("http://localhost:4000/listar").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
   }
 
