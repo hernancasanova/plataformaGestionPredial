@@ -19,7 +19,7 @@ export class IdentifiersComponent implements OnInit {
   configurations: any = {title:"Create identifier", loading:false,textButton:"Create", initialLoading:false};
   fields: Array<any> = [
                 //{name:"image",type:"file"},
-                {name:"DIIO",type:"text", value:"", required:true , placeholder:"Eg: 014628273"},
+                {name:"DIIO",type:"numeric", value:"", required:true , placeholder:"Eg: 014628273", minlength:9, maxlength:9},
                 {name:"date placement",type:"date", value:"", required:true},
                 {name:"bovine",type:"select",value:"", required: true, options:[], change: this.setImageBovine },
                 {name:"image-bovine",type:"image",id:"",text:"Bovine selected:", info:""},
