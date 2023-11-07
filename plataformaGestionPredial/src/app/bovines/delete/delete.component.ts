@@ -16,17 +16,53 @@ export class DeleteComponent implements OnInit {
   newBovine:Object={};
   //bovineForm : string = "";
   configurations: any = {title:"Delete bovine", loading:false, textButton:"Delete", initialLoading:false};
-  mothers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
+  //mothers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
+  causes: Array<any>=[];
   fields: Array<any> = [
                 {name:"bovine",type:"image",id:"",text:"Current image:", info:""},
                 {name:"name",type:"text", value:"", required:true, placeholder:"Eg: My cow"},
-                {name:"reason",type:"select", value:"", required:true, options:[{name:"Enfermedad",value:"1",selected:""},{name:"Muerte natural",value:"2",selected:""},{name:"Otro (agregar en observación)",value:"3",selected:""}]},
-                {name:"aditional observation",type:"text", value:"", required:false, placeholder:"Eg: illness: mancha"},
+                //{name:"reason",type:"select", value:"", required:true, options:[{name:"Enfermedad",value:"1",selected:""},{name:"Muerte natural",value:"2",selected:""},{name:"Otro (agregar en observación)",value:"3",selected:""}]},
+                {name:"reason",type:"select", value:"", required:true, options:this.causes},
+                {name:"aditional observation",type:"text", value:"", required:false, placeholder:""},
                 //{name:"Create",type:"submit"}
               ];
 
   registerBovine=():number=>{
     return 2;
+  }
+
+  async getCausesDeath(): Promise<void> 
+  {
+    //this.configurations.textButton="Creating...";
+    //this.configurations.loading=true;
+    try{                 
+      // const formData = new FormData();
+      // formData.append('name', (document.getElementById('name') as HTMLInputElement).value);
+      // formData.append('description', (document.getElementById('description') as HTMLInputElement).value);
+      // formData.append('type', (document.getElementById('type') as HTMLInputElement).value);//type
+      // formData.append('file', (document.getElementById('file') as HTMLInputElement)?.files?.item(0) as any);
+      let response: any = await fetch("http://localhost:8006/causes_death",
+                        {method:"GET",
+                        })
+                        .then(x=>x.json())
+                        .then(x=>{x.forEach((c:any)=>{
+                          this.causes.push({name:c.name,value:c.id,selected:""})
+                        })}
+                          )
+                          /*this.configurations.loading=false;
+                          this.configurations.textButton="Create";
+                          Swal.fire({
+                            title: '',
+                            text: 'Document created successfully',
+                            icon: 'success',
+                            confirmButtonText: 'Accept'
+                          })
+                          return x;
+                        })*/
+                        .catch(error=>console.log(error));   
+    }catch{
+      console.log("No se pudieron obtener las causas de muerte")
+    }
   }
 
   constructor(private router: Router, private vacunoService: VacunosService, private route: ActivatedRoute) {
@@ -63,6 +99,7 @@ export class DeleteComponent implements OnInit {
 
   ngOnInit(): void {
     this.setBovine();
+    this.getCausesDeath();
   }
 
   // ngAfterViewInit(){
