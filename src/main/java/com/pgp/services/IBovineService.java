@@ -15,4 +15,5 @@ public interface IBovineService {
 	public BovineDto get(Long id);
 	public List<ChildrenDto> getChildren(Long id);
 	Long register(Bovine bovine);
+	public boolean dropBovine();
 }

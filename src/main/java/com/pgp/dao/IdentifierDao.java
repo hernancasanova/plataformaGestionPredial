@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.pgp.dto.BovineDto;
 import com.pgp.models.Identifier;
 
-public interface IdentifierDao extends JpaRepository<Identifier,Long>{
+public interface IdentifierDao extends JpaRepository<Identifier,String>{
 	
 	@Modifying
 	@Query(value="UPDATE HERNAN.IDENTIFIERS i SET i.STATE='inactivo' WHERE i.STATE='activo' AND i.BOVINE_ID = ? ", nativeQuery=true)

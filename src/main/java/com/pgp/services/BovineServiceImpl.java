@@ -1,6 +1,5 @@
 package com.pgp.services;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import com.pgp.dao.BovineDao;
 import com.pgp.dto.BovineDto;
 import com.pgp.dto.ChildrenDto;
 import com.pgp.models.Bovine;
-import com.pgp.models.Identifier;
 
 
 @Service
@@ -48,6 +46,10 @@ public class BovineServiceImpl implements IBovineService{
 			System.out.println("No se pudo guardar por: "+e);
 			return null;
 		}
+	}
+	@Override
+	public boolean dropBovine() {
+		return false;
 	}
 
 }

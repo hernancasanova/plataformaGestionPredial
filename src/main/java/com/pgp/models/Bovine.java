@@ -23,9 +23,9 @@ public class Bovine implements Serializable{
 	
 	@Id
 	@Column(name="ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_ANIMALS")
-	@SequenceGenerator(schema = "HERNAN", name = "SEQUENCE_ANIMALS",
-    sequenceName = "SEQUENCE_ANIMALS" , allocationSize=1)  
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_BOVINES")
+	@SequenceGenerator(schema = "HERNAN", name = "SEQUENCE_BOVINES",
+    sequenceName = "SEQUENCE_BOVINES" , allocationSize=1)  
 	public Long id;
 	
 	

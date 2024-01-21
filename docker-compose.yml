@@ -13,6 +13,21 @@ services:
     networks:
       - net
       - default
+
+  db2:
+    image: oracleinanutshell/oracle-xe-11g:latest
+    container_name: db-pgp2
+    ports: 
+      - 1522:1521
+    environment:
+      #- ORACLE_CHARACTERSET=UTF8
+      - ORACLE_ALLOW_REMOTE=true
+      - ORACLE_CHARACTERSET=AL32UTF8
+    volumes:
+      - ./oracle:/docker-entrypoint-initdb.d
+    networks:
+      - net
+      - default
   
   frontend-angular:
     image: pgp-front1.0
