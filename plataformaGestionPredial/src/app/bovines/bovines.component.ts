@@ -94,7 +94,7 @@ export class BovinesComponent implements OnInit {
     this.vacunoService.getBovines()
     .subscribe(bs=>{
       bs.forEach((v: { type: string; name: any; id: any; })=>{
-        if(v.type=="Vaca"){
+        if(v.type=="Vaca" || v.type=="Vaquilla"){
           this.mothers.push({name:v.name, value:v.id, selected:""})
         }
       })

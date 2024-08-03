@@ -1,0 +1,39 @@
+.mat-table {
+  background-color: transparent;
+}
+
+.mat-header-row, .mat-row, .mat-paginator {
+  background-color: rgb(31, 139, 78);
+}
+.mat-paginator{
+  background-color: transparent;
+  color:black;
+}
+th{
+  color: white;
+}
+td, .mat-select{
+  color: black;
+}
+.custom-header-cell{
+  color: white;
+}
+
+.mat-row {
+  background-color: white;
+}
+
+/* .mat-row:nth-child(2n-1), .mat-row:nth-child(2n) {
+  background-color: #eee;
+} */
+  
+
+.mat-row:nth-child(2n+1){
+  background-color: #e4f0ec;
+}
+.mat-row:not(:nth-child(2n+1)){
+  background-color:#ffffff;
+}
+table{
+  width: 100%;
+}
