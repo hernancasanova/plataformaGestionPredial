@@ -17,12 +17,8 @@ import { CustomMatTableModule } from 'src/app/shared/mat-table/mat-table.module'
     ListIdentifiersComponent
   ],
   imports: [
-    CommonModule, TableModule, MatTableModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatPaginatorModule,
-    MatSortModule, 
     CustomMatTableModule
-  ]
+  ],
+  exports:[ListIdentifiersComponent]
 })
 export class ListIdentifiersModule { }

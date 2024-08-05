@@ -11,7 +11,7 @@ import { ListIdentifiersModule } from './list-identifiers/list-identifiers.modul
     IdentifiersComponent
   ],
   imports: [
-    CommonModule,FormsModule, ListIdentifiersModule
+  FormsModule, ListIdentifiersModule
   ],
   exports: [IdentifiersComponent]
 })
