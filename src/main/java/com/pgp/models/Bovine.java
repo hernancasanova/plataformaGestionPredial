@@ -2,7 +2,6 @@ package com.pgp.models;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
 //import java.util.Date;
 import java.util.Set;
 
@@ -61,6 +60,10 @@ public class Bovine implements Serializable{
 	
 	@Column(name="MOTHER")
 	public int mother;
+	
+	
+	@Column(name="FATHER")
+	public int father;
 	
 	
 	@Column(name="COLOR")

@@ -17,6 +17,7 @@ export class BovinesComponent implements OnInit {
   //bovineForm : string = "";
   configurations: any = {title:"Create bovine", loading:false, textButton:"Create", initialLoading:false};
   mothers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
+  fathers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
   fields: Array<any> = [
                 {name:"bovine",type:"image",id:"",text:"Current image:", info:"↓ Select a new image to replace the current image"},
                 {name:"image",type:"file", value:"", required:true},
@@ -24,6 +25,8 @@ export class BovinesComponent implements OnInit {
                 {name:"date birth",type:"date", value:"",required:true},
                 {name:"mother",type:"select", value:"", required:true, options:[]},
                 {name:"image-mother",type:"image",id:"",text:"Mother selected:", info:""},
+                {name:"father",type:"select", value:"", required:true, options:[]},
+                {name:"image-father",type:"image",id:"",text:"Father selected:", info:""},
                 {name:"sex",type:"select", value:"", required:true, options:[{name:"Macho",value:"1",selected:""},{name:"Hembra",value:"2",selected:""}]},
                 {name:"type",type:"select",value:"", required:true, options:[{name:"Ternero",value:"1",selected:""},{name:"Ternera",value:"2",selected:""},{name:"Toro",value:"3", selected:""},{name:"Vaquilla",value:"4", selected:""},{name:"Vaca",value:"5",selected:""},{name:"Buey",value:"6",selected: ""},{name:"Novillo",value:"7", selected:""}]},
                 {name:"color",type:"select",value:"", required: true, options:[{name:"Clavel(a)",value:"1",selected:""},{name:"Overo(a)",value:"2",selected:""},{name:"Blanco(a)",value:"3",selected:""},{name:"Colorado(a)",value:"4", selected:""},{name:"Amarillo(a)",value:"5",selected:""}]},
@@ -97,6 +100,9 @@ export class BovinesComponent implements OnInit {
         if(v.type=="Vaca" || v.type=="Vaquilla"){
           this.mothers.push({name:v.name, value:v.id, selected:""})
         }
+        else if(v.type=="Toro"){
+          this.fathers.push({name:v.name, value:v.id, selected:""})
+        }
       })
     },
     (error:any)=>console.log("error en Observable: ",error),
@@ -115,7 +121,7 @@ export class BovinesComponent implements OnInit {
 
   desplegarImagenBovino=(event:any):void=>{
     this.fields.forEach(e => {
-      if(e.name=="image-mother" && event.target.id=="mother" ){
+      if((e.name=="image-mother" && event.target.id=="mother") || (e.name=="image-father" && event.target.id=="father")){
         e.id=event.target.value
       }
     })
@@ -128,6 +134,9 @@ export class BovinesComponent implements OnInit {
     this.fields.forEach(element => {
       if(element["name"]=="mother"){
         element["options"]=this.mothers;
+      }
+      if(element["name"]=="father"){
+        element["options"]=this.fathers;
       }
     });
     if(this.id>0){
@@ -142,8 +151,13 @@ export class BovinesComponent implements OnInit {
             //   }
             // })
             element.value=b.mother
+          }if(element["name"]=="father"){
+            element["options"]=this.fathers;
+            element.value=b.father
           }else if (element["name"]=="image-mother"){
             element["id"]=b.mother
+          }else if (element["name"]=="image-father"){
+            element["id"]=b.father
           }else if (element["name"]=="bovine"){
             element["id"]=b.id
           }else if (element["type"]=="file"){//name=image
@@ -153,8 +167,6 @@ export class BovinesComponent implements OnInit {
           }else if(element["name"]=="date birth"){
             let date=b.date_birth.split("T")
             element["value"]=date[0]
-          }else if(element["name"]=="mother"){
-            element["value"]=b.mother
           }else if(element["name"]=="sex"){
             element.options.forEach((o:any)=>{
               if(o.name==b.sex){

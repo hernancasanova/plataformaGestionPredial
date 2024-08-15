@@ -1,9 +1,7 @@
 package com.pgp.dto;
 
-import java.io.Serializable;
 import java.util.Date;
 
-import org.springframework.data.jpa.repository.Query;
 
 public interface BovineDto{
 	/**
@@ -24,6 +22,8 @@ public interface BovineDto{
 	Date getDateBirth();
 	String getMother();
 	int getIdMother();
+	String getFather();
+	int getIdFather();
 	String getType();
 	String getAge();
 	String getVerifiedSag();
