@@ -1,3 +1,18 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title"></h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <img style="cursor: pointer; height:100vh;" (click)="modal.close('Close click');"
+                width="100%"
+                [src]="'http://localhost:8006/images/bovines/'+bovine"
+              />
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
 <div *ngIf="configurations.initialLoading==false; else elseBlock" class="container mb-2">
     <div class="container pt-4">
         <div class="card">
@@ -132,9 +147,7 @@
                         </div>
                         <div *ngIf="field.type=='image' && field.id>0" class="form-group mb-1">
                             <label for="{{field.name}}">{{field.text}}<span *ngIf="field.required"> *</span></label><br>
-                            <a name="{{field.name}}" >
-                                <img src="http://localhost:8006/images/bovines/{{field.id}}" >
-                            </a>
+                                <img src="http://localhost:8006/images/bovines/{{field.id}}" (click)="openFullscreen(content,field.id);" >
                             <p>{{field.info}}</p>
                         </div>
                         <!-- {{f.valid|json}} -->

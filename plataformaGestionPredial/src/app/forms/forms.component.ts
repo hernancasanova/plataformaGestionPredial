@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import {ViewEncapsulation} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -34,12 +35,22 @@ export class FormsComponent implements OnInit {
   files: any = [];
   loading2: boolean = false;
   fileToUpload: File | null = null;
+  bovine!: number;
 
   
 
   changeSelect=(event:any):void=>{
     this.cambioSelect.emit(event);
   }
+
+  openFullscreen(content:any, id: number) {
+		//this.title_modal="Bovine: ";
+		//this.list_content=[];
+		this.bovine=id;
+		//this.name_bovine=name;
+		//this.modalService.open(content, { fullscreen: true });
+		this.modalService.open(content, { size: 'xl' });
+	}
   //id:number=0;
 
   // toasts: any[] = [];
@@ -56,7 +67,7 @@ export class FormsComponent implements OnInit {
 	// 	return toast.textOrTpl instanceof TemplateRef;
 	// }
 
-  constructor(private location: Location, private sanitizer:DomSanitizer, private router: Router) { 
+  constructor(private location: Location, private sanitizer:DomSanitizer, private router: Router, private modalService: NgbModal) { 
     router.events.subscribe(e=>{
       if(e instanceof NavigationEnd ){
         this.titlePage=e.url;

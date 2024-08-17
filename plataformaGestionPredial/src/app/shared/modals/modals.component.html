@@ -1,0 +1,45 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">{{title_modal}}</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="title_modal.includes('List of identifiers')">
+        <ul *ngFor="let item of list_content; let i = index ">
+          <li>
+            <div class="parent">
+              <div style="vertical-align: center;">{{item.diio}}</div>
+              <div style="margin-left: 60%;">
+                <button *ngIf="item.state=='activo'" style="cursor:default;color:white;background-color:rgb(31, 139, 78); width: 120%; border-radius:5px;">active</button>
+                <button *ngIf="item.state=='inactivo'" style="cursor:default;color:white;background-color:red; width: 100%; border-radius:5px;">inactive</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="title_modal.includes('List of children')">
+        <ul *ngFor="let item of list_content; let i = index ">
+          <li >
+            <div class="parent">
+              <div style="vertical-align: center;">{{item.name}}</div>
+              <div style="float: right;margin-right:10%;"><img style="cursor: pointer;" (click)="modal.close('Close click');" (click)="editBovine(item.id);"
+                width="50px"
+                height="50px"
+                [src]="'http://localhost:8006/images/bovines/'+item.id"
+              /></div>
+            </div>
+          </li>
+          <br>
+        </ul>
+      </div>
+      <div *ngIf="title_modal.includes('Bovine')">
+        <img style="cursor: pointer; height:100vh;" (click)="modal.close('Close click');" (click)="editBovine(bovine);"
+                width="100%"
+                [src]="'http://localhost:8006/images/bovines/'+bovine"
+              />
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
