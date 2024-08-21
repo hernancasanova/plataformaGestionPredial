@@ -1,0 +1,9 @@
+.picsum-img-wrapper {
+    text-align: center;
+    height: 400px;
+  }
+  
+  .picsum-img-wrapper img {
+    max-height: 400px;
+    object-fit: cover;
+  }

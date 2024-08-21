@@ -13,6 +13,7 @@ import { IdentifierService } from '../services/identifier.service';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'
 import autoTable from 'jspdf-autotable';
+import { CarouselModule } from '../shared/carousel/carousel.module';
 
 @Component({
 	selector: 'ngbd-table-complete',
@@ -25,6 +26,7 @@ import autoTable from 'jspdf-autotable';
 		NgbTypeaheadModule,
 		NgbdSortableHeader,
 		NgbPaginationModule,
+		CarouselModule,
 		NgIf,
 		DatePipe
 	],

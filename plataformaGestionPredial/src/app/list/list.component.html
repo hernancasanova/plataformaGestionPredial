@@ -35,10 +35,7 @@
               </ul>
             </div>
             <div *ngIf="title_modal.includes('Bovine')">
-              <img style="cursor: pointer; height:100vh;" (click)="modal.close('Close click');" (click)="editBovine(bovine);"
-                      width="100%"
-                      [src]="'http://localhost:8006/images/bovines/'+bovine"
-                    />
+                    <app-carousel [idBovine]="bovine"></app-carousel>
             </div>
           </div>
           <div class="modal-footer">

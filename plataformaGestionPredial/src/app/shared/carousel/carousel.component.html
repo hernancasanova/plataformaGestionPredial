@@ -1,0 +1,32 @@
+
+
+  <ngb-carousel *ngIf="images">
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+			<!-- <img style="cursor: pointer; height:100vh;width: 100%;" [src]="'http://localhost:8006/images/bovines/'+idBovine" (click)="editBovine(idBovine);"/> -->
+			<img style="cursor: pointer; height:100vh;width: 100%;" [src]="'http://localhost:8006/images/bovines/'+idBovine"/>
+		</div>
+		<div class="carousel-caption">
+			<!-- <h3>First slide label</h3>
+			<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> -->
+		</div>
+	</ng-template>
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+			<img style="cursor: pointer; height:100vh;width: 100%;" [src]="'http://localhost:8006/images/bovines/1'" (click)="editBovine(idBovine);" />
+		</div>
+		<div class="carousel-caption">
+			<!-- <h3>Second slide label</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
+		</div>
+	</ng-template>
+	<!-- <ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+			<img [src]="images[2]" alt="Random third slide" />
+		</div>
+		<div class="carousel-caption">
+			<h3>Third slide label</h3>
+			<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+		</div>
+	</ng-template> -->
+</ngb-carousel>
