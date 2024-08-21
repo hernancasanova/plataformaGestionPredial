@@ -35,7 +35,7 @@
               </ul>
             </div>
             <div *ngIf="title_modal.includes('Bovine')">
-                    <app-carousel [idBovine]="bovine"></app-carousel>
+                    <app-carousel  (clickImage)="modal.close('Close click');" [idBovine]="bovine"></app-carousel>
             </div>
           </div>
           <div class="modal-footer">

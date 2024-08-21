@@ -10,10 +10,11 @@ export class CarouselComponent implements OnInit {
 
 	@Input () idBovine: any;
 	@Output()
-  	clickImagen = new EventEmitter<number>();
+  	clickImage = new EventEmitter<any>();
 
-	editBovine(id: number):any{
-	this.router.navigate(["/bovines/edit/"+id])
+	clickImagen(event:any,id:number){
+		this.clickImage.emit(event);
+		this.router.navigate(["/bovines/edit/"+id])
 	}
 
 	ngOnInit(): void {

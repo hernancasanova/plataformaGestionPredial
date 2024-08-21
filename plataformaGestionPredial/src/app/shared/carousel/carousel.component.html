@@ -3,8 +3,7 @@
   <ngb-carousel *ngIf="images">
 	<ng-template ngbSlide>
 		<div class="picsum-img-wrapper">
-			<!-- <img style="cursor: pointer; height:100vh;width: 100%;" [src]="'http://localhost:8006/images/bovines/'+idBovine" (click)="editBovine(idBovine);"/> -->
-			<img style="cursor: pointer; height:100vh;width: 100%;" [src]="'http://localhost:8006/images/bovines/'+idBovine"/>
+			<img style="cursor: pointer; height:100vh;width: 100%;" [src]="'http://localhost:8006/images/bovines/'+idBovine" (click)="clickImagen($event,idBovine)"/>
 		</div>
 		<div class="carousel-caption">
 			<!-- <h3>First slide label</h3>
@@ -13,7 +12,7 @@
 	</ng-template>
 	<ng-template ngbSlide>
 		<div class="picsum-img-wrapper">
-			<img style="cursor: pointer; height:100vh;width: 100%;" [src]="'http://localhost:8006/images/bovines/1'" (click)="editBovine(idBovine);" />
+			<img style="cursor: pointer; height:100vh;width: 100%;" [src]="'http://localhost:8006/images/bovines/1'" />
 		</div>
 		<div class="carousel-caption">
 			<!-- <h3>Second slide label</h3>

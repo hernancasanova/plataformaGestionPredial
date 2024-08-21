@@ -54,6 +54,8 @@ export class BovinesComponent implements OnInit {
         // e.options.forEach((o:any)=>{
         //if(o.selected=="selected")this.newBovine={...this.newBovine, mother:o.value}
         // })
+      }else if(e.name=="father"){
+        this.newBovine={...this.newBovine, father:e.value}
       }else if(e.name=="sex"){
         let sel=(document.getElementById(e.name)) as HTMLSelectElement;
         let optionSelected=sel.options[sel.selectedIndex].text;
