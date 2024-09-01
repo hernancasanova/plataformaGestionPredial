@@ -11,22 +11,12 @@
   }
   th{
     color: white;
+    font-weight: bold;
   }
   td, .mat-select{
     color: black;
+    text-align:center;
   }
-  .custom-header-cell{
-    color: white;
-  }
-  
-  .mat-row {
-    background-color: white;
-  }
-  
-  /* .mat-row:nth-child(2n-1), .mat-row:nth-child(2n) {
-    background-color: #eee;
-  } */
-    
   
   .mat-row:nth-child(2n+1){
     background-color: #e4f0ec;
@@ -36,4 +26,21 @@
   }
   table{
     width: 100%;
+  }
+
+  ::placeholder {
+    color: white;
+    font-weight: bold;
+    opacity: 1; /* Firefox */
+  }
+  
+  :host ::ng-deep .mat-sort-header-arrow {
+    color: white;
+  }
+
+  .label-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos hijos horizontalmente */
+    width: 100%; /* Asegura que el contenedor ocupe el ancho completo de la celda */
   }

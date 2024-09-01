@@ -3,6 +3,7 @@
     border-radius: 4px;  /* Rounded border */
     padding: 5px; /* Some padding */
     width: 150px; /* Set a small width */
+    cursor: pointer;
   }
   
   /* Add a hover effect (blue shadow) */
