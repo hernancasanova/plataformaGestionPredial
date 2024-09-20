@@ -71,6 +71,20 @@ import { CarouselModule } from '../shared/carousel/carousel.module';
 				height: 100%;
 				background-color:white;
 			}
+			
+			th.asc::after {
+  content: "\f062"; /* Font Awesome chevron-up */
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900; /* Font Awesome icon font weight */
+  margin-left: 5px;
+}
+
+th.desc::after {
+  content: "\f063"; /* Font Awesome chevron-down */
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  margin-left: 5px;
+}
 
 		`,
 	],
@@ -257,7 +271,7 @@ export class ListComponent {
 	}
 
 	onSort({ column, direction }: SortEvent) {
-		this.direccion=direction;
+		//this.direccion=direction;
 		// resetting other headers
 		this.headers.forEach((header) => {
 			if (header.sortable !== column) {

@@ -93,7 +93,8 @@ export class FormsComponent implements OnInit {
     let file = e.target.files[0];
     let blob = new Blob([file], { type: file.type });
     let url = window.URL.createObjectURL(blob); 
-    this.srcPreview = this.sanitizer.bypassSecurityTrustUrl(url);
+    //this.srcPreview = this.sanitizer.bypassSecurityTrustUrl(url);
+    (document.getElementById('preview-'+e.target.id) as HTMLImageElement).src=url;
     if(this.titlePage.includes("edit")){
       this.icon = true;
     }

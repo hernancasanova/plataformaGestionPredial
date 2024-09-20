@@ -19,21 +19,25 @@ export class BovinesComponent implements OnInit {
   mothers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
   fathers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
   fields: Array<any> = [
-                {name:"bovine",type:"image",id:"",text:"Current image:", info:"↓ Select a new image to replace the current image"},
-                {name:"image",type:"file", value:"", required:true},
-                {name:"name",type:"text", value:"", required:true, placeholder:"Eg: My cow"},
-                {name:"date birth",type:"date", value:"",required:true},
-                {name:"mother",type:"select", value:"", required:true, options:[]},
-                {name:"image-mother",type:"image",id:"",text:"Mother selected:", info:""},
-                {name:"father",type:"select", value:"", required:true, options:[]},
-                {name:"image-father",type:"image",id:"",text:"Father selected:", info:""},
-                {name:"sex",type:"select", value:"", required:true, options:[{name:"Macho",value:"1",selected:""},{name:"Hembra",value:"2",selected:""}]},
-                {name:"type",type:"select",value:"", required:true, options:[{name:"Ternero",value:"1",selected:""},{name:"Ternera",value:"2",selected:""},{name:"Toro",value:"3", selected:""},{name:"Vaquilla",value:"4", selected:""},{name:"Vaca",value:"5",selected:""},{name:"Buey",value:"6",selected: ""},{name:"Novillo",value:"7", selected:""}]},
-                {name:"color",type:"select",value:"", required: true, options:[{name:"Clavel(a)",value:"1",selected:""},{name:"Overo(a)",value:"2",selected:""},{name:"Blanco(a)",value:"3",selected:""},{name:"Colorado(a)",value:"4", selected:""},{name:"Amarillo(a)",value:"5",selected:""}]},
-                {name:"state",type:"select",value:"", required: true, options:[{name:"Vivo",value:"1", selected:""},{name:"Muerto",value:"2", selected:""}]},
-                {name:"date sale",type:"date", value:"", required:false},
-                {name:"internal verification",type:"checkbox", value:"", required:false},
-                {name:"verified SAG",type:"checkbox", value:"", required:false},
+                //{name:"image young",type:"image",id:"",text:"Current image:", info:"↓ Select a new image to replace the current image", full:false},
+                {name:"bovine",type:"image",id:"",text:"Current image:", info:"↓ Select a new image to replace the current image", full:false},
+                //{name:"image young",type:"file", value:"", required:true, full:false},
+                {name:"image",type:"file", value:"", required:true, full:true},
+                //{name:"main image",type:"select", value:"", required:true, options:[{name:"Young",value:"1",selected:""},{name:"Old",value:"2",selected:""}], full:true},
+                {name:"name",type:"text", value:"", required:true, placeholder:"Eg: My cow", full:true},
+                {name:"date birth",type:"date", value:"",required:true, full:true},
+                {name:"mother",type:"select", value:"", required:true, options:[], full:true},
+                {name:"image-mother",type:"image",id:"",text:"Mother selected:", info:"", full:true},
+                {name:"father",type:"select", value:"", required:true, options:[], full:true},
+                {name:"image-father",type:"image",id:"",text:"Father selected:", info:"", full:true},
+                {name:"sex",type:"select", value:"", required:true, options:[{name:"Macho",value:"1",selected:""},{name:"Hembra",value:"2",selected:""}], full:true},
+                {name:"type",type:"select",value:"", required:true, options:[{name:"Ternero",value:"1",selected:""},{name:"Ternera",value:"2",selected:""},{name:"Toro",value:"3", selected:""},{name:"Vaquilla",value:"4", selected:""},{name:"Vaca",value:"5",selected:""},{name:"Buey",value:"6",selected: ""},{name:"Novillo",value:"7", selected:""}], full:true},
+                {name:"color",type:"select",value:"", required: true, options:[{name:"Clavel(a)",value:"1",selected:""},{name:"Overo(a)",value:"2",selected:""},{name:"Blanco(a)",value:"3",selected:""},{name:"Colorado(a)",value:"4", selected:""},{name:"Amarillo(a)",value:"5",selected:""}], full:true},
+                {name:"race",type:"select",value:"", required: false, options:[{name:"Holstein",value:"1",selected:""},{name:"Hereford",value:"2",selected:""},{name:"Angus",value:"3",selected:""},{name:"Angus Rojo",value:"4", selected:""}], full:true},
+                {name:"state",type:"select",value:"", required: true, options:[{name:"Vivo",value:"1", selected:""},{name:"Muerto",value:"2", selected:""}], full:true},
+                {name:"date sale",type:"date", value:"", required:false, full:true},
+                {name:"internal verification",type:"checkbox", value:"", required:false, full:false},
+                {name:"verified SAG",type:"checkbox", value:"", required:false, full:false},
                 //{name:"Create",type:"submit"}
               ];
 
@@ -123,6 +127,7 @@ export class BovinesComponent implements OnInit {
 
   desplegarImagenBovino=(event:any):void=>{
     this.fields.forEach(e => {
+      //if((e.name=="image-mother" && event.target.id=="mother") || (e.name=="image-father" && event.target.id=="father")){
       if((e.name=="image-mother" && event.target.id=="mother") || (e.name=="image-father" && event.target.id=="father")){
         e.id=event.target.value
       }

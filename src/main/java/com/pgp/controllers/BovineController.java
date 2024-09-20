@@ -1,5 +1,6 @@
 package com.pgp.controllers;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -94,12 +95,12 @@ public class BovineController {
 //	}
 	
 	
-	@GetMapping("/images/bovines/{nombre}")
+	@GetMapping("/images/bovines/{id}")
 	//@Cacheable("images")
-    public ResponseEntity<Resource> obtenerImagen(@PathVariable String nombre) {
+    public ResponseEntity<Resource> obtenerImagen(@PathVariable String id) {
         try {
             // Carga la imagen desde el directorio de recursos
-            Resource resource = new ClassPathResource("images/"+nombre+".jpg");
+            Resource resource = new ClassPathResource("images/"+id+"/"+id+".jpg");
 
             // Verifica si la imagen existe
             if (resource.exists()) {
@@ -121,8 +122,6 @@ public class BovineController {
     }
 	
 	
-	//@Autowired
-    //private HttpServletRequest request;
 	@PostMapping(value="/bovines/create", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	//@PostMapping(value="/bovines/create", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	/*public int register(@RequestParam("name") String name,@RequestParam("date birth") Date date_birth, @RequestParam("mother") int mother, @RequestParam("mother") int mother,
@@ -156,7 +155,6 @@ public class BovineController {
 			statusCode=200;
 			Long id=bovineService.register(bovine);
 			if(file != null) {
-				System.out.println("Pasé por donde no debía");
 				String fileName = file.getOriginalFilename();
 				//Optional<String> extension=getExtensionByStringHandling(fileName);
 				/*if(extension == null) {
@@ -164,7 +162,15 @@ public class BovineController {
 				}*/
 				extension= Files.getFileExtension(fileName);
 				if(extension=="")extension="png";
-				Path path = Paths.get("src/main/resources/images/"+id+"."+extension).toAbsolutePath();
+				
+				File directorioEntidad = new File("src/main/resources/images/"+id);
+
+                if(!directorioEntidad.exists()){
+                    directorioEntidad.mkdirs();
+                }
+                //Path path = Paths.get(directorioEntidad+"/"+ myb.getNombreDocumento()).toAbsolutePath();
+				//file.transferTo(path.toFile());
+				Path path = Paths.get("src/main/resources/images/"+id+"/"+id+"."+extension).toAbsolutePath();
 				file.transferTo(path.toFile());
 			}
 			return statusCode;
