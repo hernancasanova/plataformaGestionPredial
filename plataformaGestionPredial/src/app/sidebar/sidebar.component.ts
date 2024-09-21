@@ -46,9 +46,10 @@ export class SidebarComponent {
   
   logout():any{
     localStorage.removeItem("jwt_token")
-    this.router.navigateByUrl("http://localhost:8006/login").then(() => {
-      window.location.reload();
-    });
+    // this.router.navigateByUrl("http://localhost:8006/login").then(() => {
+    //   window.location.reload();
+    // });
+    window.location.reload();
   }
   
   //$(".menu click").addClass('menu-active')
