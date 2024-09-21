@@ -36,6 +36,8 @@ export class FormsComponent implements OnInit {
   loading2: boolean = false;
   fileToUpload: File | null = null;
   bovine!: number;
+  url_bovine:any='';
+  url_bovine_local:any='';
 
   
 
@@ -46,7 +48,10 @@ export class FormsComponent implements OnInit {
   openFullscreen(content:any, id: number) {
 		//this.title_modal="Bovine: ";
 		//this.list_content=[];
-		this.bovine=id;
+    this.bovine=id;
+    if(id!=0){
+      this.url_bovine="http://localhost:8006/images/bovines/"+id;
+    }
 		//this.name_bovine=name;
 		//this.modalService.open(content, { fullscreen: true });
 		this.modalService.open(content, { size: 'xl' });
@@ -95,6 +100,8 @@ export class FormsComponent implements OnInit {
     let url = window.URL.createObjectURL(blob); 
     //this.srcPreview = this.sanitizer.bypassSecurityTrustUrl(url);
     (document.getElementById('preview-'+e.target.id) as HTMLImageElement).src=url;
+    this.url_bovine_local=this.sanitizer.bypassSecurityTrustUrl(url);
+    this.bovine=0;
     if(this.titlePage.includes("edit")){
       this.icon = true;
     }
