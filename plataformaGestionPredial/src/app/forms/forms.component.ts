@@ -45,12 +45,16 @@ export class FormsComponent implements OnInit {
     this.cambioSelect.emit(event);
   }
 
-  openFullscreen(content:any, id: number) {
+  openFullscreen(content:any, id: number, idElement:any) {
 		//this.title_modal="Bovine: ";
 		//this.list_content=[];
     this.bovine=id;
     if(id!=0){
       this.url_bovine="http://localhost:8006/images/bovines/"+id;
+    }else{
+      var url = (document.getElementById('preview-'+idElement) as HTMLImageElement).src;
+      this.url_bovine_local=this.sanitizer.bypassSecurityTrustUrl(url);
+      this.bovine=0;
     }
 		//this.name_bovine=name;
 		//this.modalService.open(content, { fullscreen: true });
@@ -100,8 +104,8 @@ export class FormsComponent implements OnInit {
     let url = window.URL.createObjectURL(blob); 
     //this.srcPreview = this.sanitizer.bypassSecurityTrustUrl(url);
     (document.getElementById('preview-'+e.target.id) as HTMLImageElement).src=url;
-    this.url_bovine_local=this.sanitizer.bypassSecurityTrustUrl(url);
-    this.bovine=0;
+    //this.url_bovine_local=this.sanitizer.bypassSecurityTrustUrl(url);
+    //this.bovine=0;
     if(this.titlePage.includes("edit")){
       this.icon = true;
     }
