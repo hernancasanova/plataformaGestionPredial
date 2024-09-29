@@ -50,7 +50,7 @@ export class FormsComponent implements OnInit {
 		//this.list_content=[];
     this.bovine=id;
     if(id!=0){
-      this.url_bovine="http://localhost:8006/images/bovines/"+id;
+      this.url_bovine="http://localhost:8006/images/bovines/old/"+id;
     }else{
       var url = (document.getElementById('preview-'+idElement) as HTMLImageElement).src;
       this.url_bovine_local=this.sanitizer.bypassSecurityTrustUrl(url);

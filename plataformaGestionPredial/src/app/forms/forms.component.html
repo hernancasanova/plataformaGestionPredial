@@ -148,7 +148,7 @@
                             </div>
                             <div *ngIf="field.type=='image' && field.id>0" [ngClass]="field.full==false ? 'form-group mb-1 col-6' : 'form-group mb-2'">
                                 <label for="{{field.name}}">{{field.text}}<span *ngIf="field.required"> *</span></label><br>
-                                    <img src="http://localhost:8006/images/bovines/{{field.id}}" (click)="openFullscreen(content,field.id,null);" >
+                                    <img src="{{field.url}}" (click)="openFullscreen(content,field.id,null);" >
                                 <p>{{field.info}}</p>
                             </div>
                             <!-- {{f.valid|json}} -->

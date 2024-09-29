@@ -95,13 +95,12 @@ public class BovineController {
 //	}
 	
 	
-	@GetMapping("/images/bovines/{id}")
+	@GetMapping("/images/bovines/{type}/{id}")
 	//@Cacheable("images")
-    public ResponseEntity<Resource> obtenerImagen(@PathVariable String id) {
+    public ResponseEntity<Resource> obtenerImagen(@PathVariable String id, @PathVariable String type) {
         try {
             // Carga la imagen desde el directorio de recursos
-            Resource resource = new ClassPathResource("images/"+id+"/"+id+".jpg");
-
+            Resource resource = new ClassPathResource("images/"+id+"/"+type+"/"+id+".jpg");
             // Verifica si la imagen existe
             if (resource.exists()) {
                 // Establece el tipo de contenido de la respuesta como imagen

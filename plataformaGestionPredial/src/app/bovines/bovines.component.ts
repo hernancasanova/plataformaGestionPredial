@@ -19,17 +19,17 @@ export class BovinesComponent implements OnInit {
   mothers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
   fathers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
   fields: Array<any> = [
-                //{name:"image young",type:"image",id:"",text:"Current image:", info:"↓ Select a new image to replace the current image", full:false},
-                {name:"bovine",type:"image",id:"",text:"Current image:", info:"↓ Select a new image to replace the current image", full:false},
+                //{name:"image young",type:"image",id:"",text:"Young image:", info:"↓ Select a new image to replace the young image", full:false, url:""},
+                {name:"old image",type:"image",id:"",text:"Old image:", info:"↓ Select a new image to replace the old image", full:true, url:""},
                 //{name:"image young",type:"file", value:"", required:true, full:false},
-                {name:"image",type:"file", value:"", required:true, full:true},
+                {name:"image old",type:"file", value:"", required:true, full:true},
                 //{name:"main image",type:"select", value:"", required:true, options:[{name:"Young",value:"1",selected:""},{name:"Old",value:"2",selected:""}], full:true},
                 {name:"name",type:"text", value:"", required:true, placeholder:"Eg: My cow", full:true},
                 {name:"date birth",type:"date", value:"",required:true, full:true},
                 {name:"mother",type:"select", value:"", required:true, options:[], full:true},
-                {name:"image-mother",type:"image",id:"",text:"Mother selected:", info:"", full:true},
+                {name:"image-mother",type:"image",id:"",text:"Mother selected:", info:"", full:true, url:""},
                 {name:"father",type:"select", value:"", required:true, options:[], full:true},
-                {name:"image-father",type:"image",id:"",text:"Father selected:", info:"", full:true},
+                {name:"image-father",type:"image",id:"",text:"Father selected:", info:"", full:true, url:""},
                 {name:"sex",type:"select", value:"", required:true, options:[{name:"Macho",value:"1",selected:""},{name:"Hembra",value:"2",selected:""}], full:true},
                 {name:"type",type:"select",value:"", required:true, options:[{name:"Ternero",value:"1",selected:""},{name:"Ternera",value:"2",selected:""},{name:"Toro",value:"3", selected:""},{name:"Vaquilla",value:"4", selected:""},{name:"Vaca",value:"5",selected:""},{name:"Buey",value:"6",selected: ""},{name:"Novillo",value:"7", selected:""}], full:true},
                 {name:"color",type:"select",value:"", required: true, options:[{name:"Clavel(a)",value:"1",selected:""},{name:"Overo(a)",value:"2",selected:""},{name:"Blanco(a)",value:"3",selected:""},{name:"Colorado(a)",value:"4", selected:""},{name:"Amarillo(a)",value:"5",selected:""}], full:true},
@@ -130,6 +130,7 @@ export class BovinesComponent implements OnInit {
       //if((e.name=="image-mother" && event.target.id=="mother") || (e.name=="image-father" && event.target.id=="father")){
       if((e.name=="image-mother" && event.target.id=="mother") || (e.name=="image-father" && event.target.id=="father")){
         e.id=event.target.value
+        e.url="http://localhost:8006/images/bovines/old/"+event.target.value
       }
     })
   }
@@ -163,10 +164,16 @@ export class BovinesComponent implements OnInit {
             element.value=b.father
           }else if (element["name"]=="image-mother"){
             element["id"]=b.mother
+            element.url="http://localhost:8006/images/bovines/old/"+b.mother
           }else if (element["name"]=="image-father"){
             element["id"]=b.father
-          }else if (element["name"]=="bovine"){
+            element.url="http://localhost:8006/images/bovines/old/"+b.father
+          }else if (element["name"]=="old image"){
             element["id"]=b.id
+            element.url="http://localhost:8006/images/bovines/old/"+b.id
+          }else if (element["name"]=="image young"){
+            element["id"]=b.id
+            element.url="http://localhost:8006/images/bovines/young/"+b.id
           }else if (element["type"]=="file"){//name=image
             element["required"]=false
           }else if(element["name"]=="name"){
