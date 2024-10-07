@@ -19,11 +19,11 @@ export class BovinesComponent implements OnInit {
   mothers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
   fathers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
   fields: Array<any> = [
-                //{name:"image young",type:"image",id:"",text:"Young image:", info:"↓ Select a new image to replace the young image", full:false, url:""},
-                {name:"old image",type:"image",id:"",text:"Old image:", info:"↓ Select a new image to replace the old image", full:true, url:""},
-                //{name:"image young",type:"file", value:"", required:true, full:false},
-                {name:"image old",type:"file", value:"", required:true, full:true},
-                //{name:"main image",type:"select", value:"", required:true, options:[{name:"Young",value:"1",selected:""},{name:"Old",value:"2",selected:""}], full:true},
+                {name:"image young",type:"image",id:"",text:"Young image:", info:"↓ Select a new image to replace the young image", full:false, url:""},
+                {name:"old image",type:"image",id:"",text:"Old image:", info:"↓ Select a new image to replace the old image", full:false, url:""},
+                {name:"image young",type:"file", value:"", required:false, full:false},
+                {name:"image old",type:"file", value:"", required:false, full:false},
+                {name:"main image",type:"select", value:"", required:false, options:[{name:"Young",value:"1",selected:""},{name:"Old",value:"2",selected:""}], full:true},
                 {name:"name",type:"text", value:"", required:true, placeholder:"Eg: My cow", full:true},
                 {name:"date birth",type:"date", value:"",required:true, full:true},
                 {name:"mother",type:"select", value:"", required:true, options:[], full:true},

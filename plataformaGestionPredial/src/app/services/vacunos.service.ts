@@ -29,7 +29,8 @@ export class VacunosService{
     }
     const formData = new FormData();
     formData.append('jsonbovine', JSON.stringify(bovine));
-    formData.append('file', (document.getElementById('image') as HTMLInputElement)?.files?.item(0) as any);
+    formData.append('youngFile', (document.getElementById('image young') as HTMLInputElement)?.files?.item(0) as any);
+    formData.append('oldFile', (document.getElementById('image old') as HTMLInputElement)?.files?.item(0) as any);
     // for (let i = 0; i < files.length; i++) {
     //   formData.append(i.toString(), files[i], files[i].name);
     // }

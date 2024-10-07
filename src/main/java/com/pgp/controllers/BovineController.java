@@ -126,7 +126,7 @@ public class BovineController {
 	/*public int register(@RequestParam("name") String name,@RequestParam("date birth") Date date_birth, @RequestParam("mother") int mother, @RequestParam("mother") int mother,
 			@RequestParam("file") MultipartFile file) throws JsonMappingException, JsonProcessingException {*/
 	//public int register(@RequestParam("name") String name, @RequestParam("file") MultipartFile file) throws JsonMappingException, JsonProcessingException {
-	public int register(@RequestParam String jsonbovine, @RequestParam(required=false) MultipartFile file) {
+	public int register(@RequestParam String jsonbovine, @RequestParam(required=false) MultipartFile youngFile, @RequestParam(required=false) MultipartFile oldFile) {
 		/*int type_document = Integer.parseInt(type);
 		int statusCode;
 		try {
@@ -153,8 +153,27 @@ public class BovineController {
 			Bovine bovine = objectMapper.readValue(jsonbovine, Bovine.class);
 			statusCode=200;
 			Long id=bovineService.register(bovine);
-			if(file != null) {
-				String fileName = file.getOriginalFilename();
+			if(youngFile != null) {
+				String fileNameYoung = youngFile.getOriginalFilename();
+				//Optional<String> extension=getExtensionByStringHandling(fileName);
+				/*if(extension == null) {
+					extension=Optional.of("png");
+				}*/
+				extension= Files.getFileExtension(fileNameYoung);
+				if(extension=="")extension="png";
+				
+				File directorioEntidadYoung = new File("src/main/resources/images/"+id+"/young/");
+
+                if(!directorioEntidadYoung.exists()){
+                    directorioEntidadYoung.mkdirs();
+                }
+                //Path path = Paths.get(directorioEntidad+"/"+ myb.getNombreDocumento()).toAbsolutePath();
+				//file.transferTo(path.toFile());
+				Path pathYoung = Paths.get("src/main/resources/images/"+id+"/young/"+id+"."+extension).toAbsolutePath();
+				youngFile.transferTo(pathYoung.toFile());
+			}
+			if(oldFile != null) {
+				String fileName = oldFile.getOriginalFilename();
 				//Optional<String> extension=getExtensionByStringHandling(fileName);
 				/*if(extension == null) {
 					extension=Optional.of("png");
@@ -162,15 +181,16 @@ public class BovineController {
 				extension= Files.getFileExtension(fileName);
 				if(extension=="")extension="png";
 				
-				File directorioEntidad = new File("src/main/resources/images/"+id);
-
+				File directorioEntidad = new File("src/main/resources/images/"+id+"/old/");
+				
                 if(!directorioEntidad.exists()){
                     directorioEntidad.mkdirs();
                 }
+                
                 //Path path = Paths.get(directorioEntidad+"/"+ myb.getNombreDocumento()).toAbsolutePath();
 				//file.transferTo(path.toFile());
-				Path path = Paths.get("src/main/resources/images/"+id+"/"+id+"."+extension).toAbsolutePath();
-				file.transferTo(path.toFile());
+				Path path = Paths.get("src/main/resources/images/"+id+"/old/"+id+"."+extension).toAbsolutePath();
+				oldFile.transferTo(path.toFile());
 			}
 			return statusCode;
 		}catch(Exception e){
