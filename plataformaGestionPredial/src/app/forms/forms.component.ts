@@ -45,12 +45,13 @@ export class FormsComponent implements OnInit {
     this.cambioSelect.emit(event);
   }
 
-  openFullscreen(content:any, id: number, idElement:any) {
+  openFullscreen(content:any, id: number, idElement:any, urlE:string) {
 		//this.title_modal="Bovine: ";
 		//this.list_content=[];
     this.bovine=id;
     if(id!=0){
-      this.url_bovine="http://localhost:8006/images/bovines/old/"+id;
+      //this.url_bovine="http://localhost:8006/images/bovines/old/"+id;
+      this.url_bovine=urlE
     }else{
       var url = (document.getElementById('preview-'+idElement) as HTMLImageElement).src;
       this.url_bovine_local=this.sanitizer.bypassSecurityTrustUrl(url);
