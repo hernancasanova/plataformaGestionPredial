@@ -118,6 +118,17 @@ public class Bovine implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Column(name="MAIN_IMAGE")
+	public int main_image;
+
+	public int getMain_image() {
+		return main_image;
+	}
+
+	public void setMain_image(int main_image) {
+		this.main_image = main_image;
+	}
 
 	/**
 	 * 

@@ -30,4 +30,5 @@ public interface BovineDto{
 	String getInternalVerification();
 	String getState();
 	String getDateSale();
+	int getMainImage();
 }

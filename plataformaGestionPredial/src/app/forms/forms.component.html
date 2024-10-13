@@ -93,6 +93,10 @@
                                     <p class="text-alert">DIIO should be contains 9 numbers</p>
                                 </div>
                             </div>
+                            <!-- <div *ngIf="field.type=='divider'" [ngClass]="'form-group mb-2'"> -->
+                            <div class="vr" *ngIf="field.type=='divider'" >
+                                <!-- <div class="vr"></div> -->
+                            </div>
                             <div *ngIf="field.type=='select'" [ngClass]="field.full==false ? 'form-group mb-2 col-6' : 'form-group mb-2'">
                                 <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
                                 <select (change)="changeSelect($event)" class="form-select" name="{{field.name}}" [(ngModel)]="field.value" id="{{field.name}}" [required]="field.required" #i="ngModel">
@@ -121,12 +125,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div *ngIf="field.type=='file'" [ngClass]="field.full==false ? 'form-group mb-2 col-6' : 'form-group mb-2'">
+                            <div *ngIf="field.type=='file'" [ngClass]="field.full==false ? 'form-group mb-2 col-5' : 'form-group mb-2'">
                                 <div *ngIf="field.value!='' && field.name.includes('image')" class="mb-2"><label>Selected image: </label><br>
                                     <img [src]="srcPreview" id="preview-{{field.name}}" alt="" width="100" height="100" (click)="openFullscreen(content,0,field.name,srcPreview);"><br>
                                     <div *ngIf="icon">
                                         <i class="fa-solid fa-circle-info"></i>&nbsp;
-                                        <label>Selected image will replace the current image</label>
+                                        <label>{{field.textInfo}}</label>
                                     </div>
                                 </div>
                                 <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
@@ -146,7 +150,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div *ngIf="field.type=='image' && field.id>0" [ngClass]="field.full==false ? 'form-group mb-1 col-6' : 'form-group mb-2'">
+                            <div *ngIf="field.type=='image' && field.id>0" [ngClass]="field.full==false ? 'form-group mb-1 col-5' : 'form-group mb-2'">
                                 <label for="{{field.name}}">{{field.text}}<span *ngIf="field.required"> *</span></label><br>
                                     <img src="{{field.url}}" width="100" height="100" (click)="openFullscreen(content,field.id,null,field.url);" >
                                 <p>{{field.info}}</p>

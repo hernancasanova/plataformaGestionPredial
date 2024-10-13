@@ -20,10 +20,12 @@ export class BovinesComponent implements OnInit {
   fathers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
   fields: Array<any> = [
                 {name:"image young",type:"image",id:"",text:"Young image:", info:"↓ Select a new image to replace the young image", full:false, url:""},
+                {name:"divider images bovines", type:"divider"},
                 {name:"old image",type:"image",id:"",text:"Old image:", info:"↓ Select a new image to replace the old image", full:false, url:""},
-                {name:"image young",type:"file", value:"", required:false, full:false},
-                {name:"image old",type:"file", value:"", required:false, full:false},
-                {name:"main image",type:"select", value:"", required:true, options:[{name:"Young image",value:"1",selected:""},{name:"Old image",value:"2",selected:""}], full:true},
+                {name:"image young",type:"file", value:"", required:false, full:false, textInfo:"Selected image will replace the Young image"},
+                {name:"divider images bovines", type:"divider"},
+                {name:"image old",type:"file", value:"", required:false, full:false, textInfo:"Selected image will replace the Old image"},
+                {name:"main image",type:"select", value:"", required:false, options:[{name:"Young image",value:"1",selected:""},{name:"Old image",value:"2",selected:""}], full:true},
                 {name:"name",type:"text", value:"", required:true, placeholder:"Eg: My cow", full:true},
                 {name:"date birth",type:"date", value:"",required:true, full:true},
                 {name:"mother",type:"select", value:"", required:true, options:[], full:true},
@@ -36,8 +38,8 @@ export class BovinesComponent implements OnInit {
                 {name:"race",type:"select",value:"", required: false, options:[{name:"Holstein",value:"1",selected:""},{name:"Hereford",value:"2",selected:""},{name:"Angus",value:"3",selected:""},{name:"Angus Rojo",value:"4", selected:""}], full:true},
                 {name:"state",type:"select",value:"", required: true, options:[{name:"Vivo",value:"1", selected:""},{name:"Muerto",value:"2", selected:""}], full:true},
                 {name:"date sale",type:"date", value:"", required:false, full:true},
-                {name:"internal verification",type:"checkbox", value:"", required:false, full:false},
-                {name:"verified SAG",type:"checkbox", value:"", required:false, full:false},
+                {name:"internal verification",type:"checkbox", value:"", required:false, full:true},
+                {name:"verified SAG",type:"checkbox", value:"", required:false, full:true},
                 //{name:"Create",type:"submit"}
               ];
 
@@ -47,9 +49,11 @@ export class BovinesComponent implements OnInit {
     this.fields.forEach(e => {
       if(e.name=="name"){
         this.newBovine={...this.newBovine, name:e.value}
-      }else if (e.name=="bovine" && e.id!=""){
-        this.newBovine={...this.newBovine, id:e.id}
-      }else if(e.name=="date birth"){
+      }
+      // else if (e.name=="name" && e.id!=""){
+      //   this.newBovine={...this.newBovine, id:e.id}
+      // }
+      else if(e.name=="date birth"){
         let myDate = e.value.split("-");
         let newDate = new Date( myDate[2], myDate[1] - 1, myDate[0]);
         this.newBovine={...this.newBovine, date_birth:e.value+"T00:00:00"}
@@ -80,8 +84,13 @@ export class BovinesComponent implements OnInit {
         this.newBovine={...this.newBovine, verified_sag:e.value?"S":"N"}
       }else if(e.name=="internal verification"){
         this.newBovine={...this.newBovine, internal_verification:e.value?"S":"N"}
+      }else if(e.name=="main image"){
+        this.newBovine={...this.newBovine, main_image:e.value}
       }
     })
+    if(this.id>0){
+      this.newBovine={...this.newBovine, id:this.id}
+    }
     this.vacunoService.createBovine(this.newBovine).
     subscribe(r=>console.log("r: ",r),
     (error:any)=>console.log("error en Observable: ",error),
@@ -217,6 +226,8 @@ export class BovinesComponent implements OnInit {
             element["value"]=b.verified_sag=="S"?true:false
           }else if(element["name"]=="internal verification"){
             element["value"]=b.internal_verification=="S"?true:false
+          }else if(element["name"]=="main image"){
+            element["value"]=b.main_image
           }
         });
       })

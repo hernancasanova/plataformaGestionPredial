@@ -15,4 +15,5 @@ export interface Country {
 	verifiedSag: string;
 	internalVerification: string;
 	dateSale: string;
+	mainImage:number;
 }

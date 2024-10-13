@@ -22,7 +22,7 @@ public interface BovineDao extends JpaRepository<Bovine,Long>{
 			+"bov.ID AS idFather, bov.NAME AS Father, "
 			+"tb.NAME AS Type, HERNAN.getAge(b.ID) AS age, "
 			+"CASE b.INTERNAL_VERIFICATION WHEN 'S' THEN 'SÍ' ELSE 'NO' END as internalVerification, "
-			+"CASE b.VERIFIED_SAG WHEN 'S' THEN 'SÍ' ELSE 'NO' END as verifiedSag, b.state FROM HERNAN.BOVINES b "
+			+"CASE b.VERIFIED_SAG WHEN 'S' THEN 'SÍ' ELSE 'NO' END as verifiedSag, b.state, b.MAIN_IMAGE as mainImage FROM HERNAN.BOVINES b "
 			+"LEFT JOIN HERNAN.IDENTIFIERS i on b.ID = i.BOVINE_ID JOIN HERNAN.BOVINES bo on b.MOTHER = bo.ID  "
 			+"JOIN HERNAN.BOVINES bov on b.father=bov.ID "
 			+"JOIN HERNAN.TYPES_BOVINES tb on tb.ID=b.TYPE WHERE (i.STATE='activo' or i.DIIO is NULL )  AND  b.ID <> 0 "
