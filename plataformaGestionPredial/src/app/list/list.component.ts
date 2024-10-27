@@ -171,6 +171,7 @@ export class ListComponent {
 		var pdf = new jsPDF('p', 'pt', 'letter');
 		var nColumna = 1;
 		var ids: Array<string> = [];
+		var mainImages: Array<string> = [];
 		var i = 0;
 		//var fecha;
 		var tabla = document.getElementById('tableBovines');
@@ -192,7 +193,8 @@ export class ListComponent {
 						//formatoFecha(vac.fecha_nacimiento),
 						vac.mother,
 						vac.type,
-						vac.age
+						vac.age,
+						vac.mainImage,
 					];
 					body.push(fila);
 				//})
@@ -208,7 +210,8 @@ export class ListComponent {
 				//'Fecha nacimiento',
 				'Madre',
 				'Tipo',
-				'Edad'
+				'Edad',
+				''//imagen principal
 				],
 			],
 			body,
@@ -222,6 +225,7 @@ export class ListComponent {
 				4: { cellWidth: 'auto', minCellHeight: 80 },
 				5: { cellWidth: 'auto', minCellHeight: 80 },
 				6: { cellWidth: 'auto', minCellHeight: 80 },
+				7: { cellWidth: 'auto', minCellHeight: 0,  },
 			},
 			styles: {
 				valign: 'middle',
@@ -236,6 +240,10 @@ export class ListComponent {
 					data.cell.text[0] = nColumna.toString();
 					nColumna++;
 				}
+				if (data.column.index === 7 && data.cell.section === 'body') {
+					mainImages.push(data.cell.text[0]);
+					data.cell.text[0] = "";
+				}
 				/*if((data.column.index === 4 && data.cell.section === 'body')||(data.column.index === 5 && data.cell.section === 'body')){
 					//data.cell.text[0]=moment(data.cell.text[0], 'DD-MM-YYYY');
 					if(data.cell.text[0]!="Sin arete"){
@@ -246,8 +254,9 @@ export class ListComponent {
 			},
 			didDrawCell: function (data) {
 				if (data.column.index === 1 && data.cell.section === 'body') {
+					let url=mainImages[i]=='1'?'http://localhost:8006/images/bovines/young/'+ids[i]:'http://localhost:8006/images/bovines/old/'+ids[i];
 				pdf.addImage(
-					'http://localhost:8006/images/bovines/' + ids[i],
+					url,
 					'JPEG',
 					data.cell.x + 15,
 					data.cell.y + 2,
