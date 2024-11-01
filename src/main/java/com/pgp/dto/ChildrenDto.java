@@ -19,5 +19,6 @@ public interface ChildrenDto{
 	public int type;*/
 	int  getId();
 	String getName();
+	int getMainImage();
 	
 }

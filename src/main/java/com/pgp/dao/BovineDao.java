@@ -35,6 +35,6 @@ public interface BovineDao extends JpaRepository<Bovine,Long>{
 	BovineDto bovineAndIdentifier(Long id);
 	
 	//@Query(value="SELECT ch.hijos from (SELECT b2.name , LISTAGG(b.name,',') WITHIN GROUP (ORDER BY b.MOTHER) AS hijos FROM HERNAN.BOVINES b JOIN HERNAN.BOVINES b2 ON b.mother=b2.id WHERE b2.id=? GROUP BY b2.name) ch", nativeQuery=true)
-	@Query(value="SELECT id, name FROM HERNAN.BOVINES WHERE mother=?", nativeQuery=true)
+	@Query(value="SELECT id, name, main_image as mainImage FROM HERNAN.BOVINES WHERE mother=?", nativeQuery=true)
 	List<ChildrenDto> childrenBovine(Long bovine);
 }
