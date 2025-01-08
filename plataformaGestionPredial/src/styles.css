@@ -2,6 +2,7 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~bootstrap-icons/font/bootstrap-icons.css';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@ng-select/ng-select/themes/material.theme.css";
 
 #sidebar{
     /* height: 100vh; */
@@ -22,5 +23,23 @@ body{
     max-height: 90vh !important;
     /* max-height: 100vh; */
 }
+
+/* .ng-value {
+    background-color: rgb(31, 139, 78) !important;
+    color: white ;
+} */
+
+/* Aumentar la especificidad usando clases adicionales */
+.ng-select.ng-select-multiple .ng-select-container .ng-value {
+    background-color: rgb(31, 139, 78) !important;  /* Fondo de la etiqueta */
+    color: white !important;               /* Texto de la etiqueta */
+}
+
+/* Seleccionada dentro del dropdown */
+.ng-select.ng-select-multiple .ng-dropdown-panel .ng-option.selected {
+    background-color: rgb(31, 139, 78) !important;
+    color: white !important;
+}		
+
 html, body { max-height:90vh; width: 100%;}
 body { display:inline-block;margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

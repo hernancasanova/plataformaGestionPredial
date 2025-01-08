@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { FormsModule as FM, ReactiveFormsModule } from '@angular/forms';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalsModule } from '../shared/modals/modals.module';
+import { NgSelectModule } from '@ng-select/ng-select';
 //import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -15,7 +16,8 @@ import { ModalsModule } from '../shared/modals/modals.module';
     FM,
     //ReactiveFormsModule,
     NgbToastModule,
-    ModalsModule
+    ModalsModule,
+    NgSelectModule
   ],
   declarations: [
     FormsComponent,

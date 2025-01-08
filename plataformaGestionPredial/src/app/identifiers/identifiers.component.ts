@@ -21,8 +21,9 @@ export class IdentifiersComponent implements OnInit {
                 //{name:"image",type:"file"},
                 {name:"DIIO",type:"numeric", value:"", required:true , placeholder:"Eg: 014628273", minlength:9, maxlength:9},
                 {name:"date placement",type:"date", value:"", required:true},
-                {name:"bovine",type:"select",value:"", required: true, options:[], change: this.setImageBovine },
-                {name:"image-bovine",type:"image",id:"",text:"Bovine selected:", info:""},
+                {name:"bovine",type:"select2",value:"", required: true, options:[], change: this.setImageBovine },
+                //{name:"image-bovine",type:"image",id:"",text:"Bovine selected:", info:""},
+                {name:"image-bovine",type:"image",id:"",text:"Bovine selected:", info:"", full:true, url:""},
                 // {name:"bovine",type:"image",id:"",text:"Current image", info:"Select a new image to replace the current image"},
                 // {name:"image",type:"file", value:"", required:true},
                 // {name:"name",type:"text", value:"", required:true},
@@ -66,7 +67,8 @@ export class IdentifiersComponent implements OnInit {
   desplegarImagenBovino=(event:any):void=>{
     this.fields.forEach(e => {
       if(e.name=="image-bovine"){
-        e.id=event.target.value
+        e.id=event.value
+        e.url="http://localhost:8006/images/bovines/old/"+event.value
       }
     })
   }

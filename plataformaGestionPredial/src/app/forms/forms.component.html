@@ -99,6 +99,7 @@
                             </div>
                             <div *ngIf="field.type=='select'" [ngClass]="field.full==false ? 'form-group mb-2 col-6' : 'form-group mb-2'">
                                 <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
+                                <!-- <input type="text" class="form-control" (keyup)="filterOptions($event)" placeholder="Type a text to filter ↓" /> -->
                                 <select (change)="changeSelect($event)" class="form-select" name="{{field.name}}" [(ngModel)]="field.value" id="{{field.name}}" [required]="field.required" #i="ngModel">
                                     <option value="">Select</option>
                                     <ng-container *ngFor="let option of field.options; let i = index">
@@ -110,6 +111,41 @@
                                         <p class="text-alert">{{field.name}} is required</p>
                                     </div>
                                 </div>
+                            </div>
+                            <div *ngIf="field.type=='select2'" [ngClass]="field.full==false ? 'form-group mb-2 col-6' : 'form-group mb-2'" >
+                                <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
+                                <ng-select [items]="field.options"
+                                        bindLabel="name"
+                                        bindValue="value"
+                                        no-results="Sin resultados"
+                                        [clearable]="false"
+                                        (change)="changeSelect($event)" name="{{field.name}}" [(ngModel)]="field.value" id="{{field.name}}" [required]="field.required" #i="ngModel"
+                                        no-results-text="gntrgbnkir" >
+                                </ng-select>
+                                <div  *ngIf="i.invalid && (i.dirty || i.touched)">
+                                    <div *ngIf="i.errors?.required">
+                                        <p class="text-alert">{{field.name}} is required</p>
+                                    </div>
+                                </div>
+                                <!-- <div ngbDropdown class="d-inline-block">
+                                    <button class="btn btn-outline-secondary" ngbDropdownToggle >
+                                      Seleccionar opción
+                                    </button>
+                                    <div ngbDropdownMenu class="dropdown-menu">
+                                      <div class="px-2">
+                                        <input
+                                          type="text"
+                                          class="form-control"
+                                          placeholder="Buscar..."
+                                          (input)="filterOptions()"
+                                        />
+                                      </div>
+                                      <div *ngFor="let option of filteredOptions" class="dropdown-item">
+                                        {{ option }}
+                                      </div>
+                                    </div>
+                                </div> -->
+                                  
                             </div>
                             <div *ngIf="field.type=='select-multiple'" [ngClass]="field.full==false ? 'form-group mb-2 col-6' : 'form-group mb-2'">
                                 <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>

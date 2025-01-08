@@ -67,10 +67,14 @@ function verifyDie(states: Array<string>,country: Country){
 	return false;
 }
 
+function formatDiio(input: string): string {
+	return input.replace(/^(\d{2})(\d{3})(\d{4})$/, '$1.$2.$3');
+}
+
 function matches(country: Country, term: string, pipe: PipeTransform, type: any, states:any) {
 	return (
 		(country.name.toLowerCase().includes(term.toLowerCase()) ||
-		country.diio.toLowerCase().includes(term.toLowerCase()) ) &&
+		formatDiio(country.diio).includes(formatDiio(term)) || country.diio.includes(term) ) &&
 		type.includes(country.type) && 
 		(verifyState(states,country))
 		//states.includes(country.state)//working

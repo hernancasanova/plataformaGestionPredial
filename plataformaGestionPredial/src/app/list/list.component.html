@@ -44,38 +44,66 @@
         </ng-template>
         <form>
           <div class="mb-2 row">
-            <label for="" class="col-xs-3 col-sm-auto col-form-label"><b>Search by type(s):</b></label>
-            <div class="col-xs-3 col-sm-auto">
-              <select class="form-select" size="3" name="type" multiple [(ngModel)]="service.type">
-                  <option value="all">All</option>
-                  <option value="Ternero">Ternero</option>
-                  <option value="Ternera">Ternera</option>
-                  <option value="Toro">Toro</option>
-                  <option value="Vaquilla">Vaquilla</option>
-                  <option value="Vaca">Vaca</option>
-                  <option value="Buey">Buey</option>
-                  <option value="Novillo">Novillo</option>
-              </select>
+            <div class="col-3">
+              <label for="" class="col-xs-3 col-sm-auto col-form-label"><b>Search by type(s):</b></label>
+              <div class="col-xs-3 col-sm-auto">
+                <!-- <select class="form-select" size="3" name="type" multiple [(ngModel)]="service.type">
+                    <option value="all">All</option>
+                    <option value="Ternero">Ternero</option>
+                    <option value="Ternera">Ternera</option>
+                    <option value="Toro">Toro</option>
+                    <option value="Vaquilla">Vaquilla</option>
+                    <option value="Vaca">Vaca</option>
+                    <option value="Buey">Buey</option>
+                    <option value="Novillo">Novillo</option>
+                </select> -->
+                <!-- <mat-form-field appearance="fill">
+                  <mat-label>Seleccionar opciones</mat-label>
+                  <mat-select name="type" [(ngModel)]="service.type" multiple>
+                    <mat-option *ngFor="let item of items" [value]="item.id">{{ item.name }}</mat-option>
+                  </mat-select>
+                </mat-form-field> -->
+                <!-- <p-multiSelect 
+                  [options]="items" 
+                  [(ngModel)]="service.type" 
+                  optionLabel="name"  
+                  [filter]="true"
+                  placeholder="Seleccionar opciones" 
+                  [ngModelOptions]="{standalone: true}"
+                  display="chip">
+                </p-multiSelect> -->
+                <!-- <ng-select [items]="options" bindLabel="name" bindValue="id" [(ngModel)]="service.type" [multiple]="true">
+                </ng-select> -->
+                <ng-select [items]="types" bindLabel="name" bindValue="value" name="type" [(ngModel)]="service.type" [multiple]="true" [clearable]="false">
+                </ng-select>
+
+              </div>
             </div>
-            <label for="" class="col-xs-3 col-sm-auto col-form-label"><b>Search by state(s):</b></label>
-            <div class="col-xs-3 col-sm-auto">
-              <select class="form-select" size="3" name="state" multiple [(ngModel)]="service.state">
-                  <option value="all">All</option>
-                  <option value="Vivo">Alive</option>
-                  <option value="Vendido">Sold</option>
-                  <option value="Muerto">Die</option>
-              </select>
+            <div class="col-3">
+              <label for="" class="col-xs-3 col-sm-auto col-form-label"><b>Search by state(s):</b></label>
+              <div class="col-xs-3 col-sm-auto">
+                <!-- <select class="form-select" size="3" name="state" multiple [(ngModel)]="service.state">
+                    <option value="all">All</option>
+                    <option value="Vivo">Alive</option>
+                    <option value="Vendido">Sold</option>
+                    <option value="Muerto">Die</option>
+                </select> -->
+                <ng-select [items]="states" bindLabel="name" bindValue="value" name="state" [(ngModel)]="service.state" [multiple]="true" [clearable]="false">
+                </ng-select>
+              </div>
             </div>
-            <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label"><b>Search by name or DIIO:</b></label>
-            <div class="col-xs-3 col-sm-auto">
-              <input
-                id="table-complete-search"
-                type="text"
-                class="form-control"
-                name="searchTerm"
-                placeholder="e.g: Sin arete"
-                [(ngModel)]="service.searchTerm"
-              />
+            <div class="col-3">
+              <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label"><b>Search by name or DIIO:</b></label>
+              <div class="col-xs-3 col-sm-auto">
+                <input
+                  id="table-complete-search"
+                  type="text"
+                  class="form-control"
+                  name="searchTerm"
+                  placeholder="e.g: Sin arete"
+                  [(ngModel)]="service.searchTerm"
+                />
+              </div>
             </div>
             <!-- <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...   
             <div class="spinner-border text-success" role="status">
@@ -94,7 +122,8 @@
                   <th scope="col">Image</th>
                   <!--th scope="col" (sort)="onSort($event)" sortable="name">Name {{direccion=='asc'?'↑':'↓'}}</th--> 
                   <th scope="col" (sort)="onSort($event)" sortable="name">Name</th>
-                  <th scope="col" (sort)="onSort($event)" sortable="diio">DIIO</th>
+                  <!-- <th scope="col" (sort)="onSort($event)" hidden sortable="diio">DIIO</th> -->
+                  <th scope="col" >DIIO</th>
                   <th scope="col" (sort)="onSort($event)" sortable="datePlacement">Date Placement</th>
                   <th scope="col" (sort)="onSort($event)" sortable="dateBirth">Date Birth</th>
                   <th scope="col" >Mother</th>
@@ -131,9 +160,11 @@
                     <td>
                       <ngb-highlight [result]="country.name" [term]="service.searchTerm"></ngb-highlight>
                     </td>
-                    <td><ngb-highlight [result]="country.diio" [term]="service.searchTerm"></ngb-highlight></td>
-                    <td><ngb-highlight [result]=" country.datePlacement!=null?(country.datePlacement | date:'dd/MM/yyyy'):'No aplica'" [term]="service.searchTerm"></ngb-highlight></td>
-                    <td><ngb-highlight [result]=" country.dateBirth | date:'dd/MM/yyyy'" [term]="service.searchTerm"></ngb-highlight></td>
+                    <!-- <td hidden ><ngb-highlight [result]="country.diio" [term]="service.searchTerm"></ngb-highlight></td> -->
+                    <!-- <td>{{formatDiio(country.diio)}}</td> -->
+                    <td><ngb-highlight [result]="formatDiio(country.diio)" [term]="service.searchTerm"></ngb-highlight></td>
+                    <td><ngb-highlight [result]=" country.datePlacement!=null?(country.datePlacement | date:'dd/MM/yyyy'):'No aplica'" ></ngb-highlight></td>
+                    <td><ngb-highlight [result]=" country.dateBirth | date:'dd/MM/yyyy'"></ngb-highlight></td>
                     <td><ngb-highlight [style]="{'cursor': (country.idMother!=0) ? 'pointer' : ''}" (click)="country.idMother!=0 && editBovine(country.idMother)" [result]="country.mother" [term]="service.searchTerm"></ngb-highlight></td>
                     <td><ngb-highlight [result]="country.type" [term]="service.type"></ngb-highlight></td>
                     <td>{{country.age}}</td>

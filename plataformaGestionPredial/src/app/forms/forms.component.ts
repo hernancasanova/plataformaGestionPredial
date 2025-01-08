@@ -126,31 +126,29 @@ export class FormsComponent implements OnInit {
   }
 
 
-  /*async registerDocument(): Promise<void> 
-  {
-    this.loading2=true;
-    let documento: any = {};
-    documento.name=(document.getElementById('name') as HTMLInputElement).value;
-    documento.description=(document.getElementById('description') as HTMLInputElement).value;
-    let type=documento.type=(document.getElementById('type') as HTMLInputElement).value;
-    try{                 
-      const formData = new FormData();
-      formData.append('name', (document.getElementById('name') as HTMLInputElement).value);
-      formData.append('description', (document.getElementById('description') as HTMLInputElement).value);
-      formData.append('type', type);
-      formData.append('file', (document.getElementById('archivo') as HTMLInputElement)?.files?.item(0) as any);
-      console.log("formData: ",formData.getAll("name"))
-      let response: any = await fetch("http://localhost:8006/register",
-                        {method:"POST",
-                          body:formData,
-                        })
-                        .then(x=>x.json())
-                        .then(x=>{setTimeout(()=>{},2000);this.loading2=false; return x;})
-                        .catch(error=>console.log(error));   
-    }catch{
-      console.log("fallo")
-    }
-  }*/
+  filterOptions(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+    console.log("filterValue: ",filterValue)
+    //this.filteredOptions = this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
 
+  selectedCar: any=1;
+
+  items = [
+    { id: 1, name: 'Opción 1' },
+    { id: 2, name: 'Opción 2' },
+    { id: 3, name: 'Opción 3' }
+  ];
+
+
+  options = ['Opción 1', 'Opción 2', 'Opción 3', 'Opción 4'];
+  filteredOptions = this.options;
+  searchTerm: string = '';
+
+  // filterOptions() {
+  //   this.filteredOptions = this.options.filter(option =>
+  //     option.toLowerCase().includes(this.searchTerm.toLowerCase())
+  //   );
+  // }
 
 }

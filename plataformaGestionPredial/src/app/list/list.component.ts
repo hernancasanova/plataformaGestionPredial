@@ -14,6 +14,7 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable'
 import autoTable from 'jspdf-autotable';
 import { CarouselModule } from '../shared/carousel/carousel.module';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
 	selector: 'ngbd-table-complete',
@@ -28,7 +29,8 @@ import { CarouselModule } from '../shared/carousel/carousel.module';
 		NgbPaginationModule,
 		CarouselModule,
 		NgIf,
-		DatePipe
+		DatePipe,
+		NgSelectModule
 	],
 	templateUrl: './list.component.html',
 	providers: [CountryService, DecimalPipe],
@@ -73,18 +75,18 @@ import { CarouselModule } from '../shared/carousel/carousel.module';
 			}
 			
 			th.asc::after {
-  content: "\f062"; /* Font Awesome chevron-up */
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900; /* Font Awesome icon font weight */
-  margin-left: 5px;
-}
+				content: "\f062"; /* Font Awesome chevron-up */
+				font-family: "Font Awesome 5 Free";
+				font-weight: 900; /* Font Awesome icon font weight */
+				margin-left: 5px;
+			}
 
-th.desc::after {
-  content: "\f063"; /* Font Awesome chevron-down */
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  margin-left: 5px;
-}
+			th.desc::after {
+				content: "\f063"; /* Font Awesome chevron-down */
+				font-family: "Font Awesome 5 Free";
+				font-weight: 900;
+				margin-left: 5px;
+			}			
 
 		`,
 	],
@@ -124,6 +126,27 @@ export class ListComponent {
 		this.modalService.open(content, { modalDialogClass: 'dark-modal', centered:true });
 	}
     );
+	}
+
+	types = [
+		{ value: "all", name: 'All' },
+		{ value: "Ternero", name: 'Ternero' },
+		{ value: "Ternera", name: 'Ternera' },
+		{ value: "Vaquilla", name: 'Vaquilla' },
+		{ value: "Vaca", name: 'Vaca' },
+		{ value: "Buey", name: 'Buey' },
+		{ value: "Novillo", name: 'Novillo' }
+	];
+
+	states = [
+		{ value: "all", name: 'All' },
+		{ value: "Vivo", name: 'Alive' },
+		{ value: "Vendido", name: 'Sold' },
+		{ value: "Muerto", name: 'Die' }
+	];
+
+	formatDiio(input: string): string {
+		return input.replace(/^(\d{2})(\d{3})(\d{4})$/, '$1.$2.$3');
 	}
 
 	openFullscreen(content:any,id:number, name:string) {
