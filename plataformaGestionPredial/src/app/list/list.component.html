@@ -123,7 +123,7 @@
                   <!--th scope="col" (sort)="onSort($event)" sortable="name">Name {{direccion=='asc'?'↑':'↓'}}</th--> 
                   <th scope="col" (sort)="onSort($event)" sortable="name">Name</th>
                   <!-- <th scope="col" (sort)="onSort($event)" hidden sortable="diio">DIIO</th> -->
-                  <th scope="col" >DIIO</th>
+                  <th scope="col" (sort)="onSort($event)" sortable="diio" >DIIO</th>
                   <th scope="col" (sort)="onSort($event)" sortable="datePlacement">Date Placement</th>
                   <th scope="col" (sort)="onSort($event)" sortable="dateBirth">Date Birth</th>
                   <th scope="col" >Mother</th>
