@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
     router.events.subscribe(e=>{
       if(e instanceof NavigationEnd ){
         this.uri=e.url.replace("/","")
-        console.log("this.uri: ",this.uri)
         if(this.uri=="login"){
           this.textButton="Login"
           this.action=this.login

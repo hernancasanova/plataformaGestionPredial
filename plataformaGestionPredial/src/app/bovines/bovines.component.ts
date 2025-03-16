@@ -27,6 +27,7 @@ export class BovinesComponent implements OnInit {
                 {name:"image old",type:"file", value:"", required:false, full:false, textInfo:"Selected image will replace the Old image"},
                 {name:"main image",type:"select", value:"", required:false, options:[{name:"Young image",value:"1",selected:""},{name:"Old image",value:"2",selected:""}], full:true},
                 {name:"name",type:"text", value:"", required:true, placeholder:"Eg: My cow", full:true},
+                {name:"DIIO",type:"numeric", value:"", required:false, placeholder:"", full:true, disabled:true},
                 {name:"date birth",type:"date", value:"",required:true, full:true},
                 {name:"mother",type:"select", value:"", required:true, options:[], full:true},
                 {name:"image-mother",type:"image",id:"",text:"Mother selected:", info:"", full:true, url:""},
@@ -36,7 +37,7 @@ export class BovinesComponent implements OnInit {
                 {name:"type",type:"select",value:"", required:true, options:[{name:"Ternero",value:"1",selected:""},{name:"Ternera",value:"2",selected:""},{name:"Toro",value:"3", selected:""},{name:"Vaquilla",value:"4", selected:""},{name:"Vaca",value:"5",selected:""},{name:"Buey",value:"6",selected: ""},{name:"Novillo",value:"7", selected:""}], full:true},
                 {name:"color",type:"select",value:"", required: true, options:[{name:"Clavel(a)",value:"1",selected:""},{name:"Overo(a)",value:"2",selected:""},{name:"Blanco(a)",value:"3",selected:""},{name:"Colorado(a)",value:"4", selected:""},{name:"Amarillo(a)",value:"5",selected:""}], full:true},
                 {name:"race",type:"select",value:"", required: false, options:[{name:"Holstein",value:"1",selected:""},{name:"Hereford",value:"2",selected:""},{name:"Angus",value:"3",selected:""},{name:"Angus Rojo",value:"4", selected:""}], full:true},
-                {name:"state",type:"select",value:"", required: true, options:[{name:"Vivo",value:"1", selected:""},{name:"Muerto",value:"2", selected:""}], full:true},
+                {name:"state",type:"select",value:"", required: true, options:[{name:"Muerto",value:"1", selected:""},{name:"Vivo",value:"2", selected:""}], full:true, disabled:false},
                 {name:"date sale",type:"date", value:"", required:false, full:true},
                 {name:"internal verification",type:"checkbox", value:"", required:false, full:true},
                 {name:"verified SAG",type:"checkbox", value:"", required:false, full:true},
@@ -139,7 +140,7 @@ export class BovinesComponent implements OnInit {
       //if((e.name=="image-mother" && event.target.id=="mother") || (e.name=="image-father" && event.target.id=="father")){
       if((e.name=="image-mother" && event.target.id=="mother") || (e.name=="image-father" && event.target.id=="father")){
         e.id=event.target.value
-        e.url="http://localhost:8006/images/bovines/old/"+event.target.value
+        e.url="http://localhost:8006/images/bovines/old/"+event.target.value//dejar así por el momento, ya que la información no hace referencia al bovino en cuestion 
       }
     })
   }
@@ -167,16 +168,16 @@ export class BovinesComponent implements OnInit {
             //     o.selected="selected"
             //   }
             // })
-            element.value=b.mother
+            element.value=b.idMother
           }if(element["name"]=="father"){
             element["options"]=this.fathers;
-            element.value=b.father
+            element.value=b.idFather
           }else if (element["name"]=="image-mother"){
-            element["id"]=b.mother
-            element.url="http://localhost:8006/images/bovines/old/"+b.mother
+            element["id"]=b.idMother
+            element.url="http://localhost:8006/images/bovines/old/"+b.idMother
           }else if (element["name"]=="image-father"){
-            element["id"]=b.father
-            element.url="http://localhost:8006/images/bovines/old/"+b.father
+            element["id"]=b.idFather
+            element.url="http://localhost:8006/images/bovines/old/"+b.idFather
           }else if (element["name"]=="old image"){
             element["id"]=b.id
             element.url="http://localhost:8006/images/bovines/old/"+b.id
@@ -187,8 +188,10 @@ export class BovinesComponent implements OnInit {
             element["required"]=false
           }else if(element["name"]=="name"){
             element["value"]=b.name
+          }else if(element["name"]=="DIIO"){
+            element.value=b.diio
           }else if(element["name"]=="date birth"){
-            let date=b.date_birth.split("T")
+            let date=b.dateBirth.split("T")
             element["value"]=date[0]
           }else if(element["name"]=="sex"){
             element.options.forEach((o:any)=>{
@@ -214,20 +217,20 @@ export class BovinesComponent implements OnInit {
               }
             })
           }else if(element["name"]=="date sale"){
-            if(b.date_sale){
-              if(b.date_sale.includes("T")){
-                this.date=b.date_sale.split("T")
-              } else if (b.date_sale.includes("")){
-                this.date=b.date_sale.split(" ")
+            if(b.dateSale){
+              if(b.dateSale.includes("T")){
+                this.date=b.dateSale.split("T")
+              } else if (b.dateSale.includes("")){
+                this.date=b.dateSale.split(" ")
               }
               element["value"]=this.date[0]
             }
           }else if(element["name"]=="verified SAG"){
-            element["value"]=b.verified_sag=="S"?true:false
+            element["value"]=b.verifiedSag=="SÍ"?true:false
           }else if(element["name"]=="internal verification"){
-            element["value"]=b.internal_verification=="S"?true:false
+            element["value"]=b.internalVerification=="SÍ"?true:false
           }else if(element["name"]=="main image"){
-            element["value"]=b.main_image
+            element["value"]=b.mainImage
           }
         });
       })

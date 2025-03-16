@@ -31,4 +31,8 @@ public interface BovineDto{
 	String getState();
 	String getDateSale();
 	int getMainImage();
+	String getSex();
+	//int getIdType();
+	//String getColor();
+	
 }

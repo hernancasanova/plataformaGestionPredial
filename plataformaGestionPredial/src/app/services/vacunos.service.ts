@@ -39,4 +39,9 @@ export class VacunosService{
     //return this.http.post("http://localhost:8006/bovines/create",JSON.stringify(bovine),httpOptions);//FUNCIONANDO
     return this.http.post("http://localhost:8006/bovines/create",formData);
   }
+
+  public deleteBovine(id:number):Observable<any>{
+    return this.http.post("http://localhost:8006/bovines/"+id+"/delete",null);
+  }
+
 }

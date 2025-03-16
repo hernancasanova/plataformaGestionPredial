@@ -132,6 +132,7 @@ export class ListComponent {
 		{ value: "all", name: 'All' },
 		{ value: "Ternero", name: 'Ternero' },
 		{ value: "Ternera", name: 'Ternera' },
+		{ value: "Toro", name:'Toro'},
 		{ value: "Vaquilla", name: 'Vaquilla' },
 		{ value: "Vaca", name: 'Vaca' },
 		{ value: "Buey", name: 'Buey' },

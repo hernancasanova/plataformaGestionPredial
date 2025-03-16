@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.io.Files;
 import com.pgp.dto.BovineDto;
+import com.pgp.dto.BovineIdentifierDto;
 import com.pgp.dto.ChildrenDto;
 import com.pgp.models.Bovine;
 import com.pgp.services.IBovineService;
@@ -53,8 +54,8 @@ public class BovineController {
 	
 	@GetMapping("/bovines/{id}")
 	//public List<Collection> bovines(){
-	public Bovine bovine(@PathVariable Long id){
-		return bovineService.findById(id);
+	public BovineIdentifierDto bovine(@PathVariable Long id){
+		return bovineService.get(id);
 	}
 	
 	/*@GetMapping(value = "/image", produces = MediaType.IMAGE_JPEG_VALUE)
