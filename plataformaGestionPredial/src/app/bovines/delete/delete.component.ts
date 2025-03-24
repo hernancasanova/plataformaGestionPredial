@@ -19,16 +19,28 @@ export class DeleteComponent implements OnInit {
   //mothers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
   causes: Array<any>=[];
   fields: Array<any> = [
-                {name:"bovine",type:"image",id:"",text:"Current image:", info:""},
+                //{name:"bovine",type:"image",id:"",text:"Current image:", info:""},
+                {name:"bovine",type:"image",id:"",text:"Current image:", info:"", full:false, url:""},
                 {name:"name",type:"text", value:"", required:true, placeholder:"Eg: My cow"},
                 //{name:"reason",type:"select", value:"", required:true, options:[{name:"Enfermedad",value:"1",selected:""},{name:"Muerte natural",value:"2",selected:""},{name:"Otro (agregar en observación)",value:"3",selected:""}]},
                 {name:"reason",type:"select", value:"", required:true, options:this.causes},
                 {name:"aditional observation",type:"text", value:"", required:false, placeholder:""},
+                {name:"date death",type:"date", value:"", required:true, full:true},
                 //{name:"Create",type:"submit"}
               ];
 
   registerBovine=():number=>{
     return 2;
+  }
+
+  desplegarImagenBovino=(event:any):void=>{
+    console.log("event: ",event)
+    this.fields.forEach(e => {
+      if((e.name=="bovine" && event.target.id=="mother") || (e.name=="image-father" && event.target.id=="father")){
+        e.id=event.target.value
+        e.url="http://localhost:8006/images/bovines/old/"+event.target.value//dejar así por el momento, ya que la información no hace referencia al bovino en cuestion 
+      }
+    })
   }
 
   async getCausesDeath(): Promise<void> 
@@ -89,13 +101,13 @@ export class DeleteComponent implements OnInit {
     
   }
 
-  desplegarImagenBovino=(event:any):void=>{
+  /*desplegarImagenBovino=(event:any):void=>{
     // this.fields.forEach(e => {
     //   if(e.name=="image-mother" && event.target.id=="mother" ){
     //     e.id=event.target.value
     //   }
     // })
-  }
+  }*/
 
   ngOnInit(): void {
     this.setBovine();
@@ -119,6 +131,7 @@ export class DeleteComponent implements OnInit {
         this.fields.forEach(element => {
           if (element["name"]=="bovine"){
             element["id"]=b.id
+            element.url="http://localhost:8006/images/bovines/young/"+b.id
           }else if (element["type"]=="file"){//name=image
             element["required"]=false
           }else if(element["name"]=="name"){

@@ -29,6 +29,7 @@ import { BusinessModule } from './business/business.module';
 import { WorksModule } from './works/works.module';
 //import { DataTablesModule } from "angular-datatables";
 import { TableModule } from './shared/table/table.module';
+import { VeterinaryModule } from './veterinary/veterinary.module';
 //import { ToastGlobalComponent } from './toast-global/toast-global.component';
 
 
@@ -60,6 +61,7 @@ import { TableModule } from './shared/table/table.module';
     //TablesModule,
     //DataTablesModule,
     IdentifiersModule,
+    VeterinaryModule,
     BovinesModule,
     DocumentsModule,
     MachinesModule,

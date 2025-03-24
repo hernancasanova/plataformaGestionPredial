@@ -4,11 +4,11 @@ import { IdentifierService } from '../services/identifier.service';
 import { VacunosService } from '../services/vacunos.service';
 
 @Component({
-  selector: 'app-identifiers',
-  templateUrl: './identifiers.component.html',
-  styleUrls: ['./identifiers.component.css']
+  selector: 'app-veterinary',
+  templateUrl: './veterinary.component.html',
+  styleUrls: ['./veterinary.component.css']
 })
-export class IdentifiersComponent implements OnInit {
+export class VeterinaryComponent implements OnInit {
   setImageBovine=(bovine:any):void=>{
     console.log("bovine: ",bovine.target.value)
   }
@@ -16,12 +16,12 @@ export class IdentifiersComponent implements OnInit {
   newIdentifier:Object={};
   bovines:Array<any>=[];
   date:Array<string>=[];
-  configurations: any = {title:"Create identifier", loading:false,textButton:"Create", initialLoading:false};
+  configurations: any = {title:"Create veterinary work", loading:false,textButton:"Create", initialLoading:false};
   fields: Array<any> = [
                 //{name:"image",type:"file"},
-                {name:"DIIO",type:"numeric", value:"", required:true , placeholder:"Eg: 014628273", minlength:9, maxlength:9},
-                {name:"date placement",type:"date", value:"", required:true},
-                {name:"bovine",type:"select2",value:"", required: true, options:[], change: this.setImageBovine },
+                //{name:"DIIO",type:"numeric", value:"", required:true , placeholder:"Eg: 014628273", minlength:9, maxlength:9},
+                {name:"date",type:"date", value:"", required:true},
+                {name:"bovine",type:"select",value:"", required: true, options:[], multiple:false, change: this.setImageBovine },
                 //{name:"image-bovine",type:"image",id:"",text:"Bovine selected:", info:""},
                 {name:"image-bovine",type:"image",id:"",text:"Bovine selected:", info:"", full:true, url:""},
                 // {name:"bovine",type:"image",id:"",text:"Current image", info:"Select a new image to replace the current image"},
@@ -29,7 +29,7 @@ export class IdentifiersComponent implements OnInit {
                 // {name:"name",type:"text", value:"", required:true},
                 // {name:"date birth",type:"date", value:"",required:true},
                 // {name:"mother",type:"select", value:"", required:true, options:[]},
-                // {name:"sex",type:"select", value:"", required:true, options:[{name:"Macho",value:"1",selected:""},{name:"Hembra",value:"2",selected:""}]},
+                {name:"type",type:"select", value:"", required:true, options:[{name:"Desparasitado",value:"1",selected:""},{name:"Inyección",value:"2",selected:""},{name:"Identificación",value:"3",selected:""}]},
                 // {name:"type",type:"select",value:"", required:true, options:[{name:"Ternero",value:"1",selected:""},{name:"Ternera",value:"2",selected:""},{name:"Toro",value:"3", selected:""},{name:"Vaquilla",value:"4", selected:""},{name:"Vaca",value:"5",selected:""},{name:"Buey",value:"6",selected: ""},{name:"Novillo",value:"7", selected:""}]},
                 // {name:"color",type:"select",value:"", required: true, options:[{name:"Clavel(a)",value:"1",selected:""},{name:"Overo(a)",value:"2",selected:""},{name:"Blanco(a)",value:"3",selected:""},{name:"Colorado(a)",value:"4", selected:""},{name:"Amarillo(a)",value:"5",selected:""}]},
                 // {name:"state",type:"select",value:"", required: true, options:[{name:"Vivo",value:"1", selected:""},{name:"Muerto",value:"2", selected:""}]},

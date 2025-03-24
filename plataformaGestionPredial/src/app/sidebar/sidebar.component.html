@@ -69,6 +69,27 @@
 </div>
 
 
+
+<!-- VETERINARIA -->
+<div class="row menu" (click)="changeOpenLinks(7)">
+    <div class="col-3">
+        <i class="fa-solid fa-user-doctor"></i>
+    </div>
+    <div class="col-9">
+        <!-- <a class="nav-link" >Identificadores<i class="bi bi-caret-right"></i></a> -->
+        <a class="nav-link" >Veterinary
+            <i [ngClass]="menus[6].open ? 'bi bi-caret-down' : 'bi bi-caret-right'"></i>
+        </a>
+    </div>
+</div>
+<div *ngIf="menus[6].open" class="row submenu">
+    <ul>
+        <li routerLink="/veterinary" id="5"(click)="addClass(5)"><i class="fa-solid fa-list-ol"></i>List<span class="badge badge-secondary"></span></li>
+       <li routerLink="/veterinary/create" id="6"(click)="addClass(6)"><i class="fa-solid fa-plus"></i>Create<span class="badge badge-secondary"></span></li>
+    </ul>
+</div>
+
+
 <!-- NEGOCIOS -->
 <div class="row menu" (click)="changeOpenLinks(4)">
     <div class="col-3">
@@ -175,10 +196,10 @@
 
 <!-- <a id="btnLogout" href="logout" (click)="logout();" style="float: right;padding-right: 2%;"><i class="fa-solid fa-arrow-right-from-bracket"></i>Exit?</a> -->
 
-<!-- Instalaciones
-<div class="row menu" routerLink="/">
+<!-- Instalaciones -->
+<!-- <div class="row menu" routerLink="/">
     <div class="col-3">
-        <i class="fa-sharp fa-solid fa-farm"></i>
+        <i class="fa-solid fa-user-doctor"></i>
     </div>
     <div class="col-9">
         <a class="nav-link" >Dependencias<span class="badge badge-secondary">PRO</span></a>

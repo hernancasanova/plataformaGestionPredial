@@ -18,6 +18,7 @@ import { MainComponent } from './main/main.component';
 import { ProComponent } from './shared/pro/pro.component';
 import { TableComponent } from './shared/table/table.component';
 import { WorksComponent } from './works/works.component';
+import { VeterinaryComponent } from './veterinary/veterinary.component';
 //import { TableComponent } from './table/table.component';
 
 const routes: Routes = [
@@ -38,6 +39,8 @@ const routes: Routes = [
       { path: 'documents/create', component: DocumentsComponent, data:{type:"documents"}},
       { path: 'identifiers', component: ListIdentifiersComponent, data:{type:"identifiers"}},
       { path: 'identifiers/create', component: IdentifiersComponent, data:{type:"identifiers"}},
+      { path: 'veterinary', component: ListIdentifiersComponent, data:{type:"identifiers"}},
+      { path: 'veterinary/create', component: VeterinaryComponent, data:{type:"identifiers"}},
       //{ path: 'list', component: ListComponent, data:{type:"list"}},//ListComponent    inputs
       { path: 'business', component: BusinessComponent},
       { path: 'works', component: WorksComponent},
