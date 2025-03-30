@@ -30,6 +30,7 @@ export class VeterinaryComponent implements OnInit {
                 // {name:"date birth",type:"date", value:"",required:true},
                 // {name:"mother",type:"select", value:"", required:true, options:[]},
                 {name:"type",type:"select", value:"", required:true, options:[{name:"Desparasitado",value:"1",selected:""},{name:"Inyección",value:"2",selected:""},{name:"Identificación",value:"3",selected:""}]},
+                {name:"observation",type:"textarea", value:"", required:false},
                 // {name:"type",type:"select",value:"", required:true, options:[{name:"Ternero",value:"1",selected:""},{name:"Ternera",value:"2",selected:""},{name:"Toro",value:"3", selected:""},{name:"Vaquilla",value:"4", selected:""},{name:"Vaca",value:"5",selected:""},{name:"Buey",value:"6",selected: ""},{name:"Novillo",value:"7", selected:""}]},
                 // {name:"color",type:"select",value:"", required: true, options:[{name:"Clavel(a)",value:"1",selected:""},{name:"Overo(a)",value:"2",selected:""},{name:"Blanco(a)",value:"3",selected:""},{name:"Colorado(a)",value:"4", selected:""},{name:"Amarillo(a)",value:"5",selected:""}]},
                 // {name:"state",type:"select",value:"", required: true, options:[{name:"Vivo",value:"1", selected:""},{name:"Muerto",value:"2", selected:""}]},
