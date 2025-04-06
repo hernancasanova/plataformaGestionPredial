@@ -190,6 +190,7 @@ export class BovinesComponent implements OnInit {
             element["value"]=b.name
           }else if(element["name"]=="DIIO"){
             element.value=b.diio.replace(/^(\d{2})(\d{3})(\d{4})$/, '$1.$2.$3')
+            //element.disabled=true
           }else if(element["name"]=="date birth"){
             let date=b.dateBirth.split("T")
             element["value"]=date[0]

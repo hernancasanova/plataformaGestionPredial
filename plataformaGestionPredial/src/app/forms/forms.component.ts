@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AsyncPipe, DatePipe, DecimalPipe, NgFor, NgIf, Location } from '@angular/common';
 import Swal from 'sweetalert2';
@@ -77,7 +77,7 @@ export class FormsComponent implements OnInit {
 	// 	return toast.textOrTpl instanceof TemplateRef;
 	// }
 
-  constructor(private location: Location, private sanitizer:DomSanitizer, private router: Router, private modalService: NgbModal) { 
+  constructor(private location: Location, private sanitizer:DomSanitizer, private router: Router, private modalService: NgbModal, private cdr: ChangeDetectorRef) { 
     router.events.subscribe(e=>{
       if(e instanceof NavigationEnd ){
         this.titlePage=e.url;
@@ -132,13 +132,6 @@ export class FormsComponent implements OnInit {
     //this.filteredOptions = this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  selectedCar: any=1;
-
-  items = [
-    { id: 1, name: 'Opción 1' },
-    { id: 2, name: 'Opción 2' },
-    { id: 3, name: 'Opción 3' }
-  ];
 
 
   options = ['Opción 1', 'Opción 2', 'Opción 3', 'Opción 4'];
@@ -150,5 +143,30 @@ export class FormsComponent implements OnInit {
   //     option.toLowerCase().includes(this.searchTerm.toLowerCase())
   //   );
   // }
+
+
+  onInputChange(value: string, field: any): void {
+    let numericValue = value.replace(/\D+/g, '');
+    if (field.name === 'DIIO') {
+        if (numericValue.length >= 2) {
+            numericValue = numericValue.replace(/^(\d{2})(\d{0,3})(\d{0,4})$/, '$1.$2.$3');
+        }
+    }
+
+    if (numericValue.length < 2) {
+      numericValue = numericValue.replace(/\./g, '');
+    }
+
+    if (numericValue.endsWith('.')) {
+        numericValue = numericValue.slice(0, -1);
+    }
+
+    setTimeout(() => {
+        field.value = numericValue;
+        if (numericValue.endsWith('.')) {
+          field.value = numericValue.slice(0, -1);
+      }
+    }, 1);
+  }
 
 }

@@ -89,7 +89,19 @@
                             </div>
                             <div *ngIf="field.type=='numeric'" [ngClass]="field.full==false ? 'form-group mb-2 col-6' : 'form-group mb-2'">
                                 <label for="{{field.name}}">{{field.name}}<span *ngIf="field.required"> *</span></label>
-                                <input inputmode="numeric" oninput="this.value = this.value.replace(/\D+/g, '')" class="form-control"  id="{{field.name}}" [(ngModel)]="field.value" name="{{field.name}}" [required]="field.required" #i="ngModel" placeholder="{{field.placeholder}}" minlength="{{field.minlength?field.minlength:1000}}" maxlength="{{field.maxlength?field.maxlength:1000}}" [disabled]="field.disabled">
+                                <input 
+                                inputmode="numeric"
+                                (ngModelChange)="onInputChange($event, field)"
+                                class="form-control"
+                                id="{{field.name}}"
+                                [(ngModel)]="field.value"
+                                name="{{field.name}}"
+                                [required]="field.required"
+                                #i="ngModel"
+                                placeholder="{{field.placeholder}}"
+                                minlength="{{field.minlength ? field.minlength : 11}}"
+                                maxlength="{{field.maxlength ? field.maxlength : 11}}"
+                                [disabled]="field.disabled">
                                 <div  *ngIf="i.invalid && (i.dirty || i.touched)">
                                     <div *ngIf="i.errors?.required">
                                         <p class="text-alert">{{field.name}} is required</p>

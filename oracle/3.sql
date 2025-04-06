@@ -61,6 +61,17 @@ CREATE TABLE "WORKERS" (
 );
 
 
+CREATE TABLE "VETERINARY" (
+	ID INTEGER,
+	DATE_WORK DATE,
+    BOVINE INTEGER,
+    TYPE INTEGER,
+    OBSERVATION NVARCHAR2(100),
+	CONSTRAINT VETERINARY_PK PRIMARY KEY (ID), 
+	FOREIGN KEY(BOVINE) REFERENCES BOVINES(ID)
+);
+
+
 CREATE TABLE "WORKS" (
 	ID INTEGER,
 	NAME NVARCHAR2(100),
@@ -85,6 +96,9 @@ INSERT INTO "TYPES_BOVINES" (ID,NAME,DESCRIPTION) VALUES (7,'Novillo',NULL);
 
 INSERT INTO "DEATH_CAUSES" (ID,NAME,DESCRIPTION) VALUES (1,'Mancha','Es una infección transmitida por el suelo, en bovinos es adquirida a partir de la ingestión de alimentos contaminados o por dientes en erupción');
 INSERT INTO "DEATH_CAUSES" (ID,NAME,DESCRIPTION) VALUES (2,'Diarrea','');
+INSERT INTO "DEATH_CAUSES" (ID,NAME,DESCRIPTION) VALUES (3,'Fascioliasis','Enfermedad parasitaria comunmente llamada pirihuín');
+INSERT INTO "DEATH_CAUSES" (ID,NAME,DESCRIPTION) VALUES (4,'Muerte natural','');
+INSERT INTO "DEATH_CAUSES" (ID,NAME,DESCRIPTION) VALUES (5,'Carneo','');
 
 CREATE TABLE "BOVINES" (
 	ID INTEGER,
@@ -229,6 +243,36 @@ BEGIN
         END IF; 
     END IF;
   END LOOP;
+END;
+
+
+/
+
+GRANT CREATE JOB TO HERNAN;
+GRANT MANAGE SCHEDULER TO HERNAN;
+
+BEGIN
+   LOOP
+      -- Verifica si el procedimiento existe
+      BEGIN
+         EXECUTE IMMEDIATE 'BEGIN HERNAN.UPDATETOHEIFER; END;';
+         EXIT; -- Si no hay error, sale del loop
+      EXCEPTION
+         WHEN OTHERS THEN
+            NULL; -- Si no existe, sigue verificando
+      END;
+      DBMS_LOCK.SLEEP(1); -- Espera un segundo antes de volver a intentar
+   END LOOP;
+
+   -- Crea el trabajo
+   DBMS_SCHEDULER.CREATE_JOB(
+      job_name        => 'UPDATETOHEIFERJOB',
+      job_type        => 'STORED_PROCEDURE',
+      job_action      => 'HERNAN.UPDATETOHEIFER',
+      start_date      => TO_TIMESTAMP_TZ('2025-01-16 12:15:45.0 America/Santiago', 'yyyy-mm-dd hh24:mi:ss.ff tzr'),
+      repeat_interval => 'FREQ=DAILY',
+      enabled         => TRUE
+   );
 END;
 
 
