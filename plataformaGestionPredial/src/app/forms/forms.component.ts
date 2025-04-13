@@ -6,6 +6,7 @@ import {ViewEncapsulation} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgSelectConfig } from '@ng-select/ng-select';
 
 
 @Component({
@@ -84,7 +85,8 @@ export class FormsComponent implements OnInit {
 	// 	return toast.textOrTpl instanceof TemplateRef;
 	// }
 
-  constructor(private location: Location, private sanitizer:DomSanitizer, private router: Router, private modalService: NgbModal, private cdr: ChangeDetectorRef) { 
+  constructor(private location: Location, private sanitizer:DomSanitizer, private router: Router, private modalService: NgbModal, private cdr: ChangeDetectorRef, private config: NgSelectConfig) { 
+    //this.config.notFoundText = 'No se han encontrado resultados';//funciona
     router.events.subscribe(e=>{
       if(e instanceof NavigationEnd ){
         this.titlePage=e.url;
@@ -108,17 +110,19 @@ export class FormsComponent implements OnInit {
 
   handleFileInput(e:any) {//revisar porque hay error
     let file = e.target.files[0];
-    let blob = new Blob([file], { type: file.type });
-    let url = window.URL.createObjectURL(blob); 
-    //this.srcPreview = this.sanitizer.bypassSecurityTrustUrl(url);
-    (document.getElementById('preview-'+e.target.id) as HTMLImageElement).src=url;
-    //this.url_bovine_local=this.sanitizer.bypassSecurityTrustUrl(url);
-    //this.bovine=0;
-    if(this.titlePage.includes("edit")){
-      this.icon = true;
+    if(file){
+      let blob = new Blob([file], { type: file.type });
+      let url = window.URL.createObjectURL(blob); 
+      //this.srcPreview = this.sanitizer.bypassSecurityTrustUrl(url);
+      (document.getElementById('preview-'+e.target.id) as HTMLImageElement).src=url;
+      //this.url_bovine_local=this.sanitizer.bypassSecurityTrustUrl(url);
+      //this.bovine=0;
+      if(this.titlePage.includes("edit")){
+        this.icon = true;
+      }
+      //this.srcPreview=URL.createObjectURL(e.target.files[0]);
+      this.files.push(e.target.files[0]);
     }
-    //this.srcPreview=URL.createObjectURL(e.target.files[0]);
-    this.files.push(e.target.files[0]);
   }
 
   formValid():boolean{

@@ -138,10 +138,9 @@
                                 <ng-select [items]="field.options"
                                         bindLabel="name"
                                         bindValue="value"
-                                        no-results="Sin resultados"
                                         [clearable]="false"
                                         (change)="changeSelect($event)" name="{{field.name}}" [(ngModel)]="field.value" id="{{field.name}}" [required]="field.required" #i="ngModel"
-                                        no-results-text="gntrgbnkir" >
+                                         >
                                 </ng-select>
                                 <div  *ngIf="i.invalid && (i.dirty || i.touched)">
                                     <div *ngIf="i.errors?.required">
