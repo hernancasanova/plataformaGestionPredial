@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { VacunosService } from '../services/vacunos.service';
@@ -11,27 +11,60 @@ import Swal from 'sweetalert2'
 })
 export class BovinesComponent implements OnInit {
   id: number=0;
-  //name="";
   date:Array<string>=[];
   newBovine:Object={};
-  //bovineForm : string = "";
   configurations: any = {title:"Create bovine", loading:false, textButton:"Create", initialLoading:false};
   mothers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
   fathers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
+
+  displayBovineImage=(event:any):void=>{
+    this.fields.forEach(e => {
+      if((e.name=="image-mother" && event.target.id=="mother") || (e.name=="image-father" && event.target.id=="father")){
+        e.id=event.target.value
+        e.url="http://localhost:8006/images/bovines/old/"+event.target.value//dejar así por el momento, ya que la información no hace referencia al bovino en cuestion 
+      }
+    })
+  }
+
+  selectMainImage=(e:any):void=>{
+    if(e.target.value=="1"){
+      const fieldRequired = this.fields.find(f=>
+        f.name=="image young"
+      )
+      fieldRequired.required=true
+      const fieldNoRequired = this.fields.find(f=>
+        f.name=="image old"
+      )
+      fieldNoRequired.required=false
+    }else if(e.target.value=="2"){
+      const fieldRequired=this.fields.find(f=>
+        f.name=="image old"
+      )
+      fieldRequired.required=true
+      const fieldNoRequired=this.fields.find(f=>
+        f.name=="image young"
+      )
+      fieldNoRequired.required=false
+    }
+
+    this.cdr.detectChanges();
+    
+  }
+  
   fields: Array<any> = [
-                {name:"image young",type:"image",id:"",text:"Young image:", info:"↓ Select a new image to replace the young image", full:false, url:""},
+                {name:"young image",type:"image",id:"",text:"Young image:", info:"↓ Select a new image to replace the young image", full:false, url:""},
                 {name:"divider images bovines", type:"divider"},
                 {name:"old image",type:"image",id:"",text:"Old image:", info:"↓ Select a new image to replace the old image", full:false, url:""},
                 {name:"image young",type:"file", value:"", required:false, full:false, textInfo:"Selected image will replace the Young image"},
                 {name:"divider images bovines", type:"divider"},
                 {name:"image old",type:"file", value:"", required:false, full:false, textInfo:"Selected image will replace the Old image"},
-                {name:"main image",type:"select", value:"", required:false, options:[{name:"Young image",value:"1",selected:""},{name:"Old image",value:"2",selected:""}], full:true},
+                {name:"main image",type:"select", value:"", required:true, options:[{name:"Young image",value:"1",selected:""},{name:"Old image",value:"2",selected:""}], full:true, function: this.selectMainImage},
                 {name:"name",type:"text", value:"", required:true, placeholder:"Eg: My cow", full:true, disabled:false},
                 {name:"DIIO",type:"numeric", value:"", required:false, placeholder:"", full:true, disabled:true},
                 {name:"date birth",type:"date", value:"",required:true, full:true},
-                {name:"mother",type:"select", value:"", required:true, options:[], full:true},
+                {name:"mother",type:"select", value:"", required:true, options:[], full:true, function:this.displayBovineImage},
                 {name:"image-mother",type:"image",id:"",text:"Mother selected:", info:"", full:true, url:""},
-                {name:"father",type:"select", value:"", required:true, options:[], full:true},
+                {name:"father",type:"select", value:"", required:true, options:[], full:true, function:this.displayBovineImage},
                 {name:"image-father",type:"image",id:"",text:"Father selected:", info:"", full:true, url:""},
                 {name:"sex",type:"select", value:"", required:true, options:[{name:"Macho",value:"1",selected:""},{name:"Hembra",value:"2",selected:""}], full:true},
                 {name:"type",type:"select",value:"", required:true, options:[{name:"Ternero",value:"1",selected:""},{name:"Ternera",value:"2",selected:""},{name:"Toro",value:"3", selected:""},{name:"Vaquilla",value:"4", selected:""},{name:"Vaca",value:"5",selected:""},{name:"Buey",value:"6",selected: ""},{name:"Novillo",value:"7", selected:""}], full:true},
@@ -108,7 +141,7 @@ export class BovinesComponent implements OnInit {
     return 2;
   }
 
-  constructor(private router: Router, private vacunoService: VacunosService, private route: ActivatedRoute) {
+  constructor(private router: Router, private vacunoService: VacunosService, private route: ActivatedRoute, private cdr: ChangeDetectorRef) {
     this.configurations.initialLoading=true;
     this.vacunoService.getBovines()
     .subscribe(bs=>{
@@ -135,15 +168,6 @@ export class BovinesComponent implements OnInit {
     
   }
 
-  desplegarImagenBovino=(event:any):void=>{
-    this.fields.forEach(e => {
-      //if((e.name=="image-mother" && event.target.id=="mother") || (e.name=="image-father" && event.target.id=="father")){
-      if((e.name=="image-mother" && event.target.id=="mother") || (e.name=="image-father" && event.target.id=="father")){
-        e.id=event.target.value
-        e.url="http://localhost:8006/images/bovines/old/"+event.target.value//dejar así por el momento, ya que la información no hace referencia al bovino en cuestion 
-      }
-    })
-  }
 
   ngOnInit(): void {
   }
@@ -181,7 +205,7 @@ export class BovinesComponent implements OnInit {
           }else if (element["name"]=="old image"){
             element["id"]=b.id
             element.url="http://localhost:8006/images/bovines/old/"+b.id
-          }else if (element["name"]=="image young"){
+          }else if (element["name"]=="young image"){
             element["id"]=b.id
             element.url="http://localhost:8006/images/bovines/young/"+b.id
           }else if (element["type"]=="file"){//name=image

@@ -45,6 +45,13 @@ export class FormsComponent implements OnInit {
     this.cambioSelect.emit(event);
   }
 
+  onSelectChange(event: any, field: any) {
+    if (field.function && typeof field.function === 'function') {
+      const selectedValue = event.target.value;
+      field.function(event);
+    }
+  }
+
   openFullscreen(content:any, id: number, idElement:any, urlE:string) {
 		//this.title_modal="Bovine: ";
 		//this.list_content=[];
@@ -99,7 +106,7 @@ export class FormsComponent implements OnInit {
 
 
 
-  handleFileInput(e:any) {
+  handleFileInput(e:any) {//revisar porque hay error
     let file = e.target.files[0];
     let blob = new Blob([file], { type: file.type });
     let url = window.URL.createObjectURL(blob); 
