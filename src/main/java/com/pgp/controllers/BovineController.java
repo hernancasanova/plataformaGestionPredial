@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -118,6 +119,18 @@ public class BovineController {
         } catch (Exception e) {
             // Manejo de excepciones
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+	
+	@PutMapping("/bovines/{id}/delete")
+    public int deleteBovine(@PathVariable Long id) {
+        try {
+            bovineService.deleteBovine(id);
+            return 200;//cambiar
+        } catch (Exception e) {
+            // Manejo de excepciones
+            //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        	return 500;
         }
     }
 	

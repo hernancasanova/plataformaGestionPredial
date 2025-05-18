@@ -14,5 +14,5 @@ public interface IBovineService {
 	public BovineIdentifierDto get(Long id);
 	public List<ChildrenDto> getChildren(Long id);
 	Long register(Bovine bovine);
-	public boolean dropBovine();
+	public void deleteBovine(Long id);
 }

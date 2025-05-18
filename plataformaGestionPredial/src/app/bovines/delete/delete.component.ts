@@ -11,29 +11,7 @@ import Swal from 'sweetalert2'
 })
 export class DeleteComponent implements OnInit {
   id: number=0;
-  //name="";
-  date:Array<string>=[];
-  newBovine:Object={};
-  //bovineForm : string = "";
-  configurations: any = {title:"Delete bovine", loading:false, textButton:"Delete", initialLoading:false};
-  //mothers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
-  causes: Array<any>=[];
-  fields: Array<any> = [
-                //{name:"bovine",type:"image",id:"",text:"Current image:", info:""},
-                {name:"bovine",type:"image",id:"",text:"Current image:", info:"", full:false, url:""},
-                {name:"name",type:"text", value:"", required:true, placeholder:"Eg: My cow"},
-                //{name:"reason",type:"select", value:"", required:true, options:[{name:"Enfermedad",value:"1",selected:""},{name:"Muerte natural",value:"2",selected:""},{name:"Otro (agregar en observación)",value:"3",selected:""}]},
-                {name:"reason",type:"select", value:"", required:true, options:this.causes},
-                {name:"aditional observation",type:"text", value:"", required:false, placeholder:""},
-                {name:"date death",type:"date", value:"", required:true, full:true},
-                //{name:"Create",type:"submit"}
-              ];
-
-  registerBovine=():number=>{
-    return 2;
-  }
-
-  desplegarImagenBovino=(event:any):void=>{
+  displayBovineImage=(event:any):void=>{
     console.log("event: ",event)
     this.fields.forEach(e => {
       if((e.name=="bovine" && event.target.id=="mother") || (e.name=="image-father" && event.target.id=="father")){
@@ -42,6 +20,41 @@ export class DeleteComponent implements OnInit {
       }
     })
   }
+  date:Array<string>=[];
+  newBovine:Object={};
+  configurations: any = {title:"Delete bovine", loading:false, textButton:"Delete", initialLoading:false};
+  causes: Array<any>=[];
+  fields: Array<any> = [
+                //{name:"bovine",type:"image",id:"",text:"Current image:", info:""},
+                {name:"bovine",type:"image",id:"",text:"Current image:", info:"", full:false, url:""},
+                {name:"name",type:"text", value:"", required:true, placeholder:"Eg: My cow", disabled:true},
+                // {name:"father",type:"select", value:"", required:true, options:[], full:true, function:this.displayBovineImage},
+                //{name:"reason",type:"select", value:"", required:true, options:[{name:"Enfermedad",value:"1",selected:""},{name:"Muerte natural",value:"2",selected:""},{name:"Otro (agregar en observación)",value:"3",selected:""}]},
+                {name:"reason",type:"select", value:"", required:true, options:this.causes},
+                {name:"observation",type:"text", value:"", required:false, placeholder:""},
+                {name:"date death",type:"date", value:"", required:true, full:true},
+                //{name:"Create",type:"submit"}
+              ];
+
+  deleteBovine=():number=>{
+    this.configurations.loading=true;
+    this.configurations.textButton="Deleting...";
+    this.vacunoService.deleteBovine(this.id).
+    subscribe(r=>console.log("r: ",r),
+    (error:any)=>console.log("error en Observable: ",error),
+    ()=>{this.configurations.loading=false;
+      Swal.fire({
+        title: '',
+        text: "Bovine deleted succesfully",
+        icon: 'success',
+        confirmButtonText: 'Accept'
+      })
+      this.router.navigate(["bovines"])
+      this.configurations.textButton="Delete";}
+    );
+    return 2;
+  }
+
 
   async getCausesDeath(): Promise<void> 
   {

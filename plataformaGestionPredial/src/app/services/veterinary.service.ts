@@ -7,7 +7,7 @@ import { finalize } from "rxjs/operators";
 @Injectable({
   providedIn: 'root'
 })
-export class VacunosService{
+export class VeterinaryService{
 
   constructor(private http:HttpClient) { }
 
@@ -23,12 +23,12 @@ export class VacunosService{
     return this.http.get("http://localhost:8006/bovines/"+id+"/children");
   }
 
-  public createBovine(bovine: any):Observable<any>{
+  public createVeterinaryWork(veterinaryWork: any):Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     }
     const formData = new FormData();
-    formData.append('jsonbovine', JSON.stringify(bovine));
+    formData.append('jsonbovine', JSON.stringify(veterinaryWork));
     formData.append('youngFile', (document.getElementById('image young') as HTMLInputElement)?.files?.item(0) as any);
     formData.append('oldFile', (document.getElementById('image old') as HTMLInputElement)?.files?.item(0) as any);
     // for (let i = 0; i < files.length; i++) {
@@ -41,7 +41,7 @@ export class VacunosService{
   }
 
   public deleteBovine(id:number):Observable<any>{
-    return this.http.put("http://localhost:8006/bovines/"+id+"/delete",null);
+    return this.http.post("http://localhost:8006/bovines/"+id+"/delete",null);
   }
 
 }

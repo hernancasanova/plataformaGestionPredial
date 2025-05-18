@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { IdentifierService } from '../services/identifier.service';
 import { VacunosService } from '../services/vacunos.service';
+import { VeterinaryService } from '../services/veterinary.service';
 
 @Component({
   selector: 'app-veterinary',
@@ -21,7 +22,7 @@ export class VeterinaryComponent implements OnInit {
                 //{name:"image",type:"file"},
                 //{name:"DIIO",type:"numeric", value:"", required:true , placeholder:"Eg: 014628273", minlength:9, maxlength:9},
                 {name:"date",type:"date", value:"", required:true},
-                {name:"bovine",type:"select",value:"", required: true, options:[], multiple:false, change: this.setImageBovine },
+                {name:"bovine",type:"select2",value:"", required: true, options:[], multiple:false, change: this.setImageBovine },
                 //{name:"image-bovine",type:"image",id:"",text:"Bovine selected:", info:""},
                 {name:"image-bovine",type:"image",id:"",text:"Bovine selected:", info:"", full:true, url:""},
                 // {name:"bovine",type:"image",id:"",text:"Current image", info:"Select a new image to replace the current image"},
@@ -39,8 +40,8 @@ export class VeterinaryComponent implements OnInit {
                 // {name:"Create",type:"submit"}
               ];
 
-  constructor(private identifierService: IdentifierService, private vacunoService: VacunosService) {
-    this.configurations.initialLoading=true;
+  constructor(private identifierService: IdentifierService, private vacunoService: VacunosService, private veterinaryService: VeterinaryService) {
+    //this.configurations.initialLoading=true;
     this.vacunoService.getBovines()
     .subscribe(bs=>{
       bs.forEach((b: { type: string; name: any; id: any;  mainImage:number })=>{
@@ -119,7 +120,7 @@ export class VeterinaryComponent implements OnInit {
     ()=>{this.configurations.loading=false;
       Swal.fire({
         title: '',
-        text: "DIIO created succesfully",
+        text: "Veterinary work created succesfully",
         icon: 'success',
         confirmButtonText: 'Accept'
       })

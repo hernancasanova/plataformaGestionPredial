@@ -1,11 +1,14 @@
 package com.pgp.dao;
 
+import java.util.Date;
 import java.util.List;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pgp.dto.BovineDto;
 import com.pgp.dto.ChildrenDto;
@@ -52,6 +55,11 @@ public interface BovineDao extends JpaRepository<Bovine,Long>{
 		    + "LEFT JOIN HERNAN.BOVINES bov ON b.FATHER = bov.ID "
 		    + "WHERE b.ID = :id AND (i.STATE='activo' or i.DIIO is NULL )", nativeQuery = true)
 		Object[] bovineAndIdentifier(@Param("id") Long id);
+	
+	@Modifying
+    @Transactional
+    @Query("UPDATE Bovine b SET b.date_death = :date_death, b.state = 'Muerto' WHERE b.id = :id")
+    void deleteBovine(Long id, Date date_death);
 	
 	
 }

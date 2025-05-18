@@ -73,8 +73,9 @@ public class BovineServiceImpl implements IBovineService {
 	}
 
 	@Override
-	public boolean dropBovine() {
-		return false;
+	public void deleteBovine(Long id) {
+		Date deathDate = new Date();
+		bovineDao.deleteBovine(id, deathDate);;
 	}
 
 }

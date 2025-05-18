@@ -17,9 +17,9 @@ public class CauseDeath {
 	
 	@Id
 	@Column(name="ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_ANIMALS")
-	@SequenceGenerator(schema = "HERNAN", name = "SEQUENCE_ANIMALS",
-    sequenceName = "SEQUENCE_ANIMALS" , allocationSize=1) 
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_CAUSES_DEATH")
+	@SequenceGenerator(schema = "HERNAN", name = "SEQUENCE_CAUSES_DEATH",
+    sequenceName = "SEQUENCE_CAUSES_DEATH" , allocationSize=1) 
 	@Getter
 	@Setter
 	Long id;
@@ -31,6 +31,6 @@ public class CauseDeath {
 	
 	@Getter
 	@Setter
-	String Description;
+	String description;
 
 }

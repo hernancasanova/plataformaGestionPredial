@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity(name="BOVINES")
+@Entity
 @Table(name="BOVINES", schema="HERNAN")
 public class Bovine implements Serializable{
 	
@@ -80,6 +80,11 @@ public class Bovine implements Serializable{
 	public Date date_sale;
 	
 	
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+	@Column(name="DATE_DEATH")
+	public Date date_death;
+	
+	
 	@Column(name="INTERNAL_VERIFICATION", columnDefinition="char(1)")
 	public String internal_verification;
 	
@@ -93,6 +98,10 @@ public class Bovine implements Serializable{
 
 	@Column(name="VERIFIED_SAG", columnDefinition="char(1)")
 	public String verified_sag;
+	
+	
+	@Column(name="MAIN_IMAGE")
+	public int main_image;
 	
 
 	public String getVerified_sag() {
@@ -118,9 +127,6 @@ public class Bovine implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	@Column(name="MAIN_IMAGE")
-	public int main_image;
 
 	public int getMain_image() {
 		return main_image;

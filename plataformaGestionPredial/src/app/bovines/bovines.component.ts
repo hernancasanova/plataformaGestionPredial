@@ -184,6 +184,7 @@ export class BovinesComponent implements OnInit {
     if(this.id>0){
       this.configurations.textButton="Edit"
       this.vacunoService.getBovine(this.id).subscribe(b=>{
+        this.fields=this.fields.filter(f=>f.name!=="state")
         this.fields.forEach(element => {
           if(element["name"]=="mother"){
             element["options"]=this.mothers;
