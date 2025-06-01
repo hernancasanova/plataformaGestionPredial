@@ -2,7 +2,7 @@ import { AsyncPipe, DatePipe, DecimalPipe, NgFor, NgIf, SlicePipe } from '@angul
 import { ChangeDetectorRef, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Country } from '../models/country';
+import { Bovine } from '../models/bovine';
 import { CountryService } from './country.service';
 import { NgbdSortableHeader, SortEvent } from './sortable.directive';
 import { FormsModule } from '@angular/forms';
@@ -92,7 +92,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 	],
 })
 export class ListComponent {
-	items$: Observable<Country[]>;
+	items$: Observable<Bovine[]>;
 	direccion: any;
 	//items: Array<any> = [];
 	//total: number = 20;

@@ -70,6 +70,10 @@ public class Bovine implements Serializable{
 	public String color;
 	
 	
+	@Column(name="RACE")
+	public int race;
+	
+	
 	@Column(name="STATE")
 	public String state;
 	

@@ -16,6 +16,7 @@ export class BovinesComponent implements OnInit {
   configurations: any = {title:"Create bovine", loading:false, textButton:"Create", initialLoading:false};
   mothers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
   fathers: Array<any>=[{name:"Sin identificar",value:"0",selected:""}];
+  races: Array<any>=[];
 
   displayBovineImage=(event:any):void=>{
     this.fields.forEach(e => {
@@ -69,8 +70,7 @@ export class BovinesComponent implements OnInit {
                 {name:"sex",type:"select", value:"", required:true, options:[{name:"Macho",value:"1",selected:""},{name:"Hembra",value:"2",selected:""}], full:true},
                 {name:"type",type:"select",value:"", required:true, options:[{name:"Ternero",value:"1",selected:""},{name:"Ternera",value:"2",selected:""},{name:"Toro",value:"3", selected:""},{name:"Vaquilla",value:"4", selected:""},{name:"Vaca",value:"5",selected:""},{name:"Buey",value:"6",selected: ""},{name:"Novillo",value:"7", selected:""}], full:true},
                 {name:"color",type:"select",value:"", required: true, options:[{name:"Clavel(a)",value:"1",selected:""},{name:"Overo(a)",value:"2",selected:""},{name:"Blanco(a)",value:"3",selected:""},{name:"Colorado(a)",value:"4", selected:""},{name:"Amarillo(a)",value:"5",selected:""}], full:true},
-                {name:"race",type:"select",value:"", required: false, options:[{name:"Holstein",value:"1",selected:""},{name:"Hereford",value:"2",selected:""},{name:"Angus",value:"3",selected:""},{name:"Angus Rojo",value:"4", selected:""},{name:"Clavel Alemán",value:"5", selected:""},{name:"Overo",value:"6", selected:""}], full:true},
-                {name:"state",type:"select",value:"", required: true, options:[{name:"Muerto",value:"1", selected:""},{name:"Vivo",value:"2", selected:""}], full:true, disabled:false},
+                {name:"race",type:"select",value:"", required: false, options:this.races, full:true},
                 {name:"date sale",type:"date", value:"", required:false, full:true},
                 {name:"internal verification",type:"checkbox", value:"", required:false, full:true},
                 {name:"verified SAG",type:"checkbox", value:"", required:false, full:true},
@@ -108,11 +108,15 @@ export class BovinesComponent implements OnInit {
         let sel=(document.getElementById(e.name)) as HTMLSelectElement;
         let optionSelected=sel.options[sel.selectedIndex].text;
         this.newBovine={...this.newBovine, color:optionSelected}
-      }else if(e.name=="state"){
-        let sel=(document.getElementById(e.name)) as HTMLSelectElement;
-        let optionSelected=sel.options[sel.selectedIndex].text;
-        this.newBovine={...this.newBovine, state:optionSelected}
-      }else if(e.name=="date sale"){
+      }else if(e.name=="race"){
+        this.newBovine={...this.newBovine, race:e.value}
+      }
+      // else if(e.name=="state"){
+      //   let sel=(document.getElementById(e.name)) as HTMLSelectElement;
+      //   let optionSelected=sel.options[sel.selectedIndex].text;
+      //   this.newBovine={...this.newBovine, state:optionSelected?optionSelected:"Vivo"}
+      // }
+      else if(e.name=="date sale"){
         this.newBovine={...this.newBovine, date_sale:e.value!=""?e.value+"T00:00:00":null}
       }else if(e.name=="verified SAG"){
         this.newBovine={...this.newBovine, verified_sag:e.value?"S":"N"}
@@ -125,6 +129,7 @@ export class BovinesComponent implements OnInit {
     if(this.id>0){
       this.newBovine={...this.newBovine, id:this.id}
     }
+    this.newBovine={...this.newBovine, state:"Vivo"}
     this.vacunoService.createBovine(this.newBovine).
     subscribe(r=>console.log("r: ",r),
     (error:any)=>console.log("error en Observable: ",error),
@@ -157,6 +162,14 @@ export class BovinesComponent implements OnInit {
     (error:any)=>console.log("error en Observable: ",error),
     ()=>{this.setBovineEdited()}
     );
+    this.vacunoService.getRaces()
+    .subscribe(rs=>{
+      rs.forEach((r:any)=>{
+        this.races.push({name:r.name,value:r.id,selected:""})
+      })
+    },
+    (error:any)=>console.log("error en Observable: ",error)
+    );
     this.route.params.subscribe(
       (params: Params) => {
         if(params['id']){
@@ -184,7 +197,6 @@ export class BovinesComponent implements OnInit {
     if(this.id>0){
       this.configurations.textButton="Edit"
       this.vacunoService.getBovine(this.id).subscribe(b=>{
-        this.fields=this.fields.filter(f=>f.name!=="state")
         this.fields.forEach(element => {
           if(element["name"]=="mother"){
             element["options"]=this.mothers;
@@ -236,12 +248,12 @@ export class BovinesComponent implements OnInit {
               }
             })
           }else if(element["name"]=="state"){
-            element.options.forEach((o:any)=>{
-              if(o.name==b.state){
-                o.selected="selected"
-                element.value=o.value
-              }
-            })
+            // element.options.forEach((o:any)=>{
+            //   if(o.name==b.state){
+            //     o.selected="selected"
+            //     element.value=o.value
+            //   }
+            // })
           }else if(element["name"]=="date sale"){
             if(b.dateSale){
               if(b.dateSale.includes("T")){
@@ -260,6 +272,8 @@ export class BovinesComponent implements OnInit {
           }
         });
       })
+    }else{
+      this.fields=this.fields.filter(f=>f.name!=="DIIO")
     }
     this.configurations.initialLoading=false;
   }

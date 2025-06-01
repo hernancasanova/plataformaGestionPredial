@@ -1,4 +1,4 @@
-export interface Country {
+export interface Bovine {
 	id: number;
 	name: string;
 	diio: string;
@@ -9,6 +9,7 @@ export interface Country {
 	mother: string;
 	idMother: number;
 	color: string;
+	race: number;
 	state: string;
 	date_sale: any;
 	age: string;
