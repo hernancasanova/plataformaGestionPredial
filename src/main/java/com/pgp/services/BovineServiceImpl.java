@@ -46,7 +46,8 @@ public class BovineServiceImpl implements IBovineService {
 		        (String) result[14],  // INTERNAL_VERIFICATION
 		        (String) result[15],  // VERIFIED_SAG
 		        (String) result[16],  // STATE
-		        result[17] != null ? ((Number) result[17]).longValue() : null  // MAIN_IMAGE
+		        result[17] != null ? ((Number) result[17]).longValue() : null,  // MAIN_IMAGE
+		        result[18] != null ? ((Number) result[18]).longValue() : null  // RACE
 		    );
 	}
 

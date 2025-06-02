@@ -41,11 +41,12 @@ public class BovineIdentifierDto {
 	public String verifiedSag;
 	public String state;
 	public Long mainImage;
+	public Long race;
 	
 	
 	public BovineIdentifierDto(Long id, Date dateSale, String name, String diio, String sex, Long idType, String color,
 			Date datePlacement, Date dateBirth, String mother, Long idMother, Long idFather, String father, String age,
-			String internalVerification, String verifiedSag, String state, Long mainImage) {
+			String internalVerification, String verifiedSag, String state, Long mainImage, Long race) {
 		super();
 		this.id = id;
 		this.dateSale = dateSale;
@@ -65,6 +66,7 @@ public class BovineIdentifierDto {
 		this.verifiedSag = verifiedSag;
 		this.state = state;
 		this.mainImage = mainImage;
+		this.race = race;
 	}
 
 
@@ -246,6 +248,17 @@ public class BovineIdentifierDto {
 	public void setMainImage(Long mainImage) {
 		this.mainImage = mainImage;
 	}
+
+
+	public Long getRace() {
+		return race;
+	}
+
+
+	public void setRace(Long race) {
+		this.race = race;
+	}
+	
 	
 	
 	

@@ -48,7 +48,7 @@ public interface BovineDao extends JpaRepository<Bovine,Long>{
 		    + "bov.ID AS idFather, bov.NAME AS FATHER, "
 		    + "TO_CHAR(HERNAN.getAge(b.ID)) AS AGE, "
 		    + "CASE b.INTERNAL_VERIFICATION WHEN 'S' THEN 'SÍ' ELSE 'NO' END, "
-		    + "CASE b.VERIFIED_SAG WHEN 'S' THEN 'SÍ' ELSE 'NO' END, b.state, b.MAIN_IMAGE "
+		    + "CASE b.VERIFIED_SAG WHEN 'S' THEN 'SÍ' ELSE 'NO' END, b.state, b.MAIN_IMAGE, b.RACE "
 		    + "FROM HERNAN.BOVINES b "
 		    + "LEFT JOIN HERNAN.IDENTIFIERS i ON b.ID = i.BOVINE_ID "
 		    + "LEFT JOIN HERNAN.BOVINES bo ON b.MOTHER = bo.ID "

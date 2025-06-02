@@ -269,6 +269,8 @@ export class BovinesComponent implements OnInit {
             element["value"]=b.internalVerification=="SÍ"?true:false
           }else if(element["name"]=="main image"){
             element["value"]=b.mainImage
+          }else if(element["name"]=="race"){
+            element["value"]=b.race?b.race:""
           }
         });
       })

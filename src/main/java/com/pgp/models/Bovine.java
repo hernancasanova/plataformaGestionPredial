@@ -71,7 +71,7 @@ public class Bovine implements Serializable{
 	
 	
 	@Column(name="RACE")
-	public int race;
+	public Integer race;
 	
 	
 	@Column(name="STATE")
