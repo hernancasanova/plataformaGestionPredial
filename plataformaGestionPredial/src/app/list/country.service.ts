@@ -2,13 +2,13 @@ import { Injectable, OnInit, PipeTransform } from '@angular/core';
 
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 
-//import { Country } from '../models/country';
+//import { Bovine } from '../models/country';
 //import { BOVINES } from './countries';
 import { DatePipe, DecimalPipe, JsonPipe } from '@angular/common';
 import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
 import { SortColumn, SortDirection } from './sortable.directive';
 import { VacunosService } from '../services/vacunos.service';
-import { Country } from '../models/country';
+import { Bovine } from '../models/bovine';
 
 interface SearchResult {
 	countries: any[];
@@ -22,7 +22,8 @@ interface State {
 	sortColumn: SortColumn;
 	sortDirection: SortDirection;
 	type: any;
-	state:any
+	state: any;
+	year: any;
 }
 
 //var BOVINES: any = [];
@@ -40,7 +41,7 @@ function sort(countries: [], column: SortColumn, direction: string): any[] {
 	}
 }
 
-function verifyState(states: Array<string>,country: Country){
+function verifyState(states: Array<string>,country: Bovine){
 	var verification=false;
 	if(states.includes("Vendido")){
 		verification=verifySold(states,country)?true:false;
@@ -54,15 +55,15 @@ function verifyState(states: Array<string>,country: Country){
 	return verification;
 }
 
-function verifySold(states: Array<string>,country: Country){
+function verifySold(states: Array<string>,country: Bovine){
 	if(country.dateSale)return true;
 	return false;
 }
-function verifyAlive(states: Array<string>,country: Country){
+function verifyAlive(states: Array<string>,country: Bovine){
 	if(country.state=="Vivo"&&!country.dateSale)return true;
 	return false;
 }
-function verifyDie(states: Array<string>,country: Country){
+function verifyDie(states: Array<string>,country: Bovine){
 	if(country.state=="Muerto")return true;
 	return false;
 }
@@ -71,7 +72,7 @@ function formatDiio(input: string): string {
 	return input.replace(/^(\d{2})(\d{3})(\d{4})$/, '$1.$2.$3');
 }
 
-function matches(country: Country, term: string, pipe: PipeTransform, type: any, states:any) {
+function matches(country: Bovine, term: string, pipe: PipeTransform, type: any, states:any, years: any) {
 	return (
 		(country.name.toLowerCase().includes(term.toLowerCase()) ||
 		formatDiio(country.diio).includes(formatDiio(term)) || country.diio.includes(term) ) &&
@@ -102,12 +103,13 @@ export class CountryService{
 
 	private _state: State = {
 		page: 1,
-		pageSize: 5,
+		pageSize: 15,
 		searchTerm: '',
 		sortColumn: '',
 		sortDirection: '',
 		type: ['all'],
 		state: ['Vivo'],
+		year: ['2025']
 	};
 
 	constructor(private pipe: DecimalPipe, private vacunoService: VacunosService) {
@@ -161,6 +163,10 @@ export class CountryService{
 		return this._state.state;
 	}
 
+	get year() {
+		return this._state.year;
+	}
+
 	set page(page: number) {
 		this._set({ page });
 	}
@@ -176,6 +182,9 @@ export class CountryService{
 	set state(state: any) {
 		this._set({ state });
 	}
+	set year(year: any) {
+		this._set({ year });
+	}
 	set sortColumn(sortColumn: SortColumn) {
 		this._set({ sortColumn });
 	}
@@ -189,7 +198,7 @@ export class CountryService{
 	}
 
 	private _search(): Observable<SearchResult> {
-		const { sortColumn, sortDirection, pageSize, page, searchTerm, type, state} = this._state;
+		const { sortColumn, sortDirection, pageSize, page, searchTerm, type, state, year} = this._state;
 
 		// 1. sort
 		let countries = sort(this.BOVINES, sortColumn, sortDirection);
@@ -197,7 +206,8 @@ export class CountryService{
 		// 2. filter
 		let types=type[0]=='all'?['Ternero','Ternera','Toro','Vaquilla','Vaca','Buey','Novillo']:type;
 		let states=state[0]=='all'?['Vivo','Muerto','Vendido']:state;
-		countries = countries.filter((country) => matches(country, searchTerm, this.pipe, types, states));
+		let years=year[0]=='all'?["2025","2024","2023"]:year;
+		countries = countries.filter((country) => matches(country, searchTerm, this.pipe, types, states, years));
 		const total = countries.length;
 
 		// 3. paginate
@@ -206,7 +216,7 @@ export class CountryService{
 	}
 
 	public getTargetBovines(): any {
-		const { sortColumn, sortDirection, pageSize, page, searchTerm, type, state} = this._state;
+		const { sortColumn, sortDirection, pageSize, page, searchTerm, type, state, year} = this._state;
 
 		// 1. sort
 		let countries = sort(this.BOVINES, sortColumn, sortDirection);
@@ -214,7 +224,8 @@ export class CountryService{
 		// 2. filter
 		let types=type[0]=='all'?['Ternero','Ternera','Toro','Vaquilla','Vaca','Buey','Novillo']:type;
 		let states=state[0]=='all'?['Vivo','Muerto','Vendido']:state;
-		countries = countries.filter((country) => matches(country, searchTerm, this.pipe, types, states));
+		let years=year[0]=='all'?["2025","2024","2023"]:year;
+		countries = countries.filter((country) => matches(country, searchTerm, this.pipe, types, states, years));
 		const total = countries.length;
 		return countries;
 	}

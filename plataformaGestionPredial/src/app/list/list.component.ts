@@ -146,6 +146,12 @@ export class ListComponent {
 		{ value: "Muerto", name: 'Die' }
 	];
 
+	years = [
+		{ value: "2025", name: '2025' },
+		{ value: "2024", name: '2024' },
+		{ value: "2023", name: '2023' },		
+	];
+
 	formatDiio(input: string): string {
 		return input.replace(/^(\d{2})(\d{3})(\d{4})$/, '$1.$2.$3');
 	}

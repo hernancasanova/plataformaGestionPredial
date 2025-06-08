@@ -44,8 +44,8 @@
         </ng-template>
         <form>
           <div class="mb-2 row">
-            <div class="col-3">
-              <label for="" class="col-xs-3 col-sm-auto col-form-label"><b>Search by type(s):</b></label>
+            <div class="col-2">
+              <label for="" class="col-xs-3 col-sm-auto col-form-label"><b>Type(s):</b></label>
               <div class="col-xs-3 col-sm-auto">
                 <!-- <select class="form-select" size="3" name="type" multiple [(ngModel)]="service.type">
                     <option value="all">All</option>
@@ -79,8 +79,8 @@
 
               </div>
             </div>
-            <div class="col-3">
-              <label for="" class="col-xs-3 col-sm-auto col-form-label"><b>Search by state(s):</b></label>
+            <div class="col-2">
+              <label for="" class="col-xs-3 col-sm-auto col-form-label"><b>State(s):</b></label>
               <div class="col-xs-3 col-sm-auto">
                 <!-- <select class="form-select" size="3" name="state" multiple [(ngModel)]="service.state">
                     <option value="all">All</option>
@@ -92,8 +92,15 @@
                 </ng-select>
               </div>
             </div>
-            <div class="col-3">
-              <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label"><b>Search by name or DIIO:</b></label>
+            <div class="col-2">
+              <label for="" class="col-xs-3 col-sm-auto col-form-label"><b>Year(s):</b></label>
+              <div class="col-xs-3 col-sm-auto">
+                <ng-select [items]="years" bindLabel="name" bindValue="value" name="year" [(ngModel)]="service.year" [multiple]="true" [clearable]="false">
+                </ng-select>
+              </div>
+            </div>
+            <div class="col-2">
+              <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label"><b>Name or DIIO:</b></label>
               <div class="col-xs-3 col-sm-auto">
                 <input
                   id="table-complete-search"
