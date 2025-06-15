@@ -6,6 +6,7 @@ uploadedDocuments/
 !**/src/test/**/target/
 plataformaGestionPredial/src/assets/imagenes
 src/main/resources/images
+target/pgp-0.0.1-SNAPSHOT.jar
 
 ### STS ###
 .apt_generated
